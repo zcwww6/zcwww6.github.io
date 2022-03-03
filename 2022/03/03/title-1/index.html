@@ -20,18 +20,37 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="去爱，去工作">
+  <meta name="description" content="运行1-5程序时，我的Devc++运行的结果和书上作者的运行结果，还有我的VS上的运行结果都出现了一些差异：  ​            1）作者的运行结果中将指向Int的指针类型强制转化为（void*）类型后进行了hoge_p+1，得到的结果仍是加了一个Int类型字节的长度，即地址数值增加了十六进制下的‘4’ ​            2）在我的dev中程序出现警告：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C pointer">
+<meta property="og:title" content="C 指针">
 <meta property="og:url" content="http://example.com/2022/03/03/title-1/index.html">
 <meta property="og:site_name" content="欢迎来到成伟的部落">
-<meta property="og:description" content="去爱，去工作">
+<meta property="og:description" content="运行1-5程序时，我的Devc++运行的结果和书上作者的运行结果，还有我的VS上的运行结果都出现了一些差异：  ​            1）作者的运行结果中将指向Int的指针类型强制转化为（void*）类型后进行了hoge_p+1，得到的结果仍是加了一个Int类型字节的长度，即地址数值增加了十六进制下的‘4’ ​            2）在我的dev中程序出现警告：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="e:/程序设计/C语言/征服C指针/picture/图片1.png">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wpsB91C.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5E95.tmp.png">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5E96.tmp.png">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EA6.tmp.png">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EA7.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EA8.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EA9.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EAA.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EBB.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EBC.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EBD.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5EBE.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5ECF.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5ED0.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5ED1.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5ED2.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/赵/AppData/Local/Temp/ksohtml/wps5ED3.tmp.jpg">
 <meta property="article:published_time" content="2022-03-03T05:46:52.000Z">
-<meta property="article:modified_time" content="2022-03-03T05:52:23.866Z">
+<meta property="article:modified_time" content="2022-03-03T07:10:42.169Z">
 <meta property="article:author" content="Markcheng">
-<meta property="article:tag" content="学习 生活 分享 交流">
+<meta property="article:tag" content="C指针学习笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="e:/程序设计/C语言/征服C指针/picture/图片1.png">
 
 <link rel="canonical" href="http://example.com/2022/03/03/title-1/">
 
@@ -46,7 +65,7 @@
   };
 </script>
 
-  <title>C pointer | 欢迎来到成伟的部落</title>
+  <title>C 指针 | 欢迎来到成伟的部落</title>
   
 
 
@@ -182,7 +201,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C pointer
+          C 指针
         </h1>
 
         <div class="post-meta">
@@ -193,7 +212,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-03-03 13:46:52 / 修改时间：13:52:23" itemprop="dateCreated datePublished" datetime="2022-03-03T13:46:52+08:00">2022-03-03</time>
+              <time title="创建时间：2022-03-03 13:46:52 / 修改时间：15:10:42" itemprop="dateCreated datePublished" datetime="2022-03-03T13:46:52+08:00">2022-03-03</time>
             </span>
 
           
@@ -207,7 +226,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <ol>
+<li>运行1-5程序时，我的Devc++运行的结果和书上作者的运行结果，还有我的VS上的运行结果都出现了一些差异：</li>
+</ol>
+<p>​            1）作者的运行结果中将指向Int的指针类型强制转化为（void*）类型后进行了hoge_p+1，得到的结果仍是加了一个Int类型字节的长度，即地址数值增加了十六进制下的‘4’</p>
+<p>​            2）在我的dev中程序出现警告：</p>
+<span id="more"></span>
+
+<p><img src="E:\程序设计\C语言\征服C指针\picture\图片1.png"></p>
+<p>​       其实并没有理解这句警告是什么意思，大致是告诉我说前面已经定义了该指针是指向Int的，但是后面又做了强制类型转换，会出现一些意外；果然，当我运行的时候发现第14行的输出语句输出的值竟真的只是十六进制下hoge_p的地址值+十六进制下的数字‘1’：</p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wpsB91C.tmp.jpg" alt="img"></p>
+<p>1）VS 2019对此的警告级别较高，不允许对未知指向类型的指针进行运算</p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5E95.tmp.png" alt="img"><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5E96.tmp.png" alt="img"><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EA6.tmp.png" alt="img"><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EA7.tmp.jpg" alt="img"> </p>
+<p>这里发现11行的赋值语句能够正常给该指针值加上一个（int）类型字节长度的值，是因为在开始就定义了该指针指向int，12行的输出语句在强制类型转换的时候没有对指针值进行运算，这里默认还是按照指针指向int来输出，因此前两个大概没有报错；第十四行我们发现在强制类型转换的时候又对指针值进行了运算操作，这时候就会给程序造成指令上的矛盾，为了保护之后程序的正常运行，报错处理！</p>
+<p>2）VS中对于上图中第14行代码如果将红框中运算改成[（void*）hoge_p++]，仍会输出hoge_p原来的值；</p>
+<h2 id="1-代码1-10中关于文件数组操作的一些学习心得："><a href="#1-代码1-10中关于文件数组操作的一些学习心得：" class="headerlink" title="1. 代码1-10中关于文件数组操作的一些学习心得："></a>1. 代码1-10中关于文件数组操作的一些学习心得：</h2><p>里面的部分文字和图片出处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43318827/article/details/103547283?ops_request_misc=%7B%22request_id%22:%22164153866916780357213246%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=164153866916780357213246&biz_id=0&utm">CSDN博客</a></p>
+<p> （1）关于函数fgets():</p>
+<p>l 虽然用 gets() 时有空格也可以直接输入，但是 gets() 有一个非常大的缺陷，即它不检查预留存储区是否能够容纳实际输入的数据，换句话说，如果输入的字符数目大于数组的长度，gets 无法检测到这个问题，就会发生内存越界，所以编程时建议使用 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=fgets">fgets</a>()。(C程序中的文件操作内容我是真的一点也没有学，所以此处对gets()和fgets()都很陌生，所以既然先遇到了fgets()就先了解一下它吧，gets（）后面遇到再说；）</p>
+<p>l Fgets（）；的原型：</p>
+<p> <img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EA8.tmp.jpg" alt="img"></p>
+<p>它的功能是从 stream 流中读取 size 个字符存储到字符指针变量 s 所指向的内存空间。它的返回值是一个指针，指向字符串中第一个字符的地址。标准输入流 stdin指的是输入缓冲区（暂时不深入了解）</p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EA9.tmp.jpg" alt="img"> </p>
+<p>fget() 函数中的 size 如果小于字符串的长度，那么字符串将会被截取；如果 size 大于字符串的长度则多余的部分系统会自动用 ‘\0’ 填充。所以假如你定义的字符数组长度为 n，那么 fgets() 中的 size 就指定为 n–1，留一个给 ‘\0’ 就行了。但是需要注意的是，如果输入的字符串长度没有超过 n–1，那么系统会将最后输入的换行符 ‘\n’ 保存进来，保存的位置是紧跟输入的字符，然后剩余的空间都用 ‘\0’ 填充。所以此时输出该字符串时 printf 中就不需要加换行符 ‘\n’ 了，因为字符串中已经有了。</p>
+<p>程序示例：</p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EAA.tmp.jpg" alt="img"> </p>
+<p>fgets() 和 gets() 一样，最后的回车都会从缓冲区中取出来。只不过 gets() 是取出来丢掉，而 fgets() 是取出来自己留着。但总之缓冲区中是没有回车了！所以与 gets() 一样，在使用 fgets() 的时候，如果后面要从键盘给字符变量赋值，那么同样不需要清空缓冲区。</p>
+<p>(2) 关于EOF:</p>
+<p>  如果是文本，一般文本文件的结尾是以ascii码25表示的,你读到这个字符,也可以认为文本文件结束了.eof函数查看最后一次读文件是否为文件的最后一个记录，是，返回非零，否，返回零。eof可以不加括号。(暂且就了解这么多吧继续往下看书）</p>
+<p>（3）C语言的宏isalnum(ctype.h):</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/VictorierJwr/article/details/104379687?ops_request_misc=%7B%22request_id%22:%22164154283316780366591644%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=164154283316780366591644&biz_i">查找资料（抄袭）</a></p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EBB.tmp.jpg" alt="img"> </p>
+<p>(3) 关于exit()函数：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43520054/article/details/94392365?ops_request_misc=%7B%22request_id%22:%22164154306316780274165077%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=164154306316780274165077&biz_id=0&utm_">先放个链接吧里面还有有用的东西有时间记得回去看一看</a>！</p>
+<p>  exit()： 结束当前进程/当前程序/，在整个程序中，只要调用 exit ，就结束。</p>
+<p>return() 是当前函数返回，当然如果是在主函数main, 自然也就结束当前进程了，如果不是，那就是退回上一层调用。在多个进程时.如果有时要检测上进程是否正常退出的.就要用到上个进程的返回值。</p>
+<p>exit(1)表示进程正常退出. 返回 1;</p>
+<p>exit(0)表示进程非正常退出. 返回 0.</p>
+<p>（4）关于getc(fp):</p>
+<p> <img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EBC.tmp.jpg" alt="img"></p>
+<p>(4) 关于fprintf():</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42609193/article/details/105332095?ops_request_misc=%7B%22request_id%22:%22164154411316781685362402%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=164154411316781685362402&biz_id=0&utm_med">出处</a></p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EBD.tmp.jpg" alt="img"> </p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5EBE.tmp.jpg" alt="img"> </p>
+<p>关于Fprintf(stdout)和fprintf(stderr):</p>
+<p>stdout（标准输出），输出方式是行缓冲。输出的字符会先存放在缓冲区，等按下回车键时才进行实际的I/O操作。<br>stderr（标准错误），是不带缓冲的，这使得出错信息可以直接尽快地显示出来。</p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5ECF.tmp.jpg" alt="img"> </p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5ED0.tmp.jpg" alt="img"> </p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5ED1.tmp.jpg" alt="img"> </p>
+<p>到这里还没有理解1-10的代码···未完待续</p>
+<p>现在是1月11号我又来学习了</p>
+<p>（很开心第一件事就是理解了上次卡住我的1-10代码，耗时40ish minutes）;</p>
+<h4 id="1-17日学习"><a href="#1-17日学习" class="headerlink" title="1.17日学习"></a><strong>1.17日学习</strong></h4><p>4行程序1-11可变长数组时出现了如下结果：</p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5ED2.tmp.jpg" alt="img"> </p>
+<p>这与书上的结果简直大相径庭，array[0]本应该是0，却出现了24.。。。。Array2的结果也是完全不同。由于时间关系先往下学习吧。深究这个机会成本有点大。</p>
+<p>\5. 程序2-1</p>
+<p><img src="file:///C:\Users\赵\AppData\Local\Temp\ksohtml\wps5ED3.tmp.jpg" alt="img"> </p>
+<p>l fgets（）函数</p>
+<p>l <a target="_blank" rel="noopener" href="https://blog.csdn.net/liangtianmeng/article/details/105017760?ops_request_misc=%7B%22request_id%22:%22164248574016780357250318%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=164248574016780357250318&biz_id=0&utm_m">关于sscanf()函数</a>：  </p>
+<p>  首先我们先来看函数定义：<br>定义函数 int sscanf (const char <em>str,const char * format,……..);<br> 函数说明<br>         sscanf()会将参数str的字符串根据参数format字符串来转换并格式化数据。格式转换形式请参考scanf()。转换后的结果存于对应的参数内。<br>         返回值 成功则返回参数数目，失败则返回-1，错误原因存于errno中。 返回0表示失败   否则，表示正确格式化数据的个数   例如：sscanf(str，”%d%d%s”, &amp;i,&amp;i2, &amp;s);   如果三个变成都读入成功会返回3。   如果只读入了第一个整数到i则会返回1。证明无法从str读入第二个整数。<br>定义太抽象了，我们还是先来看一下常见的用法吧：<br>（1）sscanf(“zhoue3456 “, “%4s”, str); //取指定长度的字符串<br>     printf(“str=%s\n”, str);  //str=”zhou”;<br>（2）sscanf(“zhou456 hedf”, “%[^ ]”, str); //取到指定字符为止的字符串,取遇到空格为止字符串<br>     printf(“str=%s\n”, str);  //str=zhou456;<br>（3）sscanf(“654321abcdedfABCDEF”, “%[1-9a-z]”, str); //取仅包含指定字符集的字符串<br>     printf(“str=%s\n”, str);  //str=654321abcded，只取数字和小写字符<br>（4）sscanf(“BCDEF123456abcdedf”, “%[^a-z]”, str); //取到指定字符集为止的字符串<br>      printf(“str=%s\n”, str);  //  str=BCDEF123456, 取遇到大写字母为止的字符串<br>（5）int a,b,c;<br>     sscanf(“2015.04.05”, “%d.%d.%d”, &amp;a,&amp;b,&amp;c); //取需要的字符串<br>     printf(“a=%d,b=%d,c=%d”,a,b,c);  //  a=2015,b=4,c=5<br>通过上面这几个例子相信大家对sscanf的用法会有一个直观的理解了,下面我们再来看一下更复杂一些的例子：<br>（6）给定一个字符串“abcd&amp;hello$why”,现在我想取出&amp;与$之间的字符串怎么办呢<br>    sscanf(“abcd&amp;hello$why”, “%</em>[^&amp;]&amp;%[^$]”, str );<span style="white-space:pre"></span>printf(“str=%s\n”,str);  //str=”hello”<br>    其中%[]类似于一个正则表达式，如[a-z]表示读取所有a-z的字符，[^a-z]表示读取所有非小写字母的字符。那么在这里%*[^&amp;]表示先过滤掉abcd，然后以&amp;隔开,后面还剩hello$why，然后将$之前非$的字符提取到str中。<br>（7）给定一个字符串“what, time”，如果我想仅保留time,那该怎么办呢？(,后面有个空格)<br>     sscanf(“what, time”, “%*s%s”, str );<span style="white-space:pre"></span>printf(“str=%s\n”,str);  //str=”time”<br>     其中%*s表示第一个被匹配到的字符串what，被过滤掉了，如果没有空格，则结果为NULL。其实“what, time”被空格分割成了两个字符串”what,”和”time”.<br>然而有人会问，C语言中的scanf和sscanf有什么区别和联系呢？OK，sscanf和scanf确实很类似，两者都是用于输入。只是后者以屏幕stidin为输入源，而前者是以字符串为输入源，仅此而已。<br>函数原型：int scanf( const char *format [,argument]… );<br>其中的format可以是一个或多个 </p>
+
     </div>
 
     
@@ -215,18 +292,14 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C%E6%8C%87%E9%92%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># C指针学习笔记</a>
+          </div>
 
         
 
 
         
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2022/01/09/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
       </footer>
     
   </article>
@@ -284,6 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%A3%E7%A0%811-10%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%96%87%E4%BB%B6%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">1. 代码1-10中关于文件数组操作的一些学习心得：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-17%E6%97%A5%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.17日学习</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -299,9 +373,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
