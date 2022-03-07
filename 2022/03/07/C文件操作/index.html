@@ -20,31 +20,33 @@
     var CONFIG = {"hostname":"www.zcwww.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="去爱，去工作">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欢迎来到成伟的部落">
-<meta property="og:url" content="http://www.zcwww.top/index.html">
+  <meta name="description" content="1.格式化输入和输出（1）基本输入输出格式PRINTF():12%[flags][width][.prec][hlL][type]     Flag 含义    - 左对齐   + 在前面放 + 或 -   (space) 正数留空   0 0填充">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C文件操作">
+<meta property="og:url" content="http://www.zcwww.top/2022/03/07/C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="欢迎来到成伟的部落">
-<meta property="og:description" content="去爱，去工作">
+<meta property="og:description" content="1.格式化输入和输出（1）基本输入输出格式PRINTF():12%[flags][width][.prec][hlL][type]     Flag 含义    - 左对齐   + 在前面放 + 或 -   (space) 正数留空   0 0填充">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-07T13:36:34.000Z">
+<meta property="article:modified_time" content="2022-03-07T13:50:41.659Z">
 <meta property="article:author" content="Markcheng">
-<meta property="article:tag" content="学习 生活 分享 交流">
+<meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.zcwww.top/">
+<link rel="canonical" href="http://www.zcwww.top/2022/03/07/C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>欢迎来到成伟的部落</title>
+  <title>C文件操作 | 欢迎来到成伟的部落</title>
   
 
 
@@ -160,9 +162,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -178,10 +181,9 @@
       <meta itemprop="name" content="欢迎来到成伟的部落">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/07/C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">C文件操作</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          C文件操作
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -214,7 +216,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h5 id="1-格式化输入和输出"><a href="#1-格式化输入和输出" class="headerlink" title="1.格式化输入和输出"></a>1.格式化输入和输出</h5><h6 id="（1）基本输入输出格式"><a href="#（1）基本输入输出格式" class="headerlink" title="（1）基本输入输出格式"></a>（1）基本输入输出格式</h6><h6 id="PRINTF"><a href="#PRINTF" class="headerlink" title="PRINTF():"></a>PRINTF():</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">%[flags][width][.prec][hlL][type]</span><br></pre></td></tr></table></figure>
+        <h5 id="1-格式化输入和输出"><a href="#1-格式化输入和输出" class="headerlink" title="1.格式化输入和输出"></a>1.格式化输入和输出</h5><h6 id="（1）基本输入输出格式"><a href="#（1）基本输入输出格式" class="headerlink" title="（1）基本输入输出格式"></a>（1）基本输入输出格式</h6><h6 id="PRINTF"><a href="#PRINTF" class="headerlink" title="PRINTF():"></a>PRINTF():</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">%[flags][width][.prec][hlL][type]</span><br></pre></td></tr></table></figure>
 
 <table>
 <thead>
@@ -240,289 +242,152 @@
 <td align="center">0填充</td>
 </tr>
 </tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/07/C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+<span id="more"></span>             
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%9d&quot;</span>,<span class="number">123</span>);<span class="comment">//右对齐</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%-9d&quot;</span>,<span class="number">123</span>);<span class="comment">//左对齐</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%+9d&quot;</span>,<span class="number">123</span>);<span class="comment">//加正号</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%09d&quot;</span>,<span class="number">123</span>);<span class="comment">//用0填充空字符</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2022/03/05/title-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="Markcheng">
-      <meta itemprop="description" content="去爱，去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="欢迎来到成伟的部落">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/05/title-2/" class="post-title-link" itemprop="url">顺序表和链表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-05 22:21:11" itemprop="dateCreated datePublished" datetime="2022-03-05T22:21:11+08:00">2022-03-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-06 22:18:01" itemprop="dateModified" datetime="2022-03-06T22:18:01+08:00">2022-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="数据结构-结构定义-结构操作"><a href="#数据结构-结构定义-结构操作" class="headerlink" title="数据结构=结构定义+结构操作"></a>数据结构=结构定义+结构操作</h4><h5 id="1-顺序表"><a href="#1-顺序表" class="headerlink" title="1.顺序表"></a>1.顺序表</h5><table>
+<table>
 <thead>
 <tr>
-<th align="center">1</th>
-<th align="center">2</th>
-<th align="center">3</th>
-<th align="center">4</th>
-<th align="center">5</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th align="center">width or .prec</th>
+<th align="center">含义</th>
 </tr>
 </thead>
-</table>
-<p>  size=9;   length=5;    data_type=xxx;</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/05/title-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<tbody><tr>
+<td align="center">number</td>
+<td align="center">最小字符数</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">下一个参数是字符数</td>
+</tr>
+<tr>
+<td align="center">.number</td>
+<td align="center">小数点后的位数</td>
+</tr>
+<tr>
+<td align="center">.*</td>
+<td align="center">下一个参数是小数点后的位数</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">类型修饰</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">hh</td>
+<td align="center">单个字节</td>
+</tr>
+<tr>
+<td align="center">h</td>
+<td align="center">short</td>
+</tr>
+<tr>
+<td align="center">l</td>
+<td align="center">long</td>
+</tr>
+<tr>
+<td align="center">ll</td>
+<td align="center">long long</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td align="center">long double</td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d%n&quot;</span>,<span class="number">123</span>,&amp;num);<span class="comment">//num会记录目前%d输出了多长的字节数</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="SCANF"><a href="#SCANF" class="headerlink" title="SCANF():"></a>SCANF():</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[flags]type;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">flag</th>
+<th align="center">含义</th>
+<th align="center">flag</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">*</td>
+<td align="center">跳过</td>
+<td align="center">l</td>
+<td align="center">long,double</td>
+</tr>
+<tr>
+<td align="center">数字</td>
+<td align="center">最大字符数</td>
+<td align="center">ll</td>
+<td align="center">long long</td>
+</tr>
+<tr>
+<td align="center">hh</td>
+<td align="center">char</td>
+<td align="center">L</td>
+<td align="center">long double</td>
+</tr>
+<tr>
+<td align="center">h</td>
+<td align="center">short</td>
+<td align="center">[..]</td>
+<td align="center">*【^.]</td>
+</tr>
+</tbody></table>
+<h6 id="2-printf-和-scanf-的返回值"><a href="#2-printf-和-scanf-的返回值" class="headerlink" title="(2) printf 和 scanf 的返回值"></a>(2) printf 和 scanf 的返回值</h6><h5 id="2-文件的读和写操作"><a href="#2-文件的读和写操作" class="headerlink" title="2.文件的读和写操作"></a>2.文件的读和写操作</h5><h6 id="（1）打开文件的标准代码"><a href="#（1）打开文件的标准代码" class="headerlink" title="（1）打开文件的标准代码"></a>（1）打开文件的标准代码</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FILE*fp=fopen(<span class="string">&quot;file&quot;</span>,<span class="string">&quot;r&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(fp)&#123;</span><br><span class="line">    <span class="built_in">fscanf</span>(fp,...);</span><br><span class="line">    fclose(fp,...); </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>r              打开只读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r+           打开读写，从文件头开始</td>
+</tr>
+<tr>
+<td>w            打开只写。如果不存在则新建，如果存在则清空</td>
+</tr>
+<tr>
+<td>w+         打开读写，如果不存在则新建，如果存在则清空</td>
+</tr>
+<tr>
+<td>a            打开追加，如果不存在则新建，如果存在则从末尾开始添加</td>
+</tr>
+<tr>
+<td>..x          只新建，如果文件已存在则不能打开</td>
+</tr>
+</tbody></table>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2022/03/03/%E4%BD%A0%E5%A5%BD%E5%95%8A%E5%B0%8F%E6%95%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="Markcheng">
-      <meta itemprop="description" content="去爱，去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="欢迎来到成伟的部落">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/03/%E4%BD%A0%E5%A5%BD%E5%95%8A%E5%B0%8F%E6%95%8F/" class="post-title-link" itemprop="url">你好啊小敏</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-03 22:47:31" itemprop="dateCreated datePublished" datetime="2022-03-03T22:47:31+08:00">2022-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-06 22:18:11" itemprop="dateModified" datetime="2022-03-06T22:18:11+08:00">2022-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E7%94%B1%E7%94%9F%E9%95%BF%E7%94%9F%E6%B4%BB%E7%AF%87/" itemprop="url" rel="index"><span itemprop="name">自由生长生活篇</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我不需要你在我身边</p>
-<p>但我希望我们一直都在彼此心里</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/03/%E4%BD%A0%E5%A5%BD%E5%95%8A%E5%B0%8F%E6%95%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2022/03/03/title-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="Markcheng">
-      <meta itemprop="description" content="去爱，去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="欢迎来到成伟的部落">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/03/title-1/" class="post-title-link" itemprop="url">C指针学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-03 13:46:52" itemprop="dateCreated datePublished" datetime="2022-03-03T13:46:52+08:00">2022-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-07 21:24:19" itemprop="dateModified" datetime="2022-03-07T21:24:19+08:00">2022-03-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A8%80%E9%87%8C%E7%B3%8A%E6%B6%82C%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">稀里糊涂C语言</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​      补一下上学期的C语言学习内容，关于指针还在继续学习中，后续会有更新。</p>
-<p>​</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/03/title-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/05/title-2/" rel="prev" title="顺序表和链表">
+      <i class="fa fa-chevron-left"></i> 顺序表和链表
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -575,6 +440,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA"><span class="nav-number">1.</span> <span class="nav-text">1.格式化输入和输出</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%9F%BA%E6%9C%AC%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">（1）基本输入输出格式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PRINTF"><span class="nav-number">1.2.</span> <span class="nav-text">PRINTF():</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SCANF"><span class="nav-number">1.3.</span> <span class="nav-text">SCANF():</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-printf-%E5%92%8C-scanf-%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.4.</span> <span class="nav-text">(2) printf 和 scanf 的返回值</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%92%8C%E5%86%99%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">2.文件的读和写操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%9A%84%E6%A0%87%E5%87%86%E4%BB%A3%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">（1）打开文件的标准代码</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
