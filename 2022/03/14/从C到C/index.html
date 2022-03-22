@@ -21,20 +21,22 @@
     var CONFIG = {"hostname":"www.zcwww.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1.Math类12345678&#x2F;&#x2F;求绝对值System.out.println(Math.abs(-12));&#x2F;&#x2F;12&#x2F;&#x2F;四舍五入小数部分System.out.println(Math.round(10.345));&#x2F;&#x2F;10&#x2F;&#x2F;随机数System.out.println(Math.random()*100);&#x2F;&#x2F;0--100的随机数&#x2F;&#x2F;幂运算System.out.println(Math.pow(">
+  <meta name="description" content="新增知识点面向对象 异常处理 STL C和C++的区别1.头文件 2.命名空间 3.输入输出 4.基本数据类型 5.结构体 6.强制类型转换 7.条件运算符 8.动态内存分配  9.变量的引用 10.内联函数 11.函数的默认参数 12.函数重载 13">
 <meta property="og:type" content="article">
-<meta property="og:title" content="200310JAVA学习">
-<meta property="og:url" content="http://www.zcwww.top/2022/03/10/200310JAVA%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="从C到C++">
+<meta property="og:url" content="http://www.zcwww.top/2022/03/14/%E4%BB%8EC%E5%88%B0C/index.html">
 <meta property="og:site_name" content="欢迎来到成伟的部落">
-<meta property="og:description" content="1.Math类12345678&#x2F;&#x2F;求绝对值System.out.println(Math.abs(-12));&#x2F;&#x2F;12&#x2F;&#x2F;四舍五入小数部分System.out.println(Math.round(10.345));&#x2F;&#x2F;10&#x2F;&#x2F;随机数System.out.println(Math.random()*100);&#x2F;&#x2F;0--100的随机数&#x2F;&#x2F;幂运算System.out.println(Math.pow(">
+<meta property="og:description" content="新增知识点面向对象 异常处理 STL C和C++的区别1.头文件 2.命名空间 3.输入输出 4.基本数据类型 5.结构体 6.强制类型转换 7.条件运算符 8.动态内存分配  9.变量的引用 10.内联函数 11.函数的默认参数 12.函数重载 13">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-10T06:08:24.000Z">
-<meta property="article:modified_time" content="2022-03-11T07:56:12.318Z">
+<meta property="og:image" content="http://www.zcwww.top/2022/03/14/%E4%BB%8EC%E5%88%B0C/1.png">
+<meta property="article:published_time" content="2022-03-14T14:14:35.000Z">
+<meta property="article:modified_time" content="2022-03-14T14:47:54.161Z">
 <meta property="article:author" content="Markcheng">
-<meta property="article:tag" content="java学习">
+<meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zcwww.top/2022/03/14/%E4%BB%8EC%E5%88%B0C/1.png">
 
-<link rel="canonical" href="http://www.zcwww.top/2022/03/10/200310JAVA%E5%AD%A6%E4%B9%A0/">
+<link rel="canonical" href="http://www.zcwww.top/2022/03/14/%E4%BB%8EC%E5%88%B0C/">
 
 
 <script id="page-configurations">
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title>200310JAVA学习 | 欢迎来到成伟的部落</title>
+  <title>从C到C++ | 欢迎来到成伟的部落</title>
   
 
 
@@ -170,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2022/03/10/200310JAVA%E5%AD%A6%E4%B9%A0/">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2022/03/14/%E4%BB%8EC%E5%88%B0C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
@@ -183,7 +185,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          200310JAVA学习
+          从C到C++
         </h1>
 
         <div class="post-meta">
@@ -192,23 +194,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-03-10 14:08:24" itemprop="dateCreated datePublished" datetime="2022-03-10T14:08:24+08:00">2022-03-10</time>
+              <time title="创建时间：2022-03-14 22:14:35 / 修改时间：22:47:54" itemprop="dateCreated datePublished" datetime="2022-03-14T22:14:35+08:00">2022-03-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-11 15:56:12" itemprop="dateModified" datetime="2022-03-11T15:56:12+08:00">2022-03-11</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%95%E5%BF%83%E6%B2%A5%E8%A1%80%E5%AD%A6JAVA/" itemprop="url" rel="index"><span itemprop="name">呕心沥血学JAVA</span></a>
+                  <a href="/categories/%E7%A8%80%E9%87%8C%E7%B3%8A%E6%B6%82C%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">稀里糊涂C语言</span></a>
                 </span>
             </span>
 
@@ -230,17 +226,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h5 id="1-Math类"><a href="#1-Math类" class="headerlink" title="1.Math类"></a>1.Math类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求绝对值</span></span><br><span class="line">System.out.println(Math.abs(-<span class="number">12</span>));<span class="comment">//12</span></span><br><span class="line"><span class="comment">//四舍五入小数部分</span></span><br><span class="line">System.out.println(Math.round(<span class="number">10.345</span>));<span class="comment">//10</span></span><br><span class="line"><span class="comment">//随机数</span></span><br><span class="line">System.out.println(Math.random()*<span class="number">100</span>);<span class="comment">//0--100的随机数</span></span><br><span class="line"><span class="comment">//幂运算</span></span><br><span class="line">System.out.println(Math.pow(m,n));<span class="comment">//m的n次方（浮点数）</span></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h5 id="2-素数求和"><a href="#2-素数求和" class="headerlink" title="2.素数求和"></a>2.素数求和</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">int</span> i)</span><span class="comment">//定义一个返回值为布尔型的方法</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> isPrime=<span class="keyword">true</span>;<span class="comment">//先假设该数为素数</span></span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;i;k++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i%k==<span class="number">0</span>)&#123;</span><br><span class="line">                isPrime=<span class="keyword">false</span>;<span class="comment">//如果不满足条件则该数不是素数</span></span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//终止循环</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> isPrime;<span class="comment">//返回布尔型的值</span></span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
-
-<h5 id="3-求m到n的和"><a href="#3-求m到n的和" class="headerlink" title="3.求m到n的和"></a>3.求m到n的和</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">figureOut</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> k)</span><span class="comment">//定义一个返回int类型的方法</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> a=i;a&lt;=k;a++) &#123;</span><br><span class="line">			sum=sum+a;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;<span class="comment">//返回int类型的值</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner in=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> m=in.nextInt();</span><br><span class="line">		<span class="keyword">int</span> n=in.nextInt();</span><br><span class="line">		System.out.println(figureOut(m,n));<span class="comment">//调用函数</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-定义类"><a href="#4-定义类" class="headerlink" title="4.定义类"></a>4.定义类</h5><p>实现一个简单的自动售货机（vendingmachine)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.<span class="comment">//未完待续</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
+        <h5 id="新增知识点"><a href="#新增知识点" class="headerlink" title="新增知识点"></a>新增知识点</h5><p>面向对象 异常处理 STL</p>
+<h5 id="C和C-的区别"><a href="#C和C-的区别" class="headerlink" title="C和C++的区别"></a>C和C++的区别</h5><p>1.头文件</p>
+<p>2.命名空间</p>
+<p>3.输入输出</p>
+<p>4.基本数据类型</p>
+<p>5.结构体</p>
+<p>6.强制类型转换</p>
+<p>7.条件运算符</p>
+<p>8.动态内存分配</p>
+<p><img src="/2022/03/14/%E4%BB%8EC%E5%88%B0C/1.png"></p>
+<p>9.变量的引用</p>
+<p>10.内联函数</p>
+<p>11.函数的默认参数</p>
+<p>12.函数重载</p>
+<p>13</p>
 
     </div>
 
@@ -269,7 +269,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/java%E5%AD%A6%E4%B9%A0/" rel="tag"># java学习</a>
+              <a href="/tags/C-C/" rel="tag"># C/C++</a>
           </div>
 
         
@@ -278,12 +278,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/03/09/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E4%B9%8B%E5%BA%94%E7%94%A8%E5%B1%82/" rel="prev" title="网络协议之应用层">
-      <i class="fa fa-chevron-left"></i> 网络协议之应用层
+    <a href="/2022/03/10/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" rel="prev" title="网络协议之传输层">
+      <i class="fa fa-chevron-left"></i> 网络协议之传输层
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/03/10/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E4%B9%8B%E4%BC%A0%E8%BE%93%E5%B1%82/" rel="next" title="网络协议之传输层">
-      网络协议之传输层 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/03/22/%E6%88%91%E7%9A%84%E4%B9%A6%E5%8D%95/" rel="next" title="我的书单">
+      我的书单 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -343,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Math%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">1.Math类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E7%B4%A0%E6%95%B0%E6%B1%82%E5%92%8C"><span class="nav-number">2.</span> <span class="nav-text">2.素数求和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%B1%82m%E5%88%B0n%E7%9A%84%E5%92%8C"><span class="nav-number">3.</span> <span class="nav-text">3.求m到n的和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">4.定义类</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">新增知识点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#C%E5%92%8CC-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">C和C++的区别</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,7 +359,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -372,7 +372,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
