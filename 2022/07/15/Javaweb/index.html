@@ -28,11 +28,13 @@
 <meta property="og:site_name" content="欢迎来到成伟的部落">
 <meta property="og:description" content="1.HTML和CSS&amp;JS基础回顾​     121.bgcolor &#x3D; 背景色">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.zcwww.top/2022/07/15/Javaweb/Blog/source_posts/Javaweb/image-20221002225454824.png">
 <meta property="article:published_time" content="2022-07-15T06:56:31.000Z">
-<meta property="article:modified_time" content="2022-09-06T14:52:01.852Z">
+<meta property="article:modified_time" content="2022-10-07T14:02:55.663Z">
 <meta property="article:author" content="Markcheng">
-<meta property="article:tag" content="学习 生活 分享 交流">
+<meta property="article:tag" content="web开发 SQL Javaweb">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zcwww.top/2022/07/15/Javaweb/Blog/source_posts/Javaweb/image-20221002225454824.png">
 
 <link rel="canonical" href="http://www.zcwww.top/2022/07/15/Javaweb/">
 
@@ -200,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-06 22:52:01" itemprop="dateModified" datetime="2022-09-06T22:52:01+08:00">2022-09-06</time>
+                <time title="修改时间：2022-10-07 22:02:55" itemprop="dateModified" datetime="2022-10-07T22:02:55+08:00">2022-10-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,6 +235,7 @@
         <h1 id="1-HTML和CSS-amp-JS"><a href="#1-HTML和CSS-amp-JS" class="headerlink" title="1.HTML和CSS&amp;JS"></a>1.HTML和CSS&amp;JS</h1><h2 id="基础回顾"><a href="#基础回顾" class="headerlink" title="基础回顾"></a>基础回顾</h2><p>​    </p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">1.bgcolor</span> = 背景色</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
+
 <h1 id="2-JQuery"><a href="#2-JQuery" class="headerlink" title="2.JQuery"></a>2.JQuery</h1><h3 id="1-常用函数"><a href="#1-常用函数" class="headerlink" title="1.常用函数"></a>1.常用函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;) = <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="number">2.</span><span class="comment">//$(HTML字符串)，根据这个字符串创建元素结点对象</span></span><br><span class="line">	$(<span class="string">&quot;&lt;div&gt;&quot;</span> + <span class="string">&quot;hello&quot;</span> + <span class="string">&quot;&lt;div&quot;</span>).appendTo(<span class="string">&quot;body&quot;</span>)将括号内字符串加入到body标签中</span><br><span class="line"><span class="number">3.</span>$(<span class="string">&quot;#id&quot;</span>)  根据id查询对象</span><br><span class="line">    $(<span class="string">&quot;标签名&quot;</span>)  根据标签名查询对象</span><br><span class="line">    $(<span class="string">&quot;.class属性值&quot;</span>)   根据类名查询对象</span><br><span class="line"><span class="number">4.</span>$(dom对象)  将dom对象转换为JQuery 对象</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-区分DOM对象和JQuery-对象"><a href="#2-区分DOM对象和JQuery-对象" class="headerlink" title="2.区分DOM对象和JQuery 对象"></a>2.区分DOM对象和JQuery 对象</h3><ul>
@@ -256,7 +259,135 @@
 <h3 id="6-JQUERY和JS加载顺序"><a href="#6-JQUERY和JS加载顺序" class="headerlink" title="6.JQUERY和JS加载顺序"></a>6.JQUERY和JS加载顺序</h3><p>1.页面加载完成之后先执行jQuery，再执行JS</p>
 <p>2.原生JS的页面加载完成之后只执行最后一次的赋值函数，jQuery会依次执行所有的赋值函数</p>
 <p>3.在子元素的事件函数内return false 可以组织事件</p>
+<h1 id="3-Javaweb项目结构"><a href="#3-Javaweb项目结构" class="headerlink" title="3.Javaweb项目结构"></a>3.Javaweb项目结构</h1><p><img src="/2022/07/15/Javaweb/Blog\source_posts\Javaweb\image-20221002225454824.png" alt="image-20221002225454824"></p>
+<h1 id="4-MySQL"><a href="#4-MySQL" class="headerlink" title="4.MySQL"></a>4.MySQL</h1><h2 id="4-1-数据库介绍"><a href="#4-1-数据库介绍" class="headerlink" title="4.1  数据库介绍"></a>4.1  数据库介绍</h2><h3 id="4-1-1-数据库概念"><a href="#4-1-1-数据库概念" class="headerlink" title="4.1.1 数据库概念"></a>4.1.1 数据库概念</h3><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据库（database），简称<span class="built_in">DB</span>，是长期存储在计算机内部有结构的、大量的、共享的数据集合</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>长期存储：持久存储</li>
+<li>有结构：<ul>
+<li>类型</li>
+<li>关系</li>
+</ul>
+</li>
+<li>大量：大多数据库都是文件系统的，也就是说您处在数据库中的数据实际上就是存储在磁盘的文件中</li>
+<li>共享：多个应用可以通过数据库实现数据的共享</li>
+</ul>
+<h3 id="4-1-2-关系型数据库和非关系型数据库"><a href="#4-1-2-关系型数据库和非关系型数据库" class="headerlink" title="4.1.2 关系型数据库和非关系型数据库"></a>4.1.2 关系型数据库和非关系型数据库</h3><ul>
+<li><p>关系型数据库：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">关系型数据库，采用关系模型来组织数据的存储，以行和列的形式存储数据并记录数据与数据之间的关系<span class="comment">-------将数据存储在表格中，可以通过建立表格与表格之间的关联来位数数据与数据之间的关系</span></span><br></pre></td></tr></table></figure></li>
+<li><p>非关系型数据库：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">采用键值对的模型来存储数据，只完成数据的记录，不会记录数据与数据之间的关系，在非关系型数据库中基于其特定的存储结构来解决一些大数据应用的难题。</span><br><span class="line">也用nosql数据库来指代非关系型数据库</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-1-3-常见的数据库产品"><a href="#4-1-3-常见的数据库产品" class="headerlink" title="4.1.3 常见的数据库产品"></a>4.1.3 常见的数据库产品</h3><h4 id="关系型数据库产品："><a href="#关系型数据库产品：" class="headerlink" title="关系型数据库产品："></a>关系型数据库产品：</h4><ul>
+<li>MySQL(免费)<ul>
+<li>MariaDB</li>
+<li>percona server</li>
+</ul>
+</li>
+<li>PostgreSql</li>
+<li>Oracle（收费，但是功能最强大）</li>
+<li>SQL Server </li>
+<li>Access</li>
+<li>Sybase</li>
+<li>达梦数据库</li>
+</ul>
+<h4 id="非关系型数据库"><a href="#非关系型数据库" class="headerlink" title="非关系型数据库"></a>非关系型数据库</h4><ul>
+<li>面向检索的列式存储  <ul>
+<li>HaBase(属于hadoop子系统)</li>
+<li>BigTable (Google)</li>
+</ul>
+</li>
+<li>面向高并发的缓存存储（基于键值对）<ul>
+<li>Redis</li>
+<li>memcacheDB</li>
+</ul>
+</li>
+<li>面向海量数据访问的文档存储<ul>
+<li>MongoDB</li>
+<li>couchDB</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-1-4-数据库术语"><a href="#4-1-4-数据库术语" class="headerlink" title="4.1.4 数据库术语"></a>4.1.4 数据库术语</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">数据库(DataBase)：存储的数据的集合</span><br><span class="line">数据(Data)：实际上指的是描述事物的符号记录</span><br><span class="line"><span class="section">数据库管理系统（DBMS):是介于用户和操作系统之间的数据管理软件</span></span><br><span class="line"><span class="section">数据库系统管理员（DBA):负责数据库创建，使用及维护的专门人员</span></span><br><span class="line"><span class="section">数据库系统（DBS):以上整个系统的整合叫做数据库系统</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-MySQL数据库"><a href="#4-2-MySQL数据库" class="headerlink" title="4.2  MySQL数据库"></a>4.2  MySQL数据库</h2><h3 id="4-2-1MySQL数据库环境准备"><a href="#4-2-1MySQL数据库环境准备" class="headerlink" title="4.2.1MySQL数据库环境准备"></a>4.2.1MySQL数据库环境准备</h3><ul>
+<li>MySQL下载，安装，配置，卸载</li>
+<li>DBMS安装及使用</li>
+</ul>
+<h3 id="4-2-2MySQL-服务的启动与停止"><a href="#4-2-2MySQL-服务的启动与停止" class="headerlink" title="4.2.2MySQL 服务的启动与停止"></a>4.2.2MySQL 服务的启动与停止</h3><h3 id="4-2-3MySQL的管理工具"><a href="#4-2-3MySQL的管理工具" class="headerlink" title="4.2.3MySQL的管理工具"></a>4.2.3MySQL的管理工具</h3><ol>
+<li><p>​    可视化的DBMS工具</p>
+<ul>
+<li><p>SQLyog</p>
+</li>
+<li><p>Navicat for mysql</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载及安装   创建连接   </span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p> Mysql command line client</p>
+</li>
+</ol>
+<ul>
+<li>输入密码闪退：密码错误或者MySQL服务启动没有启动</li>
+</ul>
+<h3 id="4-2-4-MySQL逻辑结构"><a href="#4-2-4-MySQL逻辑结构" class="headerlink" title="4.2.4 MySQL逻辑结构"></a>4.2.4 MySQL逻辑结构</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据库   数据表   字段（列)   元组（一条记录）</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-SQL结构化查询语言"><a href="#4-3-SQL结构化查询语言" class="headerlink" title="4.3  SQL结构化查询语言"></a>4.3  SQL结构化查询语言</h2><h3 id="4-3-1-SQL概述"><a href="#4-3-1-SQL概述" class="headerlink" title="4.3.1 SQL概述"></a>4.3.1 SQL概述</h3><p>SQL（Structured Query Language）结构化查询语言，用于存取、查询、更新数据及管理关系型数据库系统</p>
+<h3 id="4-3-2-SQL发展"><a href="#4-3-2-SQL发展" class="headerlink" title="4.3.2 SQL发展"></a>4.3.2 SQL发展</h3><ul>
+<li>1981年有IBM公司推出，基于其简洁的语法在数据库中得到了广泛的应用</li>
+<li>SQL由ANSI组织确定规范</li>
+<li>在不同的数据库产品中遵守SQL的通用规范，但是也对SQL有一些不同的改进，形成了一些数据库的专有指令<ul>
+<li>MySQL：limit</li>
+<li>SQLServer:top</li>
+<li>Oracle:rownum</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-3-SQL分类"><a href="#4-2-3-SQL分类" class="headerlink" title="4.2.3 SQL分类"></a>4.2.3 SQL分类</h3><ul>
+<li>DDL（data definition language)  ：数据定义语言<ul>
+<li>用于完成对数据库对象（数据库、数据表、视图、索引等）的创建、删除、更改</li>
+</ul>
+</li>
+<li>DML(Data manipulation language) ：数据操作语言<ul>
+<li>用于完成对数据表中的数据的添加、删除、修改等操作</li>
+<li>添加：将数据存储到数据表中</li>
+<li>删除：将数据从数据表移除</li>
+<li>修改：对数据表中的数据进行修改</li>
+</ul>
+</li>
+<li>DQL(Data Query Language)：数据查询语言<ul>
+<li>用于将数据表中的数据查询出来</li>
+</ul>
+</li>
+<li>DCL(Data Control Language)：数据控制语言<ul>
+<li>用于完成事务管理等控制性操作</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-4-SQL基本语法"><a href="#4-2-4-SQL基本语法" class="headerlink" title="4.2.4  SQL基本语法"></a>4.2.4  SQL基本语法</h3><p>在MySQL终端或可视化工具中进行操作</p>
+<ul>
+<li>SQL 不区分大小写</li>
+<li>每条SQL指令结束之后以分号结尾</li>
+<li>SQL关键字之间以空格进行分隔</li>
+<li>SQL之间可以不限制换行</li>
+</ul>
+<h3 id="4-2-5-DDL"><a href="#4-2-5-DDL" class="headerlink" title="4.2.5 DDL"></a>4.2.5 DDL</h3><ol>
+<li><h4 id="DDL-数据库操作"><a href="#DDL-数据库操作" class="headerlink" title="DDL-数据库操作"></a>DDL-数据库操作</h4><ol>
+<li><h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##创建数据库</span><br><span class="line"><span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br><span class="line">##如果指定名称的数据库不存在则创建</span><br><span class="line"><span class="keyword">create</span> database if <span class="keyword">not</span> <span class="keyword">exists</span> <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> ;</span><br><span class="line">##创建数据库的同时指定数据库的编码格式</span><br><span class="line"><span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##显示当前MySQL中的数据库列表</span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line">##显示指定名称的数据库的创建语句</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##修改数据库字符集</span><br><span class="line"><span class="keyword">alter</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> <span class="type">character</span> <span class="keyword">set</span> gbk;</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="删除数据库-删除数据库是会删除当前数据库中所有的数据表及数据表中的数据"><a href="#删除数据库-删除数据库是会删除当前数据库中所有的数据表及数据表中的数据" class="headerlink" title="删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据"></a>删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 删除数据库（如果数据库存在）</span><br><span class="line"><span class="keyword">drop</span> database （if <span class="keyword">exists</span>） <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="使用-切换数据库"><a href="#使用-切换数据库" class="headerlink" title="使用/切换数据库"></a>使用/切换数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##使用数据库</span><br><span class="line">use <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><h5 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##创建一个学生表，分别插入<span class="keyword">not</span> <span class="keyword">null</span>,<span class="keyword">unique</span>属性，指定类型</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="operator">&lt;</span>tableName<span class="operator">&gt;</span>(stu_name <span class="type">varchar</span>(<span class="number">20</span>),stu_num <span class="type">char</span>(<span class="number">8</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span>,stu_age <span class="type">int</span>,stu_gender <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">stu_qq <span class="type">varchar</span>(<span class="number">11</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><h5 id="查询数据表"><a href="#查询数据表" class="headerlink" title="查询数据表"></a>查询数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##显示表</span><br><span class="line"><span class="keyword">show</span> tables</span><br><span class="line">##查询表结构</span><br><span class="line"><span class="keyword">desc</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><h5 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##当数据表存在时删除</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">exists</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><h5 id="修改数据表"><a href="#修改数据表" class="headerlink" title="修改数据表"></a>修改数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">##修改数据表名 rename tos</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> students rename <span class="keyword">to</span> stus;</span><br><span class="line">##数据表也有字符集，默认字符集与数据库一致</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="type">character</span> <span class="keyword">set</span> utf8</span><br><span class="line">##添加字段  <span class="keyword">add</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="keyword">add</span> stu_phone <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span></span><br><span class="line">##修改字段名和类型  change</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus change stu_phone studesc text(<span class="number">500</span>)</span><br><span class="line">##只修改字段类型  modify</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus modify stu_phone <span class="type">varchar</span>(<span class="number">11</span>)</span><br><span class="line">##删除字段  <span class="keyword">drop</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="keyword">drop</span> stu_phone</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</li>
+</ol>
+<h2 id="4-4-SQL高级"><a href="#4-4-SQL高级" class="headerlink" title="4.4  SQL高级"></a>4.4  SQL高级</h2><h2 id="4-5-数据库设计"><a href="#4-5-数据库设计" class="headerlink" title="4.5  数据库设计"></a>4.5  数据库设计</h2><h2 id="4-6-数据库事务"><a href="#4-6-数据库事务" class="headerlink" title="4.6  数据库事务"></a>4.6  数据库事务</h2>
     </div>
 
     
@@ -283,6 +414,9 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web%E5%BC%80%E5%8F%91-SQL-Javaweb/" rel="tag"># web开发 SQL Javaweb</a>
+          </div>
 
         
 
@@ -355,7 +489,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-HTML%E5%92%8CCSS-amp-JS"><span class="nav-number">1.</span> <span class="nav-text">1.HTML和CSS&amp;JS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.1.</span> <span class="nav-text">基础回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-JQuery"><span class="nav-number">2.</span> <span class="nav-text">2.JQuery</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.常用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8C%BA%E5%88%86DOM%E5%AF%B9%E8%B1%A1%E5%92%8CJQuery-%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.区分DOM对象和JQuery 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-jQuery%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.jQuery基础选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">1.基本过滤选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AE%B9%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">2.内容过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B1%9E%E6%80%A7%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.3.</span> <span class="nav-text">3.属性过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%A1%A8%E5%8D%95%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.4.</span> <span class="nav-text">4.表单过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%85%83%E7%B4%A0%E7%AD%9B%E9%80%89"><span class="nav-number">2.0.4.5.</span> <span class="nav-text">5.元素筛选</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-JQuery%E5%8A%A8%E7%94%BB"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.JQuery动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-JQUERY%E5%92%8CJS%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.JQUERY和JS加载顺序</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-HTML%E5%92%8CCSS-amp-JS"><span class="nav-number">1.</span> <span class="nav-text">1.HTML和CSS&amp;JS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.1.</span> <span class="nav-text">基础回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-JQuery"><span class="nav-number">2.</span> <span class="nav-text">2.JQuery</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.常用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8C%BA%E5%88%86DOM%E5%AF%B9%E8%B1%A1%E5%92%8CJQuery-%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.区分DOM对象和JQuery 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-jQuery%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.jQuery基础选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">1.基本过滤选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AE%B9%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">2.内容过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B1%9E%E6%80%A7%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.3.</span> <span class="nav-text">3.属性过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%A1%A8%E5%8D%95%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.4.</span> <span class="nav-text">4.表单过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%85%83%E7%B4%A0%E7%AD%9B%E9%80%89"><span class="nav-number">2.0.4.5.</span> <span class="nav-text">5.元素筛选</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-JQuery%E5%8A%A8%E7%94%BB"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.JQuery动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-JQUERY%E5%92%8CJS%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.JQUERY和JS加载顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Javaweb%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">3.Javaweb项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-MySQL"><span class="nav-number">4.</span> <span class="nav-text">4.MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  数据库介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 数据库概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 关系型数据库和非关系型数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A7%E5%93%81"><span class="nav-number">4.1.3.</span> <span class="nav-text">4.1.3 常见的数据库产品</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A7%E5%93%81%EF%BC%9A"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">关系型数据库产品：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">非关系型数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-4-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%AF%E8%AF%AD"><span class="nav-number">4.1.4.</span> <span class="nav-text">4.1.4 数据库术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.2.</span> <span class="nav-text">4.2  MySQL数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1MySQL数据库环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2MySQL-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2MySQL 服务的启动与停止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3MySQL%E7%9A%84%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">4.2.3.</span> <span class="nav-text">4.2.3MySQL的管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-MySQL%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.4.</span> <span class="nav-text">4.2.4 MySQL逻辑结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-SQL%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="nav-number">4.3.</span> <span class="nav-text">4.3  SQL结构化查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-SQL%E6%A6%82%E8%BF%B0"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 SQL概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-SQL%E5%8F%91%E5%B1%95"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 SQL发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-SQL%E5%88%86%E7%B1%BB"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.2.3 SQL分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-SQL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">4.3.4.</span> <span class="nav-text">4.2.4  SQL基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-DDL"><span class="nav-number">4.3.5.</span> <span class="nav-text">4.2.5 DDL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DDL-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">4.3.5.1.</span> <span class="nav-text">DDL-数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.2.</span> <span class="nav-text">查询数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.3.</span> <span class="nav-text">修改数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BC%9A%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%89%80%E6%9C%89%E7%9A%84%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%8F%8A%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.5.1.4.</span> <span class="nav-text">删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.5.</span> <span class="nav-text">使用&#x2F;切换数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.6.</span> <span class="nav-text">创建数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.7.</span> <span class="nav-text">查询数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.8.</span> <span class="nav-text">删除数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.9.</span> <span class="nav-text">修改数据表</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-SQL%E9%AB%98%E7%BA%A7"><span class="nav-number">4.4.</span> <span class="nav-text">4.4  SQL高级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.5.</span> <span class="nav-text">4.5  数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="nav-number">4.6.</span> <span class="nav-text">4.6  数据库事务</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -371,20 +505,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
