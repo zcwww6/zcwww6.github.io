@@ -23,14 +23,15 @@
 
   <meta name="description" content="1.HTML和CSS&amp;JS基础回顾​     121.bgcolor &#x3D; 背景色">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javaweb">
+<meta property="og:title" content="欢迎来到成伟的部落">
 <meta property="og:url" content="http://www.zcwww.top/2022/07/15/Javaweb/index.html">
 <meta property="og:site_name" content="欢迎来到成伟的部落">
 <meta property="og:description" content="1.HTML和CSS&amp;JS基础回顾​     121.bgcolor &#x3D; 背景色">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.zcwww.top/2022/07/15/Javaweb/Blog/source_posts/Javaweb/image-20221002225454824.png">
+<meta property="og:image" content="http://www.zcwww.top/2022/07/15/Javaweb/Blog/source_posts/Javaweb/image-20221008175758696.png">
 <meta property="article:published_time" content="2022-07-15T06:56:31.000Z">
-<meta property="article:modified_time" content="2022-10-07T14:02:55.663Z">
+<meta property="article:modified_time" content="2022-10-08T12:44:18.626Z">
 <meta property="article:author" content="Markcheng">
 <meta property="article:tag" content="web开发 SQL Javaweb">
 <meta name="twitter:card" content="summary">
@@ -49,7 +50,7 @@
   };
 </script>
 
-  <title>Javaweb | 欢迎来到成伟的部落</title>
+  <title> | 欢迎来到成伟的部落</title>
   
 
 
@@ -185,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Javaweb
+          
         </h1>
 
         <div class="post-meta">
@@ -202,7 +203,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-07 22:02:55" itemprop="dateModified" datetime="2022-10-07T22:02:55+08:00">2022-10-07</time>
+                <time title="修改时间：2022-10-08 20:44:18" itemprop="dateModified" datetime="2022-10-08T20:44:18+08:00">2022-10-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,7 +343,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="4-2-3-SQL分类"><a href="#4-2-3-SQL分类" class="headerlink" title="4.2.3 SQL分类"></a>4.2.3 SQL分类</h3><ul>
+<h3 id="4-3-3-SQL分类"><a href="#4-3-3-SQL分类" class="headerlink" title="4.3.3 SQL分类"></a>4.3.3 SQL分类</h3><ul>
 <li>DDL（data definition language)  ：数据定义语言<ul>
 <li>用于完成对数据库对象（数据库、数据表、视图、索引等）的创建、删除、更改</li>
 </ul>
@@ -363,31 +364,374 @@
 </ul>
 </li>
 </ul>
-<h3 id="4-2-4-SQL基本语法"><a href="#4-2-4-SQL基本语法" class="headerlink" title="4.2.4  SQL基本语法"></a>4.2.4  SQL基本语法</h3><p>在MySQL终端或可视化工具中进行操作</p>
+<h3 id="4-3-4-SQL基本语法"><a href="#4-3-4-SQL基本语法" class="headerlink" title="4.3.4  SQL基本语法"></a>4.3.4  SQL基本语法</h3><p>在MySQL终端或可视化工具中进行操作</p>
 <ul>
 <li>SQL 不区分大小写</li>
 <li>每条SQL指令结束之后以分号结尾</li>
 <li>SQL关键字之间以空格进行分隔</li>
 <li>SQL之间可以不限制换行</li>
 </ul>
-<h3 id="4-2-5-DDL"><a href="#4-2-5-DDL" class="headerlink" title="4.2.5 DDL"></a>4.2.5 DDL</h3><ol>
-<li><h4 id="DDL-数据库操作"><a href="#DDL-数据库操作" class="headerlink" title="DDL-数据库操作"></a>DDL-数据库操作</h4><ol>
-<li><h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##创建数据库</span><br><span class="line"><span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br><span class="line">##如果指定名称的数据库不存在则创建</span><br><span class="line"><span class="keyword">create</span> database if <span class="keyword">not</span> <span class="keyword">exists</span> <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> ;</span><br><span class="line">##创建数据库的同时指定数据库的编码格式</span><br><span class="line"><span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure></li>
-<li><h5 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##显示当前MySQL中的数据库列表</span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line">##显示指定名称的数据库的创建语句</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><h5 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##修改数据库字符集</span><br><span class="line"><span class="keyword">alter</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> <span class="type">character</span> <span class="keyword">set</span> gbk;</span><br></pre></td></tr></table></figure></li>
-<li><h5 id="删除数据库-删除数据库是会删除当前数据库中所有的数据表及数据表中的数据"><a href="#删除数据库-删除数据库是会删除当前数据库中所有的数据表及数据表中的数据" class="headerlink" title="删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据"></a>删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 删除数据库（如果数据库存在）</span><br><span class="line"><span class="keyword">drop</span> database （if <span class="keyword">exists</span>） <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure></li>
-<li><h5 id="使用-切换数据库"><a href="#使用-切换数据库" class="headerlink" title="使用/切换数据库"></a>使用/切换数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##使用数据库</span><br><span class="line">use <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><h5 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##创建一个学生表，分别插入<span class="keyword">not</span> <span class="keyword">null</span>,<span class="keyword">unique</span>属性，指定类型</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="operator">&lt;</span>tableName<span class="operator">&gt;</span>(stu_name <span class="type">varchar</span>(<span class="number">20</span>),stu_num <span class="type">char</span>(<span class="number">8</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span>,stu_age <span class="type">int</span>,stu_gender <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">stu_qq <span class="type">varchar</span>(<span class="number">11</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
-<li><h5 id="查询数据表"><a href="#查询数据表" class="headerlink" title="查询数据表"></a>查询数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##显示表</span><br><span class="line"><span class="keyword">show</span> tables</span><br><span class="line">##查询表结构</span><br><span class="line"><span class="keyword">desc</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><h5 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##当数据表存在时删除</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">exists</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><h5 id="修改数据表"><a href="#修改数据表" class="headerlink" title="修改数据表"></a>修改数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">##修改数据表名 rename tos</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> students rename <span class="keyword">to</span> stus;</span><br><span class="line">##数据表也有字符集，默认字符集与数据库一致</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="type">character</span> <span class="keyword">set</span> utf8</span><br><span class="line">##添加字段  <span class="keyword">add</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="keyword">add</span> stu_phone <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span></span><br><span class="line">##修改字段名和类型  change</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus change stu_phone studesc text(<span class="number">500</span>)</span><br><span class="line">##只修改字段类型  modify</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus modify stu_phone <span class="type">varchar</span>(<span class="number">11</span>)</span><br><span class="line">##删除字段  <span class="keyword">drop</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="keyword">drop</span> stu_phone</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<h3 id="4-3-5-DDL"><a href="#4-3-5-DDL" class="headerlink" title="4.3.5 DDL"></a>4.3.5 DDL</h3><h4 id="DDL-数据库操作"><a href="#DDL-数据库操作" class="headerlink" title="DDL-数据库操作"></a>DDL-数据库操作</h4><h5 id="1-创建数据库"><a href="#1-创建数据库" class="headerlink" title="1.创建数据库"></a>1.创建数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##创建数据库</span><br><span class="line"><span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br><span class="line">##如果指定名称的数据库不存在则创建</span><br><span class="line"><span class="keyword">create</span> database if <span class="keyword">not</span> <span class="keyword">exists</span> <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> ;</span><br><span class="line">##创建数据库的同时指定数据库的编码格式</span><br><span class="line"><span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-查询数据库"><a href="#2-查询数据库" class="headerlink" title="2.查询数据库"></a>2.查询数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##显示当前MySQL中的数据库列表</span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line">##显示指定名称的数据库的创建语句</span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-修改数据库"><a href="#3-修改数据库" class="headerlink" title="3.修改数据库"></a>3.修改数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##修改数据库字符集</span><br><span class="line"><span class="keyword">alter</span> database <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span> <span class="type">character</span> <span class="keyword">set</span> gbk;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-删除数据库-删除数据库是会删除当前数据库中所有的数据表及数据表中的数据"><a href="#4-删除数据库-删除数据库是会删除当前数据库中所有的数据表及数据表中的数据" class="headerlink" title="4.删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据"></a>4.删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 删除数据库（如果数据库存在）</span><br><span class="line"><span class="keyword">drop</span> database （if <span class="keyword">exists</span>） <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-使用-切换数据库"><a href="#5-使用-切换数据库" class="headerlink" title="5.使用/切换数据库"></a>5.使用/切换数据库</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##使用数据库</span><br><span class="line">use <span class="operator">&lt;</span>db_name<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6-创建数据表"><a href="#6-创建数据表" class="headerlink" title="6.创建数据表"></a>6.创建数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##创建一个学生表，分别插入<span class="keyword">not</span> <span class="keyword">null</span>,<span class="keyword">unique</span>属性，指定类型</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="operator">&lt;</span>tableName<span class="operator">&gt;</span>(stu_name <span class="type">varchar</span>(<span class="number">20</span>),stu_num <span class="type">char</span>(<span class="number">8</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span>,stu_age <span class="type">int</span>,stu_gender <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">stu_qq <span class="type">varchar</span>(<span class="number">11</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="7-查询数据表"><a href="#7-查询数据表" class="headerlink" title="7.查询数据表"></a>7.查询数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##显示表</span><br><span class="line"><span class="keyword">show</span> tables</span><br><span class="line">##查询表结构</span><br><span class="line"><span class="keyword">desc</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="8-删除数据表"><a href="#8-删除数据表" class="headerlink" title="8.删除数据表"></a>8.删除数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##当数据表存在时删除</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">exists</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="9-修改数据表"><a href="#9-修改数据表" class="headerlink" title="9.修改数据表"></a>9.修改数据表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">##修改数据表名 rename tos</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> students rename <span class="keyword">to</span> stus;</span><br><span class="line">##数据表也有字符集，默认字符集与数据库一致</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="type">character</span> <span class="keyword">set</span> utf8</span><br><span class="line">##添加字段  <span class="keyword">add</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="keyword">add</span> stu_phone <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span></span><br><span class="line">##修改字段名和类型  change</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus change stu_phone studesc text(<span class="number">500</span>)</span><br><span class="line">##只修改字段类型  modify</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus modify stu_phone <span class="type">varchar</span>(<span class="number">11</span>)</span><br><span class="line">##删除字段  <span class="keyword">drop</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> stus <span class="keyword">drop</span> stu_phone</span><br></pre></td></tr></table></figure>
+
+<h5 id="10-数据类型"><a href="#10-数据类型" class="headerlink" title="10.数据类型"></a>10.数据类型</h5><ol>
+<li><h6 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h6><p>MySQL中有多种数据类型可以存放数值，不同的类型存放的数值范围或形式不同</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">内存大小</th>
+<th align="center">范围</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">tinyint</td>
+<td align="center">1 byte</td>
+<td align="center">-128—127</td>
+<td align="center">特小型整数(年龄)</td>
+</tr>
+<tr>
+<td align="center">smallint</td>
+<td align="center">2 byte</td>
+<td align="center">-32768—32767</td>
+<td align="center">小型整数</td>
+</tr>
+<tr>
+<td align="center">mediumint</td>
+<td align="center">3 byte</td>
+<td align="center">-2^31—2^31</td>
+<td align="center">中型整数</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">4 byte</td>
+<td align="center">—</td>
+<td align="center">整数</td>
+</tr>
+<tr>
+<td align="center">bigint</td>
+<td align="center">8 byte</td>
+<td align="center">—</td>
+<td align="center">大型整数</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">4 byte</td>
+<td align="center">—</td>
+<td align="center">单精度</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">8 byte</td>
+<td align="center">—</td>
+<td align="center">双精度</td>
+</tr>
+<tr>
+<td align="center">decimal</td>
+<td align="center">自定义</td>
+<td align="center">—</td>
+<td align="center">可指定小数位（位数，小数位）</td>
+</tr>
+</tbody></table>
+</li>
+<li><h6 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h6><p>存储字符序列的类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">字符序列的长度范围</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">char</td>
+<td align="center">0—255字节</td>
+<td align="center">定长字符串，最多可以存储255个字符，当指定，数据表字段为cahr(n)时此列中的数据最长为N个字符，如果&lt;n,自动补充’\u0000’</td>
+</tr>
+<tr>
+<td align="center">varcahr</td>
+<td align="center">0—65535字节</td>
+<td align="center">可变长度字符串，varchar(n)限制最大存储字节为n</td>
+</tr>
+<tr>
+<td align="center">tinyblob</td>
+<td align="center">0—255字节</td>
+<td align="center">存放二进制字符串</td>
+</tr>
+<tr>
+<td align="center">blob</td>
+<td align="center">0—65535</td>
+<td align="center">存储二进制字符串</td>
+</tr>
+<tr>
+<td align="center">mediumblob</td>
+<td align="center">0—1677215</td>
+<td align="center">存储二进制字符串</td>
+</tr>
+<tr>
+<td align="center">longblob</td>
+<td align="center">0—4294967295字节</td>
+<td align="center">存储二进制字符串</td>
+</tr>
+<tr>
+<td align="center">tinytext</td>
+<td align="center">0—255</td>
+<td align="center">存储文本数据</td>
+</tr>
+<tr>
+<td align="center">text</td>
+<td align="center">0—65535</td>
+<td align="center">存储文本数据</td>
+</tr>
+<tr>
+<td align="center">mediumtext</td>
+<td align="center">0—1677215</td>
+<td align="center">存储文本数据</td>
+</tr>
+<tr>
+<td align="center">longtext</td>
+<td align="center">0—4294967295</td>
+<td align="center">存储文本数据</td>
+</tr>
+</tbody></table>
+</li>
+<li><h6 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h6><p>MySQL数据库中，可以使用字符串来存储时间，但是如果需要对日期进行查询，字符串则不便于该操作</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">格式</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">date</td>
+<td align="center">2022-10-08</td>
+<td align="center">日期，只存储年月日</td>
+</tr>
+<tr>
+<td align="center">time</td>
+<td align="center">10:34:13</td>
+<td align="center">时间，只存储时分秒</td>
+</tr>
+<tr>
+<td align="center">year</td>
+<td align="center">2022</td>
+<td align="center">年份</td>
+</tr>
+<tr>
+<td align="center">datetime</td>
+<td align="center">2021-10-08 10:34:15</td>
+<td align="center">日期-时间</td>
+</tr>
+<tr>
+<td align="center">timestamp</td>
+<td align="center">2021-10-08 10:34:15</td>
+<td align="center">日期-时间</td>
+</tr>
+</tbody></table>
 </li>
 </ol>
-<h2 id="4-4-SQL高级"><a href="#4-4-SQL高级" class="headerlink" title="4.4  SQL高级"></a>4.4  SQL高级</h2><h2 id="4-5-数据库设计"><a href="#4-5-数据库设计" class="headerlink" title="4.5  数据库设计"></a>4.5  数据库设计</h2><h2 id="4-6-数据库事务"><a href="#4-6-数据库事务" class="headerlink" title="4.6  数据库事务"></a>4.6  数据库事务</h2>
+<h5 id="11-字段约束"><a href="#11-字段约束" class="headerlink" title="11.字段约束"></a>11.字段约束</h5><h6 id="1-在创建数据表的时候，指定的对数据表的列的数据限制性的要求"><a href="#1-在创建数据表的时候，指定的对数据表的列的数据限制性的要求" class="headerlink" title="1.在创建数据表的时候，指定的对数据表的列的数据限制性的要求"></a>1.在创建数据表的时候，指定的对数据表的列的数据限制性的要求</h6><h6 id="2-目的："><a href="#2-目的：" class="headerlink" title="2.目的："></a>2.目的：</h6><ul>
+<li>保证数据的有效性 </li>
+<li>保证数据的完整性</li>
+<li>保证数据的正确性</li>
+</ul>
+<h6 id="3-常见的约束："><a href="#3-常见的约束：" class="headerlink" title="3.常见的约束："></a>3.常见的约束：</h6><ol>
+<li><p>非空约束(not null)</p>
+</li>
+<li><p>唯一约束(unique)</p>
+</li>
+<li><p>主键约束(primary key),非空+唯一，能够唯一标识数据库中的一条数据</p>
+</li>
+<li><p>外键约束(foreign key),建立不同表之间的关联关系    </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">##非空 唯一</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> books(book_isbn <span class="type">int</span> <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span>,book_name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>,book_author <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>);</span><br><span class="line">##主键约束  在一张表中最多只能有一个主键 主键非空唯一</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> list1(list_id <span class="keyword">primary</span> key) 或者</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> list2(list_id, <span class="keyword">primary</span> key(list_id))</span><br><span class="line">##去除主键约束</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list1 <span class="keyword">drop</span> <span class="keyword">primary</span> key</span><br><span class="line">##创建表之后添加主键</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> list1 modify list_id <span class="keyword">primary</span> key</span><br><span class="line">##主键自动增长   没有合适的列作为主键时可以单独定义ID作为主键</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> types(</span><br><span class="line">    ##只有<span class="type">int</span>类型可以自动增长</span><br><span class="line">    ##id 生成后删除，ID不会重复已经有过的ID</span><br><span class="line">    	#即只保证唯一性不保证连续性</span><br><span class="line">    type_id <span class="type">int</span> <span class="keyword">primary</span> key auto_increment,</span><br><span class="line">    type_name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    type_remark <span class="type">varchar</span>(<span class="number">100</span>)</span><br><span class="line">);</span><br><span class="line">##联合主键 将数据表中的多列组合在一起设置为表的主键</span><br><span class="line">#在实际企业项目中联合主键使用频率不高，也是额外生成一个主键id</span><br><span class="line">#当一张表中没有明确的字段作为主键时额外添加一个ID字段</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> grades(</span><br><span class="line">	stu_num <span class="type">char</span>(<span class="number">8</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    course_id <span class="type">int</span>,</span><br><span class="line">    scores <span class="type">int</span>,</span><br><span class="line">    <span class="keyword">primary</span> key(stu_num,course_id)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4-3-6-DML-数据操纵语言"><a href="#4-3-6-DML-数据操纵语言" class="headerlink" title="4.3.6 DML 数据操纵语言"></a>4.3.6 DML 数据操纵语言</h3><h4 id="1-插入数据"><a href="#1-插入数据" class="headerlink" title="1.插入数据"></a>1.插入数据</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##向数据表中指定的列添加相应数据，列的顺序不需要跟数据库保持一致</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span>(columnname1,columnname2...) <span class="keyword">values</span>(value1,valu12...);</span><br><span class="line">##向表中所有字段添加数据</span><br><span class="line">	#<span class="keyword">value</span>值得顺序与数据表定义的字段顺序保持一致</span><br><span class="line">	#在项目开发中，即使向所有字段添加数据，也建议写出字段列表</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="operator">&lt;</span>tablename<span class="operator">&gt;</span> <span class="keyword">values</span> (value1,value2,value3)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-删除数据"><a href="#2-删除数据" class="headerlink" title="2.删除数据"></a>2.删除数据</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##语法</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tablename <span class="keyword">where</span> conditions;</span><br><span class="line"></span><br><span class="line">##实例</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> stus <span class="keyword">where</span> stu_age<span class="operator">&gt;</span><span class="number">18</span>;</span><br><span class="line"></span><br><span class="line">##清空数据表(敏感操作)</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tablename</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-修改数据"><a href="#3-修改数据" class="headerlink" title="3.修改数据"></a>3.修改数据</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##语法</span><br><span class="line">update tablename <span class="keyword">set</span> columnname1<span class="operator">=</span>newvalue1,columnname2<span class="operator">=</span>newvalue2 <span class="keyword">where</span> conditions</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-7-DQL数据查询语言"><a href="#4-3-7-DQL数据查询语言" class="headerlink" title="4.3.7 DQL数据查询语言"></a>4.3.7 DQL数据查询语言</h3><p>从数据表中提取满足特定条件的记录</p>
+<ul>
+<li>单表查询</li>
+<li>多表联合查询</li>
+</ul>
+<h4 id="1-查询基础语法"><a href="#1-查询基础语法" class="headerlink" title="1.查询基础语法"></a>1.查询基础语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##语法</span><br><span class="line"><span class="keyword">select</span> columnname1,columnname2... <span class="keyword">from</span> tablename </span><br><span class="line">##显示所有列</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tablename</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-where-子句"><a href="#2-where-子句" class="headerlink" title="2.where 子句"></a>2.where 子句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tablename <span class="keyword">where</span> conditions;</span><br><span class="line">update tablename <span class="keyword">set</span> ... <span class="keyword">where</span> conditions;</span><br><span class="line">select...from tablename <span class="keyword">where</span> conditions;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-条件"><a href="#1-条件" class="headerlink" title="1.条件"></a>1.条件</h5><table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">=</td>
+<td align="center">等于，筛选字段值的精确匹配</td>
+</tr>
+<tr>
+<td align="center">!=</td>
+<td align="center">不等于</td>
+</tr>
+<tr>
+<td align="center">&lt; &gt;</td>
+<td align="center">不等于</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center">&gt;=</td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center">&lt;=</td>
+<td align="center">小于等于</td>
+</tr>
+<tr>
+<td align="center">between …and …</td>
+<td align="center">在某一范围之内，闭区间</td>
+</tr>
+</tbody></table>
+<h5 id="2-多条件查询"><a href="#2-多条件查询" class="headerlink" title="2.多条件查询"></a>2.多条件查询</h5><table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">and</td>
+<td align="center">连接多个单条件语句，同时满足</td>
+</tr>
+<tr>
+<td align="center">or</td>
+<td align="center">连接多个单条件语句，满足其一</td>
+</tr>
+<tr>
+<td align="center">not</td>
+<td align="center">取反操作</td>
+</tr>
+</tbody></table>
+<h4 id="3-like子句"><a href="#3-like子句" class="headerlink" title="3.like子句"></a>3.like子句</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">##查询名字中含有字母<span class="string">&#x27;o&#x27;</span>的学生</span><br><span class="line"># <span class="operator">%</span>表示任意多个字符 _表示任意一个字符</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> stus <span class="keyword">where</span> stu_name <span class="keyword">like</span> <span class="string">&#x27;%o%&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#查询姓名第一个字为张的同学</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> stus <span class="keyword">where</span> stus_name <span class="keyword">like</span><span class="string">&#x27;张&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#查询姓名最后一个字母为o的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> stus <span class="keyword">where</span> stu_name <span class="keyword">like</span> <span class="string">&#x27;%o&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-对查询结果的处理"><a href="#4-对查询结果的处理" class="headerlink" title="4.对查询结果的处理"></a>4.对查询结果的处理</h4><h5 id="1-设置查询的列"><a href="#1-设置查询的列" class="headerlink" title="1.设置查询的列"></a>1.设置查询的列</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#声明查询结果的指定列</span><br><span class="line"><span class="keyword">select</span> columnName <span class="keyword">from</span> stus <span class="keyword">where</span> stu_age<span class="operator">=</span><span class="number">20</span>;</span><br><span class="line">#对从数据表中查询到的列进行一定的运算之后显示出来</span><br><span class="line"><span class="keyword">select</span> stus_name,stu_age<span class="number">-21</span> <span class="keyword">from</span> stus;</span><br><span class="line">#字段别名 <span class="keyword">as</span>  可以给查询结果的列取一个语义性更强的别名(<span class="keyword">as</span>可以省略)</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">select</span> stus_name,<span class="number">2021</span><span class="operator">-</span>stu_age <span class="keyword">as</span> stu_birth_year <span class="keyword">from</span> stus; </span><br><span class="line">#查询结果去重 <span class="keyword">distinct</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> stu_age <span class="keyword">from</span> stus;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-查询结果排序"><a href="#2-查询结果排序" class="headerlink" title="2.查询结果排序"></a>2.查询结果排序</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#对查询的结果按照性别升序排序   <span class="keyword">order</span> by... <span class="keyword">asc</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> stus <span class="keyword">where</span> stu_age<span class="operator">&gt;</span><span class="number">15</span> <span class="keyword">order</span> <span class="keyword">by</span> stu_gender;</span><br><span class="line">#对查询的结果按照性别降序排序  <span class="keyword">order</span> by... <span class="keyword">desc</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> stus <span class="keyword">where</span> stu_age<span class="operator">&gt;</span><span class="number">15</span> <span class="keyword">order</span> <span class="keyword">by</span> stu_gender <span class="keyword">desc</span>;</span><br><span class="line">#多字段排序</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> stus <span class="keyword">where</span> stu_age<span class="operator">&gt;</span><span class="number">15</span> <span class="keyword">order</span> <span class="keyword">by</span> stu_gender <span class="keyword">desc</span>,stu_age <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-聚合函数"><a href="#3-聚合函数" class="headerlink" title="3.聚合函数"></a>3.聚合函数</h5><p>​    1.count（） 统计函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#统计性别男的学生个数</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(stu_name) <span class="keyword">from</span> stus <span class="keyword">where</span> stu_gender <span class="operator">=</span> <span class="string">&#x27;男&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    2. max() 计算最大值函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询满足条件的记录中指定列的最大值</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(stu_age) <span class="keyword">from</span> stus <span class="keyword">where</span> stu_gender <span class="operator">=</span> <span class="string">&#x27;女&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    3.min()计算最小值函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询满足条件的记录中指定列的最小值</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">min</span>(stu_age) <span class="keyword">from</span> stus <span class="keyword">where</span> stu_gender <span class="operator">=</span> <span class="string">&#x27;男&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    4.sum() 求和函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#计算年龄总和</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(stu_age) <span class="keyword">from</span> stus; </span><br></pre></td></tr></table></figure>
+
+<p>​    5.avg() 求平均值函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#计算指定列的平均值</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>(stu_age) <span class="keyword">from</span> stus;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-日期函数"><a href="#4-日期函数" class="headerlink" title="4.日期函数"></a>4.日期函数</h5><p>​    1.now() 获取当前时间</p>
+<p>​    2.sysdate() 获取系统当前时间</p>
+<h5 id="5-字符串函数"><a href="#5-字符串函数" class="headerlink" title="5.字符串函数"></a>5.字符串函数</h5><p>​    1.concat(str1,str2…) 字符串拼接</p>
+<p>​    2.upper(column) 将字段的值转换为大写</p>
+<p>​    3.lower() 小写转换</p>
+<p>​    4.substring(str,start,length) 从指定列中截取部分字符</p>
+<h4 id="5-分组查询-筛选"><a href="#5-分组查询-筛选" class="headerlink" title="5.分组查询/筛选"></a>5.分组查询/筛选</h4><blockquote>
+<p>语句执行顺序：where—&gt;group by—–&gt;having</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">##语法</span><br><span class="line"><span class="keyword">select</span> 分组字段、聚合函数 <span class="keyword">from</span> 表名 <span class="keyword">group</span> <span class="keyword">by</span> 分组字段;</span><br><span class="line">##示例</span><br><span class="line"><span class="keyword">select</span> stus_gender,<span class="built_in">count</span>(stu_name) <span class="keyword">from</span> stus;</span><br><span class="line"></span><br><span class="line">##分组查询并筛选 <span class="keyword">having</span> 关键字</span><br><span class="line"><span class="keyword">select</span> stu_age,<span class="built_in">count</span>(stu_num) <span class="keyword">from</span> stus <span class="keyword">group</span> <span class="keyword">by</span> stu_age <span class="keyword">having</span> <span class="built_in">count</span>(stu_num)<span class="operator">&gt;</span><span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> stu_age;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-分页查询"><a href="#6-分页查询" class="headerlink" title="6.分页查询"></a>6.分页查询</h4><blockquote>
+<p>当数据表中的记录比较多的时候，如果一次性呈现出来，可读性比较差，可将这些数据分页进行显示</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#语法</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> ... limi <span class="keyword">start</span>,datanums;</span><br><span class="line">#分页语句的通用表达式</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> ... where... limit (pageNum<span class="number">-1</span>)<span class="operator">*</span>pageSize,pageSize;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4-数据表的关联关系"><a href="#4-4-数据表的关联关系" class="headerlink" title="4.4 数据表的关联关系"></a>4.4 数据表的关联关系</h2><blockquote>
+<p>MySQL是一个关系型数据库，不仅可以存储数据，还可以维护数据与数据之间的关系（通过在数据表中添加字段建立外键约束）</p>
+</blockquote>
+<p>数据与数据之间的关联关系分为4种：</p>
+<h3 id="4-4-1-一对一关联"><a href="#4-4-1-一对一关联" class="headerlink" title="4.4.1 一对一关联"></a>4.4.1 一对一关联</h3><h4 id="1-主键关联"><a href="#1-主键关联" class="headerlink" title="1.主键关联"></a>1.主键关联</h4><blockquote>
+<p>两张数据表中主键相同的数据为相互对应的数据</p>
+</blockquote>
+<h4 id="2-唯一外键关联"><a href="#2-唯一外键关联" class="headerlink" title="2.唯一外键关联"></a>2.唯一外键关联</h4><blockquote>
+<p>建立一个表的外键与另外一个表的主键一一对应，建立的外键的值必须在其关联的主键中存在，并且将外键天剑唯一约束</p>
+</blockquote>
+<h3 id="4-4-2-一对多与多对一关联"><a href="#4-4-2-一对多与多对一关联" class="headerlink" title="4.4.2 一对多与多对一关联"></a>4.4.2 一对多与多对一关联</h3><blockquote>
+<p>班级–学生  一对多   一个班级包含多个学生</p>
+<p>学生–班级  多对一  多个学生可以属于一个班级</p>
+</blockquote>
+<h5 id="方案："><a href="#方案：" class="headerlink" title="方案："></a>方案：</h5><p>​    在多的一端添加外键与少的一端的主键关联</p>
+<h3 id="4-4-3-多对多关联"><a href="#4-4-3-多对多关联" class="headerlink" title="4.4.3 多对多关联"></a>4.4.3 多对多关联</h3><blockquote>
+<p>学生–课程  一个学生可以选多门课程，一门课程可以由多个学生选择</p>
+<p>会员–社团  一个会员可以参加多个社团，一个社团可以招纳多个会员</p>
+</blockquote>
+<h5 id="方案：-1"><a href="#方案：-1" class="headerlink" title="方案："></a>方案：</h5><p>​    额外创建一张关系表来维护多对多关联—在关系表中定义两个外键分别与两个数据表的主键进行关联</p>
+<p><img src="/2022/07/15/Javaweb/Blog\source_posts\Javaweb\image-20221008175758696.png" alt="image-20221008175758696"></p>
+<h3 id="4-4-4-外键约束"><a href="#4-4-4-外键约束" class="headerlink" title="4.4.4 外键约束"></a>4.4.4 外键约束</h3><blockquote>
+<p>外键约束—将一个列添加外键约束与另一张表的主键进行关联之后，这个外键约束的列添加的数据必须在关联的主键字段中存在</p>
+</blockquote>
+<p>案例：学生表 与 班级表  在学生表中添加外键与班级表的主键进行关联 </p>
+<p>​    1.先创建班级表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> classes(</span><br><span class="line">     class_id <span class="type">int</span> <span class="keyword">primary</span> key auto_increment,</span><br><span class="line">    class_name <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">unique</span>,</span><br><span class="line">     class_remark <span class="type">varchar</span>(<span class="number">200</span>)</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+
+<p>​    2.创建学生表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">##方式一：在创建表的同时创建cid字段并添加外键约束</span><br><span class="line">##由于cid列要与class主键关联，cid的类型和长度要和class_id一致</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> students(</span><br><span class="line">	stu_num <span class="type">char</span>(<span class="number">8</span>) <span class="keyword">primary</span> key,</span><br><span class="line">    stu_name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    stu_gender <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    stu_age <span class="type">int</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    cid <span class="type">int</span>,</span><br><span class="line">   	<span class="keyword">constraint</span> FK_STUDENTS_CLASS <span class="keyword">foreign</span> key(cid) <span class="keyword">references</span> classes(class_id)</span><br><span class="line">);</span><br><span class="line">##方式二：创建表的时候不设置外键，后面再添加外键约束</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> students(</span><br><span class="line">	stu_num <span class="type">char</span>(<span class="number">8</span>) <span class="keyword">primary</span> key,</span><br><span class="line">    stu_name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    stu_gender <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    stu_age <span class="type">int</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    cid <span class="type">int</span>,</span><br><span class="line">);</span><br><span class="line">#在创建表后为cid添加外键约束</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> students <span class="keyword">add</span> <span class="keyword">constraint</span> FK_STUDENTS_CALSSES <span class="keyword">foreign</span> key(cid) <span class="keyword">references</span> classes(class_id);</span><br><span class="line">#删除外键约束</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> students <span class="keyword">drop</span> <span class="keyword">foreign</span> key FK_STUDENTS_CLASSES;</span><br></pre></td></tr></table></figure>
+
+<p>​    3.向班级表添加数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">+</span><span class="comment">----------+------------+--------------+  #班级表中ID=1 的班级信息被学生表中的记录关联了，我们就不能修改这条ID的class信</span></span><br><span class="line"><span class="operator">|</span> class_id <span class="operator">|</span> class_name <span class="operator">|</span> class_remark <span class="operator">|</span>  #息，并且不能删除 （设置级联修改和级联删除可以做到修改和删除）</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+------------+--------------+</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">1</span> <span class="operator">|</span> java2104   <span class="operator">|</span> ...          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">2</span> <span class="operator">|</span> java2105   <span class="operator">|</span> ...          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">3</span> <span class="operator">|</span> java2106   <span class="operator">|</span> ...          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">4</span> <span class="operator">|</span> python2106 <span class="operator">|</span> ...          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+------------+--------------+</span></span><br></pre></td></tr></table></figure>
+
+<p>​    4.向学生表添加数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> students(stu_num,stu_name,stu_gender,stu_age,cid) <span class="keyword">values</span>(<span class="string">&#x27;202210102&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">20</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<p>​    5.注意</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">当学生表中存在学生信息关联班级表的某条记录是，则不能对班级表的这条信息进行修改id操作</span><br><span class="line">##如果非要删除或修改：</span><br><span class="line">#先解除关联</span><br><span class="line">update students <span class="keyword">set</span> cid<span class="operator">=</span><span class="keyword">null</span> <span class="keyword">where</span> cid<span class="operator">=</span><span class="number">1</span>;</span><br><span class="line">#后修改或删除班级表信息</span><br><span class="line">update calsses <span class="keyword">set</span> class_id<span class="operator">=</span><span class="number">5</span> <span class="keyword">where</span> class_name<span class="operator">=</span><span class="string">&#x27;java2104&#x27;</span>;</span><br><span class="line">#再进行关联</span><br><span class="line">update students <span class="keyword">set</span> cid<span class="operator">=</span><span class="number">5</span> <span class="keyword">where</span> cid <span class="keyword">is</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="外键约束之级联"><a href="#外键约束之级联" class="headerlink" title="外键约束之级联"></a>外键约束之级联</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#添加外键的时候指定级联修改和级联删除</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> students <span class="keyword">add</span> <span class="keyword">constraint</span> FK_STUDNETS_CLASSES <span class="keyword">foreign</span> key(cid) <span class="keyword">references</span> classes(class_id) <span class="keyword">on</span> update cascade <span class="keyword">on</span> <span class="keyword">delete</span> cascade;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-5-SQL高级"><a href="#4-5-SQL高级" class="headerlink" title="4.5 SQL高级"></a>4.5 SQL高级</h2><h2 id="4-6-数据库设计"><a href="#4-6-数据库设计" class="headerlink" title="4.6  数据库设计"></a>4.6  数据库设计</h2><h2 id="4-7-数据库事务"><a href="#4-7-数据库事务" class="headerlink" title="4.7  数据库事务"></a>4.7  数据库事务</h2>
     </div>
 
     
@@ -489,7 +833,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-HTML%E5%92%8CCSS-amp-JS"><span class="nav-number">1.</span> <span class="nav-text">1.HTML和CSS&amp;JS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.1.</span> <span class="nav-text">基础回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-JQuery"><span class="nav-number">2.</span> <span class="nav-text">2.JQuery</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.常用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8C%BA%E5%88%86DOM%E5%AF%B9%E8%B1%A1%E5%92%8CJQuery-%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.区分DOM对象和JQuery 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-jQuery%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.jQuery基础选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">1.基本过滤选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AE%B9%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">2.内容过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B1%9E%E6%80%A7%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.3.</span> <span class="nav-text">3.属性过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%A1%A8%E5%8D%95%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.4.</span> <span class="nav-text">4.表单过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%85%83%E7%B4%A0%E7%AD%9B%E9%80%89"><span class="nav-number">2.0.4.5.</span> <span class="nav-text">5.元素筛选</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-JQuery%E5%8A%A8%E7%94%BB"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.JQuery动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-JQUERY%E5%92%8CJS%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.JQUERY和JS加载顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Javaweb%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">3.Javaweb项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-MySQL"><span class="nav-number">4.</span> <span class="nav-text">4.MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  数据库介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 数据库概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 关系型数据库和非关系型数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A7%E5%93%81"><span class="nav-number">4.1.3.</span> <span class="nav-text">4.1.3 常见的数据库产品</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A7%E5%93%81%EF%BC%9A"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">关系型数据库产品：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">非关系型数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-4-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%AF%E8%AF%AD"><span class="nav-number">4.1.4.</span> <span class="nav-text">4.1.4 数据库术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.2.</span> <span class="nav-text">4.2  MySQL数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1MySQL数据库环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2MySQL-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2MySQL 服务的启动与停止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3MySQL%E7%9A%84%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">4.2.3.</span> <span class="nav-text">4.2.3MySQL的管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-MySQL%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.4.</span> <span class="nav-text">4.2.4 MySQL逻辑结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-SQL%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="nav-number">4.3.</span> <span class="nav-text">4.3  SQL结构化查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-SQL%E6%A6%82%E8%BF%B0"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 SQL概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-SQL%E5%8F%91%E5%B1%95"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 SQL发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-SQL%E5%88%86%E7%B1%BB"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.2.3 SQL分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-SQL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">4.3.4.</span> <span class="nav-text">4.2.4  SQL基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-DDL"><span class="nav-number">4.3.5.</span> <span class="nav-text">4.2.5 DDL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DDL-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">4.3.5.1.</span> <span class="nav-text">DDL-数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.2.</span> <span class="nav-text">查询数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.3.</span> <span class="nav-text">修改数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BC%9A%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%89%80%E6%9C%89%E7%9A%84%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%8F%8A%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.5.1.4.</span> <span class="nav-text">删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.5.</span> <span class="nav-text">使用&#x2F;切换数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.6.</span> <span class="nav-text">创建数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.7.</span> <span class="nav-text">查询数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.8.</span> <span class="nav-text">删除数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.9.</span> <span class="nav-text">修改数据表</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-SQL%E9%AB%98%E7%BA%A7"><span class="nav-number">4.4.</span> <span class="nav-text">4.4  SQL高级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.5.</span> <span class="nav-text">4.5  数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="nav-number">4.6.</span> <span class="nav-text">4.6  数据库事务</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-HTML%E5%92%8CCSS-amp-JS"><span class="nav-number">1.</span> <span class="nav-text">1.HTML和CSS&amp;JS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.1.</span> <span class="nav-text">基础回顾</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-JQuery"><span class="nav-number">2.</span> <span class="nav-text">2.JQuery</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.常用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8C%BA%E5%88%86DOM%E5%AF%B9%E8%B1%A1%E5%92%8CJQuery-%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.区分DOM对象和JQuery 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-jQuery%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.jQuery基础选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%BF%87%E6%BB%A4%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">1.基本过滤选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AE%B9%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">2.内容过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B1%9E%E6%80%A7%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.3.</span> <span class="nav-text">3.属性过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%A1%A8%E5%8D%95%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">2.0.4.4.</span> <span class="nav-text">4.表单过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%85%83%E7%B4%A0%E7%AD%9B%E9%80%89"><span class="nav-number">2.0.4.5.</span> <span class="nav-text">5.元素筛选</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-JQuery%E5%8A%A8%E7%94%BB"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.JQuery动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-JQUERY%E5%92%8CJS%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.JQUERY和JS加载顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Javaweb%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">3.Javaweb项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-MySQL"><span class="nav-number">4.</span> <span class="nav-text">4.MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  数据库介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 数据库概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 关系型数据库和非关系型数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A7%E5%93%81"><span class="nav-number">4.1.3.</span> <span class="nav-text">4.1.3 常见的数据库产品</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A7%E5%93%81%EF%BC%9A"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">关系型数据库产品：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">非关系型数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-4-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%AF%E8%AF%AD"><span class="nav-number">4.1.4.</span> <span class="nav-text">4.1.4 数据库术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.2.</span> <span class="nav-text">4.2  MySQL数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1MySQL数据库环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2MySQL-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2MySQL 服务的启动与停止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3MySQL%E7%9A%84%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">4.2.3.</span> <span class="nav-text">4.2.3MySQL的管理工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-MySQL%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.4.</span> <span class="nav-text">4.2.4 MySQL逻辑结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-SQL%E7%BB%93%E6%9E%84%E5%8C%96%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="nav-number">4.3.</span> <span class="nav-text">4.3  SQL结构化查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-SQL%E6%A6%82%E8%BF%B0"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 SQL概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-SQL%E5%8F%91%E5%B1%95"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 SQL发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-SQL%E5%88%86%E7%B1%BB"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3 SQL分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-SQL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">4.3.4.</span> <span class="nav-text">4.3.4  SQL基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-5-DDL"><span class="nav-number">4.3.5.</span> <span class="nav-text">4.3.5 DDL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DDL-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="nav-number">4.3.5.1.</span> <span class="nav-text">DDL-数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.1.</span> <span class="nav-text">1.创建数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.2.</span> <span class="nav-text">2.查询数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.3.</span> <span class="nav-text">3.修改数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BC%9A%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%89%80%E6%9C%89%E7%9A%84%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%8F%8A%E6%95%B0%E6%8D%AE%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.5.1.4.</span> <span class="nav-text">4.删除数据库 删除数据库是会删除当前数据库中所有的数据表及数据表中的数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E4%BD%BF%E7%94%A8-%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.3.5.1.5.</span> <span class="nav-text">5.使用&#x2F;切换数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.6.</span> <span class="nav-text">6.创建数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.7.</span> <span class="nav-text">7.查询数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.8.</span> <span class="nav-text">8.删除数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">4.3.5.1.9.</span> <span class="nav-text">9.修改数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.3.5.1.10.</span> <span class="nav-text">10.数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.3.5.1.10.1.</span> <span class="nav-text">数值类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.3.5.1.10.2.</span> <span class="nav-text">字符类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.3.5.1.10.3.</span> <span class="nav-text">日期类型</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-%E5%AD%97%E6%AE%B5%E7%BA%A6%E6%9D%9F"><span class="nav-number">4.3.5.1.11.</span> <span class="nav-text">11.字段约束</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E5%9C%A8%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%8C%87%E5%AE%9A%E7%9A%84%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E5%88%97%E7%9A%84%E6%95%B0%E6%8D%AE%E9%99%90%E5%88%B6%E6%80%A7%E7%9A%84%E8%A6%81%E6%B1%82"><span class="nav-number">4.3.5.1.11.1.</span> <span class="nav-text">1.在创建数据表的时候，指定的对数据表的列的数据限制性的要求</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="nav-number">4.3.5.1.11.2.</span> <span class="nav-text">2.目的：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BA%A6%E6%9D%9F%EF%BC%9A"><span class="nav-number">4.3.5.1.11.3.</span> <span class="nav-text">3.常见的约束：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-6-DML-%E6%95%B0%E6%8D%AE%E6%93%8D%E7%BA%B5%E8%AF%AD%E8%A8%80"><span class="nav-number">4.3.6.</span> <span class="nav-text">4.3.6 DML 数据操纵语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.6.1.</span> <span class="nav-text">1.插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.6.2.</span> <span class="nav-text">2.删除数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="nav-number">4.3.6.3.</span> <span class="nav-text">3.修改数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-7-DQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="nav-number">4.3.7.</span> <span class="nav-text">4.3.7 DQL数据查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9F%A5%E8%AF%A2%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">4.3.7.1.</span> <span class="nav-text">1.查询基础语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-where-%E5%AD%90%E5%8F%A5"><span class="nav-number">4.3.7.2.</span> <span class="nav-text">2.where 子句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%9D%A1%E4%BB%B6"><span class="nav-number">4.3.7.2.1.</span> <span class="nav-text">1.条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">4.3.7.2.2.</span> <span class="nav-text">2.多条件查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-like%E5%AD%90%E5%8F%A5"><span class="nav-number">4.3.7.3.</span> <span class="nav-text">3.like子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AF%B9%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">4.3.7.4.</span> <span class="nav-text">4.对查询结果的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%AE%BE%E7%BD%AE%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%88%97"><span class="nav-number">4.3.7.4.1.</span> <span class="nav-text">1.设置查询的列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E6%8E%92%E5%BA%8F"><span class="nav-number">4.3.7.4.2.</span> <span class="nav-text">2.查询结果排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.7.4.3.</span> <span class="nav-text">3.聚合函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.7.4.4.</span> <span class="nav-text">4.日期函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.7.4.5.</span> <span class="nav-text">5.字符串函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%88%86%E7%BB%84%E6%9F%A5%E8%AF%A2-%E7%AD%9B%E9%80%89"><span class="nav-number">4.3.7.5.</span> <span class="nav-text">5.分组查询&#x2F;筛选</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">4.3.7.6.</span> <span class="nav-text">6.分页查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 数据表的关联关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E8%81%94"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.1 一对一关联</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BB%E9%94%AE%E5%85%B3%E8%81%94"><span class="nav-number">4.4.1.1.</span> <span class="nav-text">1.主键关联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%94%AF%E4%B8%80%E5%A4%96%E9%94%AE%E5%85%B3%E8%81%94"><span class="nav-number">4.4.1.2.</span> <span class="nav-text">2.唯一外键关联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-%E4%B8%80%E5%AF%B9%E5%A4%9A%E4%B8%8E%E5%A4%9A%E5%AF%B9%E4%B8%80%E5%85%B3%E8%81%94"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.2 一对多与多对一关联</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="nav-number">4.4.2.0.1.</span> <span class="nav-text">方案：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94"><span class="nav-number">4.4.3.</span> <span class="nav-text">4.4.3 多对多关联</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%EF%BC%9A-1"><span class="nav-number">4.4.3.0.1.</span> <span class="nav-text">方案：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-4-%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">4.4.4.</span> <span class="nav-text">4.4.4 外键约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F%E4%B9%8B%E7%BA%A7%E8%81%94"><span class="nav-number">4.4.4.1.</span> <span class="nav-text">外键约束之级联</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-SQL%E9%AB%98%E7%BA%A7"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 SQL高级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.6.</span> <span class="nav-text">4.6  数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1"><span class="nav-number">4.7.</span> <span class="nav-text">4.7  数据库事务</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
