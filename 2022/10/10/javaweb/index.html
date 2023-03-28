@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://www.zcwww.top/2022/10/10/javaweb/image-20221206115252142.png">
 <meta property="og:image" content="http://www.zcwww.top/2022/10/10/javaweb/image-20221206122147216.png">
 <meta property="article:published_time" content="2022-10-10T10:47:14.000Z">
-<meta property="article:modified_time" content="2022-12-06T04:49:44.295Z">
+<meta property="article:modified_time" content="2023-01-08T14:00:13.445Z">
 <meta property="article:author" content="Markcheng">
 <meta property="article:tag" content="HTML">
 <meta name="twitter:card" content="summary">
@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-06 12:49:44" itemprop="dateModified" datetime="2022-12-06T12:49:44+08:00">2022-12-06</time>
+                <time title="修改时间：2023-01-08 22:00:13" itemprop="dateModified" datetime="2023-01-08T22:00:13+08:00">2023-01-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1774,13 +1774,33 @@
 <li><p>创建ajax请求对象</p>
 <ul>
 <li><p>IE7+/firefox/O/Safari/Chrome</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajaxReq = <span class="keyword">new</span> <span class="type">SMLHttpRequest</span>();</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajaxReq = <span class="keyword">new</span> <span class="type">XMLHttpRequest</span>();</span><br></pre></td></tr></table></figure></li>
 <li><p>IE5/IE6/</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajaxReq = <span class="keyword">new</span> <span class="type">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.检测浏览器型号和版本信息</span></span><br><span class="line">	<span class="built_in">window</span>.XMLHttpR</span><br><span class="line"><span class="comment">//2.创建ajax对象</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.检测浏览器型号和版本信息</span></span><br><span class="line">	<span class="built_in">window</span>.XMLHttpRequest<span class="comment">//如果返回true说明是新内核</span></span><br><span class="line"><span class="comment">//2.创建ajax对象</span></span><br><span class="line"> 	<span class="comment">//新内核：</span></span><br><span class="line">	<span class="keyword">var</span> ajaxReq = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	<span class="comment">//旧版内核：</span></span><br><span class="line">	<span class="keyword">var</span> ajaxReq = <span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
+<li><p>封装ajax的请求数据 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(method,url,asyn);</span><br><span class="line"><span class="comment">//method表示一步请求的请求方式(get或post)</span></span><br><span class="line"><span class="comment">//url表示 异步请求的目标路径</span></span><br><span class="line"><span class="comment">//asyn是否异步(true)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>封装参数：</p>
+<ul>
+<li><p>get请求，通过url传参</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajaxReq.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;checkUserName?userName=&quot;</span>+userName,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>post请求,可通过url或者ajaxReq请求正文传参</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajaxReq.open(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;checkUserName?userName=&quot;</span>+userName,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ajaxReq.send(<span class="string">&quot;key1=value1&amp;key2=value2&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>指定ajax的回调函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//3.指定ajax请求的回调函数</span></span><br><span class="line">    <span class="comment">//ajax请求对象是有状态的，通过ajaxReq.readyState获取状态值</span></span><br><span class="line">    <span class="comment">//ajaxReq请求对象的不同状态表示异步交互的不同阶段</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    ajaxReq.readyState == 0 表示ajax请求对象完成创建但并未初始化</span></span><br><span class="line"><span class="comment">    ajaxReq.readyState == 1 表示ajax请求对象完成初始化但并未发送请求</span></span><br><span class="line"><span class="comment">    ajaxReq.readyState == 2 表示ajax请求已经发送并到达服务器</span></span><br><span class="line"><span class="comment">    ajaxReq.readyState == 3 表示服务器正在处理ajax请求（通信中···)</span></span><br><span class="line"><span class="comment">    ajaxReq.readyState == 4 表示服务器处理完成，ajax请求对象已成功获取响应结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//只要ajax请求对象状态发生变化，就会触发这个回调函数执行</span></span><br><span class="line">    ajaxReq.onreadystatechange = callback;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指定回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//结果在此处理</span></span><br><span class="line">        <span class="keyword">if</span>(ajaxReq.readyState == <span class="number">4</span>)&#123;</span><br><span class="line">            <span class="comment">//只在状态为4的时候处理</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>发送ajax请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4.发送请求</span></span><br><span class="line">    ajaxReq.send(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">//如果请求方式为get,为null</span></span><br><span class="line"><span class="comment">//如果请求方式为post，为null或,&quot;key1=value1,key2=value2&quot;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="1-常用函数"><a href="#1-常用函数" class="headerlink" title="1.常用函数"></a>1.常用函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;) = <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="number">2.</span><span class="comment">//$(HTML字符串)，根据这个字符串创建元素结点对象</span></span><br><span class="line">	$(<span class="string">&quot;&lt;div&gt;&quot;</span> + <span class="string">&quot;hello&quot;</span> + <span class="string">&quot;&lt;div&quot;</span>).appendTo(<span class="string">&quot;body&quot;</span>)将括号内字符串加入到body标签中</span><br><span class="line"><span class="number">3.</span>$(<span class="string">&quot;#id&quot;</span>)  根据id查询对象</span><br><span class="line">    $(<span class="string">&quot;标签名&quot;</span>)  根据标签名查询对象</span><br><span class="line">    $(<span class="string">&quot;.class属性值&quot;</span>)   根据类名查询对象</span><br><span class="line"><span class="number">4.</span>$(dom对象)  将dom对象转换为JQuery 对象</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
 
@@ -1923,14 +1943,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1975,7 +1995,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
