@@ -30,8 +30,17 @@
 <meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230422192222665.png">
 <meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230422192147540.png">
 <meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230422201837924.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424134710408.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424140834092.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424141149748.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424141818719.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424142213423.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424142357527.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424142526827.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424142838299.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/04/22/ZAP/image-20230424143728261.png">
 <meta property="article:published_time" content="2023-04-22T03:16:27.000Z">
-<meta property="article:modified_time" content="2023-04-22T12:28:09.079Z">
+<meta property="article:modified_time" content="2023-04-24T07:54:23.281Z">
 <meta property="article:author" content="Markcheng">
 <meta property="article:tag" content="学习 生活 分享 交流">
 <meta name="twitter:card" content="summary">
@@ -195,10 +204,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-04-22 11:16:27 / 修改时间：20:28:09" itemprop="dateCreated datePublished" datetime="2023-04-22T11:16:27+08:00">2023-04-22</time>
+              <time title="创建时间：2023-04-22 11:16:27" itemprop="dateCreated datePublished" datetime="2023-04-22T11:16:27+08:00">2023-04-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-24 15:54:23" itemprop="dateModified" datetime="2023-04-24T15:54:23+08:00">2023-04-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -293,6 +308,47 @@
 </ul>
 <h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>在开启代理的情况下访问：<a target="_blank" rel="noopener" href="http://zap/">http://zap/</a></p>
 <p><img src="/2023/04/22/ZAP/image-20230422201837924.png"></p>
+<h3 id="扫描模式"><a href="#扫描模式" class="headerlink" title="扫描模式"></a>扫描模式</h3><ul>
+<li>safe: <ul>
+<li>发现漏洞的数量最少，但是是最安全的一种扫描方式</li>
+<li>用于网站刚搭建好的测试扫描</li>
+</ul>
+</li>
+<li>protected：只能对指定的webapplication进行扫描</li>
+<li>standard：会有一定的危险度和破坏性</li>
+<li>attack：扫描所有目标网站的漏洞</li>
+</ul>
+<p><img src="/2023/04/22/ZAP/image-20230424134710408.png"></p>
+<h3 id="扫描策略"><a href="#扫描策略" class="headerlink" title="扫描策略"></a>扫描策略</h3><p><img src="/2023/04/22/ZAP/image-20230424140834092.png"></p>
+<p>配置新的扫描策略：</p>
+<p><img src="/2023/04/22/ZAP/image-20230424141149748.png"></p>
+<h3 id="Anti-CSRF-Tokens"><a href="#Anti-CSRF-Tokens" class="headerlink" title="Anti CSRF Tokens"></a>Anti CSRF Tokens</h3><p><img src="/2023/04/22/ZAP/image-20230424141818719.png"></p>
+<h3 id="HTTPS——CA"><a href="#HTTPS——CA" class="headerlink" title="HTTPS——CA"></a>HTTPS——CA</h3><p>在访问HTTPS协议的网站的时候ZAP的证书可能不被信任</p>
+<p>可将ZAP生成的证书保存到本地，然后在浏览器安装</p>
+<p><img src="/2023/04/22/ZAP/image-20230424142213423.png"></p>
+<p><img src="/2023/04/22/ZAP/image-20230424142357527.png"></p>
+<p>再次访问时不再进行安全提示</p>
+<p><img src="/2023/04/22/ZAP/image-20230424142526827.png"></p>
+<h3 id="SCOPE-Contexts-filter"><a href="#SCOPE-Contexts-filter" class="headerlink" title="SCOPE/Contexts/filter"></a>SCOPE/Contexts/filter</h3><p>目录文件右击&gt;include in context&gt;new context</p>
+<p><img src="/2023/04/22/ZAP/image-20230424142838299.png"></p>
+<p>相当于给要扫描的具体目录进行标记，方便过滤</p>
+<h3 id="Http-session"><a href="#Http-session" class="headerlink" title="Http session"></a>Http session</h3><p><img src="/2023/04/22/ZAP/image-20230424143728261.png"></p>
+<h3 id="Note-tag"><a href="#Note-tag" class="headerlink" title="Note/tag"></a>Note/tag</h3><p>给扫描到的记录添加描述</p>
+<h2 id="ZAP标准扫描工作流程"><a href="#ZAP标准扫描工作流程" class="headerlink" title="ZAP标准扫描工作流程"></a>ZAP标准扫描工作流程</h2><ul>
+<li>设置代理<ul>
+<li>设置浏览器的代理</li>
+</ul>
+</li>
+<li>手动爬网<ul>
+<li>手动点击每个web页面，爬取数据</li>
+</ul>
+</li>
+<li>自动爬网<ul>
+<li>利用爬行功能自动爬网</li>
+</ul>
+</li>
+<li>主动扫描</li>
+</ul>
 
     </div>
 
@@ -392,7 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ZAP%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">ZAP简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">主要功能：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ZAP"><span class="nav-number">2.</span> <span class="nav-text">安装ZAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%9C%80%E6%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">环境需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZAP%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">ZAP的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E6%96%AD%E4%BB%A3%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">截断代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A2%AB%E5%8A%A8%E6%89%AB%E6%8F%8F"><span class="nav-number">3.2.</span> <span class="nav-text">被动扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E6%89%AB%E6%8F%8F"><span class="nav-number">3.3.</span> <span class="nav-text">主动扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fuzzy%EF%BC%88%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">fuzzy（模糊查询）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">3.5.</span> <span class="nav-text">API</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ZAP%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">ZAP简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">主要功能：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ZAP"><span class="nav-number">2.</span> <span class="nav-text">安装ZAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%9C%80%E6%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">环境需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZAP%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">ZAP的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%AA%E6%96%AD%E4%BB%A3%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">截断代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A2%AB%E5%8A%A8%E6%89%AB%E6%8F%8F"><span class="nav-number">3.2.</span> <span class="nav-text">被动扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E6%89%AB%E6%8F%8F"><span class="nav-number">3.3.</span> <span class="nav-text">主动扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fuzzy%EF%BC%88%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">fuzzy（模糊查询）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">3.5.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%AB%E6%8F%8F%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.6.</span> <span class="nav-text">扫描模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%AB%E6%8F%8F%E7%AD%96%E7%95%A5"><span class="nav-number">3.7.</span> <span class="nav-text">扫描策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anti-CSRF-Tokens"><span class="nav-number">3.8.</span> <span class="nav-text">Anti CSRF Tokens</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS%E2%80%94%E2%80%94CA"><span class="nav-number">3.9.</span> <span class="nav-text">HTTPS——CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCOPE-Contexts-filter"><span class="nav-number">3.10.</span> <span class="nav-text">SCOPE&#x2F;Contexts&#x2F;filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http-session"><span class="nav-number">3.11.</span> <span class="nav-text">Http session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note-tag"><span class="nav-number">3.12.</span> <span class="nav-text">Note&#x2F;tag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZAP%E6%A0%87%E5%87%86%E6%89%AB%E6%8F%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">ZAP标准扫描工作流程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
