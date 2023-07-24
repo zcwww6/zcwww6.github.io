@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.zcwww.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Xss">
+<meta property="og:url" content="http://www.zcwww.top/2023/07/24/xss/index.html">
+<meta property="og:site_name" content="欢迎来到成伟的部落">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/59966cea3781839766ca29eb18be7ef2.jpeg">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/image-20230724181739793.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/image-20230724181757484.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/image-20230724181810539.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/D640.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/640-16902035979272.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/640-16902036516424.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/image-20230724210207606.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/640-16902038065936.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/640-16902038490098.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/640-169020389330810.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/image-20230724210530214.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/07/24/xss/image-20230724210547050.png">
+<meta property="article:published_time" content="2023-07-24T09:39:12.000Z">
+<meta property="article:modified_time" content="2023-07-24T13:08:35.234Z">
+<meta property="article:author" content="Markcheng">
+<meta property="article:tag" content="学习 生活 分享 交流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zcwww.top/2023/07/24/xss/59966cea3781839766ca29eb18be7ef2.jpeg">
+
+<link rel="canonical" href="http://www.zcwww.top/2023/07/24/xss/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Xss | 欢迎来到成伟的部落</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">欢迎来到成伟的部落</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/zcwww6" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/07/24/xss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="Markcheng">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="欢迎来到成伟的部落">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Xss
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-24 17:39:12 / 修改时间：21:08:35" itemprop="dateCreated datePublished" datetime="2023-07-24T17:39:12+08:00">2023-07-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/2023/07/24/xss/59966cea3781839766ca29eb18be7ef2.jpeg"></p>
+<span id="more"></span>
+
+
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>原理</p>
+<p>  XSS 属于<strong>被动式</strong>的攻击。攻击者先构造一个跨站页面，利用script、、等各种方式使得用户浏览这个页面时，触发对被攻击站点的http 请求。此时，如果被攻击者如果已经在被攻击站点登录，就会持有该站点<strong>cookie</strong>。这样该站点会认为被攻击者发起了一个http 请求。而实际上这个请求是在被攻击者不知情的情况下发起的，由此攻击者在一定程度上达到了冒充被攻击者的目的。精心的构造这个攻击请求，可以达到冒充发文，夺取权限等等多个攻击目的。在常见的攻击实例中，这个请求是通过script 来发起的，因此被称为Cross Site Script。攻击Yahoo Mail 的Yamanner 蠕虫是一个著名的XSS 攻击实例。YahooMail 系统有一个漏洞，当用户在web 上察看信件时，有可能执行到信件内的javascript 代码。病毒可以利用这个漏洞使被攻击用户运行病毒的script。同时Yahoo Mail 系统使用了Ajax技术，这样病毒的script可以很容易的向Yahoo Mail 系统发起ajax 请求，从而得到用户的地址簿，并发送病毒给他人。</p>
+<h2 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h2><p>通过js脚本来实现的浏览器内核版本也会影响到js代码的实现</p>
+<p>1、钓鱼欺骗</p>
+<p>2、网站挂马</p>
+<p>3、身份盗用</p>
+<p>4、盗取网站用户信息</p>
+<p>5、垃圾信息发送</p>
+<p>6、劫持用户Web行为</p>
+<p>7、XSS蠕虫</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h4 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h4><p>把用户输入的数据“反射”给浏览器，也叫非持久型XSS</p>
+<h4 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h4><p>把用户输入的数据存储在服务器端，也就持久型XSS</p>
+<h4 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h4><p>从效果上来说也是反射型XSS。通过修改页面的DOM结点形成的XSS</p>
+<h2 id="手法"><a href="#手法" class="headerlink" title="手法"></a>手法</h2><h4 id="常用的测试语句"><a href="#常用的测试语句" class="headerlink" title="常用的测试语句"></a>常用的测试语句</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&#x27;javascript&#x27;</span>&gt;</span><span class="javascript">alert(<span class="string">&#x27;test！&#x27;</span>);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"> <span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="string">&#x27;test&#x27;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span> </span><br><span class="line"> &lt;svg/onload=alert(<span class="number">1</span>)&gt; <span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string"> &lt;svg/onload=alert(1)// onfocus=javascript:alert(2) </span></span><br><span class="line"><span class="string"> &quot;</span> onmouseover=<span class="string">&quot;prompt(&#x27;xss&#x27;)&quot;</span> bad=</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/24/xss/image-20230724181739793.png"></p>
+<p><img src="/2023/07/24/xss/image-20230724181757484.png"></p>
+<p><img src="/2023/07/24/xss/image-20230724181810539.png"></p>
+<h2 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h2><h3 id="httponly代码及绕过"><a href="#httponly代码及绕过" class="headerlink" title="httponly代码及绕过"></a>httponly代码及绕过</h3><ul>
+<li><strong>什么是HttpOnly?</strong></li>
+</ul>
+<p>如果HTTP响应头中包含HttpOnly标志，只要浏览器支持HttpOnly标志，客户端脚本就无法访问cookie。因此，即使存在跨站点脚本（XSS）缺陷，且用户意外访问利用此漏洞的链接，浏览器也不会向第三方透露cookie。如果浏览器不支持HttpOnly并且网站尝试设置HttpOnly cookie，浏览器会忽略HttpOnly标志，从而创建一个传统的，脚本可访问的cookie。将cookie设置成HttpOnly是为了防止XSS攻击，窃取cookie内容，这样就增加了cookie的安全性，即便是这样，也不要将重要信息存入cookie。</p>
+<ul>
+<li><p><strong>HttpOnly的设置样例</strong></p>
+<ul>
+<li><p>javaEE</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">response.<span class="keyword">set</span>Header<span class="params">(&quot;Set-Cookie&quot;, &quot;<span class="attr">cookiename</span>=value; </span></span><br><span class="line"><span class="params"><span class="attr">Path</span>=/;<span class="attr">Domain</span>=domainvalue;<span class="attr">Max-Age</span>=seconds;HTTPOnly&quot;)</span>;</span><br><span class="line"></span><br><span class="line">具体参数的含义再次不做阐述，设置完毕后通过js脚本是读不到该cookie的，但使用如下方式可以读取Cookie cookies[]=request.getCookies<span class="params">()</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>C#</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HttpCookie myCookie = <span class="keyword">new</span> <span class="constructor">HttpCookie(<span class="string">&quot;myCookie&quot;</span>)</span>; </span><br><span class="line">myCookie.HttpOnly = <span class="literal">true</span>;</span><br><span class="line">Response.<span class="constructor">AppendCookie(<span class="params">myCookie</span>)</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>VB.NET</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Dim</span> myCookie As HttpCookie = <span class="keyword">new</span> HttpCookie(<span class="string">&quot;myCookie&quot;</span>) </span><br><span class="line">myCookie.HttpOnly = <span class="literal">True</span> </span><br><span class="line"><span class="built_in">Response</span>.AppendCookie(myCookie)</span><br><span class="line"></span><br><span class="line">但是在 .NET <span class="number">1.1</span> ,中您需要手动添加</span><br><span class="line"></span><br><span class="line"><span class="built_in">Response</span>.Cookies[cookie].Path += <span class="string">&quot;;HTTPOnly&quot;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>PHP4</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">header</span>(<span class="string">&quot;Set-Cookie: hidden=value; httpOnly&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>PHP5</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setcookie(<span class="string">&quot;abc&quot;</span>, <span class="string">&quot;test&quot;</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">TRUE</span>)  <span class="meta">#最后一个参数为HttpOnly属性</span></span><br></pre></td></tr></table></figure></li>
+<li><p>如何在<strong>JAVA</strong>中设置cookie为HttpOnly</p>
+<p>Servlet 2.5 API 不支持 cookie设置HttpOnly <a target="_blank" rel="noopener" href="http://docs.oracle.com/cd/E17802_01/products/products/servlet/2.5/docs/servlet-2_5-mr2/">http://docs.oracle.com/cd/E17802_01/products/products/servlet/2.5/docs/servlet-2_5-mr2/</a></p>
+<p>建议升级Tomcat7.0，它已经实现了Servlet3.0<a target="_blank" rel="noopener" href="http://tomcat.apache.org/tomcat-7.0-doc/servletapi/javax/servlet/http/Cookie.html%E4%BD%86%E6%98%AF%E8%8B%A6%E9%80%BC%E7%9A%84%E6%98%AF%E7%8E%B0%E5%AE%9E%E6%98%AF%EF%BC%8C%E8%80%81%E6%9D%BF%E6%98%AF%E4%B8%8D%E4%BC%9A%E8%AE%A9%E4%BD%A0%E5%8D%87%E7%BA%A7%E7%9A%84%E3%80%82">http://tomcat.apache.org/tomcat-7.0-doc/servletapi/javax/servlet/http/Cookie.html但是苦逼的是现实是，老板是不会让你升级的。</a></p>
+<p>另一种方法：设置Set-Cookie的值cookie字符串的格式：key=value; Expires=date; Path=path; Domain=domain; Secure; HttpOnly</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置cookie</span></span><br><span class="line"><span class="selector-tag">response</span><span class="selector-class">.addHeader</span>(<span class="string">&quot;Set-Cookie&quot;</span>, <span class="string">&quot;uid=112; Path=/; HttpOnly&quot;</span>);</span><br><span class="line"><span class="comment">//设置多个cookie</span></span><br><span class="line"><span class="selector-tag">response</span><span class="selector-class">.addHeader</span>(<span class="string">&quot;Set-Cookie&quot;</span>, <span class="string">&quot;uid=112; Path=/; HttpOnly&quot;</span>);</span><br><span class="line"><span class="selector-tag">response</span><span class="selector-class">.addHeader</span>(<span class="string">&quot;Set-Cookie&quot;</span>, <span class="string">&quot;timeout=30; Path=/test; HttpOnly&quot;</span>);</span><br><span class="line"><span class="comment">//设置https的cookie</span></span><br><span class="line"><span class="selector-tag">response</span><span class="selector-class">.addHeader</span>(<span class="string">&quot;Set-Cookie&quot;</span>, <span class="string">&quot;uid=112; Path=/; Secure; HttpOnly&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在实际使用中，我们可以使FireCookie查看我们设置的Cookie 是否是HttpOnly</p>
+</li>
+</ul>
+</li>
+<li><h4 id="使用HttpOnly减轻最常见的-XSS攻击"><a href="#使用HttpOnly减轻最常见的-XSS攻击" class="headerlink" title="使用HttpOnly减轻最常见的[XSS攻击"></a>使用HttpOnly减轻最常见的[XSS攻击</h4><p>根据微软Secure Windows Initiative小组的高级安全项目经理Michael Howard的说法，大多数XSS攻击的目的都是盗窃cookie。服务端可以通过在它创建的cookie上设置HttpOnly标志来缓解这个问题，指出不应在客户端上访问cookie。客户端脚本代码尝试读取包含HttpOnly标志的cookie，如果浏览器支持HttpOnly，则返回一个空字符串作为结果。这样能够阻止恶意代码（通常是XSS攻击）将cookie数据发到攻击者网站。</p>
+</li>
+<li><h4 id="用好Web应用防火墙"><a href="#用好Web应用防火墙" class="headerlink" title="用好Web应用防火墙"></a>用好Web应用防火墙</h4><p>如果代码更改不可行或成本太高，可以使用Web应用程序防火墙将HttpOnly添加到会话cookieMod_security - using SecRule and Header directivesESAPI WAF - using add-http-only-flag directive支持HttpOnly的主流浏览器有哪些呢？谷歌了一下，常见的浏览器都支持。</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="httponly绕过"><a href="#httponly绕过" class="headerlink" title="httponly绕过"></a>httponly绕过</h4><p>  可以直接拿<strong>账号密码</strong>，<strong>cookie</strong>登录. 浏览器未保存读取密码:需要<strong>xss产生于登录地址</strong>，利用<strong>表单劫持浏览器</strong>保存账号密码：产生在后台的XSS，例如存储型XSS</p>
+</li>
+</ul>
+<h3 id="waf绕过"><a href="#waf绕过" class="headerlink" title="waf绕过"></a>waf绕过</h3><h4 id="waf分类"><a href="#waf分类" class="headerlink" title="waf分类"></a>waf分类</h4><ul>
+<li><p>0x01 <strong>云waf</strong></p>
+<p>在配置云waf时（通常是CDN包含的waf），DNS需要解析到CDN的ip上去，在请求uri时，数据包就会先经过云waf进行检测，如果通过再将数据包流给主机。</p>
+</li>
+<li><p>0x02 <strong>主机防护软件</strong></p>
+<p>在主机上预先安装了这种防护软件，可用于扫描和保护主机（废话），和监听web端口的流量是否有恶意的，所以这种从功能上讲较为全面。这里再插一嘴，mod_security、ngx-lua-waf这类开源waf虽然看起来不错，但是有个弱点就是升级的成本会高一些。</p>
+</li>
+<li><p>0x03 <strong>硬件ips/ids防护、硬件waf</strong></p>
+<p>使用专门硬件防护设备的方式，当向主机请求时，会先将流量经过此设备进行流量清洗和拦截，如果通过再将数据包流给主机</p>
+</li>
+</ul>
+<h4 id="waf身份认证阶段的绕过"><a href="#waf身份认证阶段的绕过" class="headerlink" title="waf身份认证阶段的绕过"></a>waf身份认证阶段的绕过</h4><p>WAF有一个白名单，在白名单内的客户请求将不做检测</p>
+<ul>
+<li><p><strong>0x01</strong> <strong>伪造搜索引擎</strong></p>
+<p> 早些版本的安全狗是有这个漏洞的，就是把User-Agent修改为搜索引擎，便可以绕过，进行sql注入等攻击，这里推荐一个谷歌插件，可以修改User-Agent，叫User-Agent Switcher</p>
+</li>
+<li><p><strong>0x02</strong> <strong>伪造白名单特殊目录</strong></p>
+<p> <strong>360webscan</strong>脚本存在这个问题，就是判断是否为admin dede install等目录，如果是则不做拦截,比如GET /pen/news.php?id=1 union select user,password from mysql.user可以改为GET /pen/news.php/admin?id=1 union select user,password from mysql.user或者GET /pen/admin/..\news.php?id=1 union select user,password from mysql.user</p>
+</li>
+<li><p><strong>0x03</strong> <strong>直接攻击源站</strong></p>
+<p> 这个方法可以用于<strong>安全宝、加速乐等云WAF</strong>，云WAF的原理通过DNS解析到云WAF，访问网站的流量要经过指定的DNS服务器解析，然后进入WAF节点进行过滤，最后访问原始服务器，如果我们能通过一些手段（比如c段、社工）找到原始的服务器地址，便可以绕过。</p>
+</li>
+</ul>
+<h4 id="waf数据包解析阶段的绕过"><a href="#waf数据包解析阶段的绕过" class="headerlink" title="waf数据包解析阶段的绕过"></a>waf数据包解析阶段的绕过</h4><ul>
+<li> <strong>0x01</strong> <strong>编码绕过</strong></li>
+</ul>
+<p>  最常见的方法之一，可以进行urlencode。</p>
+<ul>
+<li>  <strong>0x02</strong> <strong>修改请求方式绕过</strong></li>
+</ul>
+<p>  大家都知道cookie中转注入，最典型的修改请求方式绕过，很多的asp，aspx网站都存在这个问题，有时候WAF对GET进行了过滤，但是Cookie甚至POST参数却没有检测。还有就是参数污染，典型例子就是multipart请求绕过，在POST请求中添加一个上传文件，绕过了绝大多数WAF。</p>
+<ul>
+<li>  <strong>0x03</strong> <strong>复参数绕过</strong></li>
+</ul>
+<p>  例如一个请求是这样的GET /pen/news.PHP?id=1 union select user,password from MySQL.user可以修改为GET /pen/news.php?id=1&amp;id=union&amp;id=select&amp;id=user,password&amp;id=from%20mysql.user很多WAF都可以这样绕</p>
+<h4 id="waf触发规则的绕过"><a href="#waf触发规则的绕过" class="headerlink" title="waf触发规则的绕过"></a>waf触发规则的绕过</h4><p>WAF在这里主要是针对一些特殊的<strong>关键词</strong>或者<strong>用法</strong>进行检测。绕过方法很多，也是最有效的。</p>
+<ul>
+<li> **0x01 特殊字符替换空格 **</li>
+</ul>
+<p>  用一些特殊字符代替空格，比如在mysql中%0a是换行，可以代替空格，这个方法也可以部分绕过最新版本的安全狗，在sqlserver中可以用/**/代替空格</p>
+<ul>
+<li>  0x02 <strong>特殊字符拼接</strong></li>
+</ul>
+<p>  把特殊字符拼接起来绕过WAF的检测，比如在Mysql中，可以利用注释/**/来绕过，在mssql中，函数里面可以用+来拼接,例如GET /pen/news.php?id=1;exec(master..xp_cmdshell ‘net user’)可以改为GET /pen/news.php?id=1; exec(‘maste’+’r..xp’+’_cmdshell’+’”net user”‘)</p>
+<ul>
+<li>  0x03 <strong>注释包含关键字</strong></li>
+</ul>
+<p>  在<strong>mysql中，可以利用/!/包含关键词进行绕过</strong>，在mysql中这个不是注释，而是取消注释的内容。例如,GET /pen/news.php?id=1 union select user,password from mysql.user可以改为GET /pen/news.php?id=1 /!union/ /!select/ user,password /!from/ mysql.user</p>
+<h4 id="XSS绕过waf方法总结"><a href="#XSS绕过waf方法总结" class="headerlink" title="XSS绕过waf方法总结"></a>XSS绕过waf方法总结</h4><p><strong>1.script标签</strong></p>
+<p><img src="/2023/07/24/xss/D640.png"></p>
+<p><strong>2.javascript事件</strong></p>
+<p><img src="/2023/07/24/xss/640-16902035979272.png"></p>
+<p><strong>3.行内样式</strong></p>
+<p><img src="/2023/07/24/xss/640-16902036516424.png"></p>
+<p><strong>4.CSS import</strong></p>
+<p><img src="/2023/07/24/xss/image-20230724210207606.png"></p>
+<p><strong>5.Javascript URL</strong></p>
+<p><img src="/2023/07/24/xss/640-16902038065936.png"></p>
+<p><strong>6.利用字符编码</strong></p>
+<p><img src="/2023/07/24/xss/640-16902038490098.png"></p>
+<p><strong>7</strong> .<strong>绕过长度限制</strong></p>
+<p><img src="/2023/07/24/xss/640-169020389330810.png"></p>
+<p><strong>8</strong>.<strong>使用标签</strong></p>
+<p><img src="/2023/07/24/xss/image-20230724210530214.png"></p>
+<p><img src="/2023/07/24/xss/image-20230724210547050.png"></p>
+<h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2>
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/19/%E5%9B%BE%E5%83%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB/" rel="prev" title="图像风格迁移">
+      <i class="fa fa-chevron-left"></i> 图像风格迁移
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B1%E5%AE%B3"><span class="nav-number">2.</span> <span class="nav-text">危害</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8BXSS"><span class="nav-number">3.0.1.</span> <span class="nav-text">反射型XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8BXSS"><span class="nav-number">3.0.2.</span> <span class="nav-text">存储型XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM%E5%9E%8BXSS"><span class="nav-number">3.0.3.</span> <span class="nav-text">DOM型XSS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">手法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B5%8B%E8%AF%95%E8%AF%AD%E5%8F%A5"><span class="nav-number">4.0.1.</span> <span class="nav-text">常用的测试语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87"><span class="nav-number">5.</span> <span class="nav-text">绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#httponly%E4%BB%A3%E7%A0%81%E5%8F%8A%E7%BB%95%E8%BF%87"><span class="nav-number">5.1.</span> <span class="nav-text">httponly代码及绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8HttpOnly%E5%87%8F%E8%BD%BB%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84-XSS%E6%94%BB%E5%87%BB"><span class="nav-number">5.1.1.</span> <span class="nav-text">使用HttpOnly减轻最常见的[XSS攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E5%A5%BDWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">5.1.2.</span> <span class="nav-text">用好Web应用防火墙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#httponly%E7%BB%95%E8%BF%87"><span class="nav-number">5.1.3.</span> <span class="nav-text">httponly绕过</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waf%E7%BB%95%E8%BF%87"><span class="nav-number">5.2.</span> <span class="nav-text">waf绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#waf%E5%88%86%E7%B1%BB"><span class="nav-number">5.2.1.</span> <span class="nav-text">waf分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#waf%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E9%98%B6%E6%AE%B5%E7%9A%84%E7%BB%95%E8%BF%87"><span class="nav-number">5.2.2.</span> <span class="nav-text">waf身份认证阶段的绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#waf%E6%95%B0%E6%8D%AE%E5%8C%85%E8%A7%A3%E6%9E%90%E9%98%B6%E6%AE%B5%E7%9A%84%E7%BB%95%E8%BF%87"><span class="nav-number">5.2.3.</span> <span class="nav-text">waf数据包解析阶段的绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#waf%E8%A7%A6%E5%8F%91%E8%A7%84%E5%88%99%E7%9A%84%E7%BB%95%E8%BF%87"><span class="nav-number">5.2.4.</span> <span class="nav-text">waf触发规则的绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS%E7%BB%95%E8%BF%87waf%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-number">5.2.5.</span> <span class="nav-text">XSS绕过waf方法总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D"><span class="nav-number">6.</span> <span class="nav-text">修复</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Markcheng"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">Markcheng</p>
+  <div class="site-description" itemprop="description">去爱 去工作</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zcwww6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zcwww6" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1311839468@qq.com" title="E-Mail → mailto:1311839468@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">greyArea</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

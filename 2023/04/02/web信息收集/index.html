@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.zcwww.top/2023/04/02/web%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/u=2753130047,4031437980&fm=253&fmt=auto&app=138&f=PNG.png">
 <meta property="article:published_time" content="2023-04-02T12:38:34.000Z">
-<meta property="article:modified_time" content="2023-04-13T12:24:42.412Z">
+<meta property="article:modified_time" content="2023-07-23T04:27:09.346Z">
 <meta property="article:author" content="Markcheng">
 <meta property="article:tag" content="学习 生活 分享 交流">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-13 20:24:42" itemprop="dateModified" datetime="2023-04-13T20:24:42+08:00">2023-04-13</time>
+                <time title="修改时间：2023-07-23 12:27:09" itemprop="dateModified" datetime="2023-07-23T12:27:09+08:00">2023-07-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,29 +233,76 @@
         <p><img src="/2023/04/02/web%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/u=2753130047,4031437980&fm=253&fmt=auto&app=138&f=PNG.png"></p>
 <span id="more"></span>
 
-<h2 id="主机信息搜集"><a href="#主机信息搜集" class="headerlink" title="主机信息搜集"></a>主机信息搜集</h2><ul>
-<li><h4 id="子域名信息"><a href="#子域名信息" class="headerlink" title="子域名信息"></a>子域名信息</h4><p>工具：layer   onefarall     wydomain    google    </p>
+<h2 id="网站信息搜集"><a href="#网站信息搜集" class="headerlink" title="网站信息搜集"></a>网站信息搜集</h2><h3 id="CDN技术"><a href="#CDN技术" class="headerlink" title="CDN技术"></a>CDN技术</h3><p>1.判断目标存在CDN技术？</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.超级ping：</span><br><span class="line">如果从不同的监测点返回的<span class="built_in">IP</span>地址都相同，则大概率没有使用CDN；</span><br></pre></td></tr></table></figure>
+
+<p>2.常见的CDN绕过技术：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.子域名查询</span><br><span class="line">子域名可能没有部署CDN</span><br><span class="line"><span class="number">2</span>.邮件服务查询</span><br><span class="line">一般网站主动发起的邮箱信息是通过真实<span class="built_in">IP</span>地址发送的</span><br><span class="line"><span class="number">3</span>.国外地址请求</span><br><span class="line"><span class="symbol">CDN</span>一般是离主站较近的地方</span><br><span class="line"><span class="number">4</span>.遗留文件，扫描全网</span><br><span class="line">类似于phpinfo文件的配置信息文件一般会记录真实<span class="built_in">IP</span>地址</span><br><span class="line">从所有的<span class="built_in">IP</span>地址里面扫描判断真实<span class="built_in">IP</span></span><br><span class="line"><span class="number">5</span>.黑暗引擎搜索特定文件</span><br><span class="line"><span class="symbol">shodan</span> zoomeye fofa </span><br><span class="line"><span class="number">6</span>.dns历史记录，以量打量</span><br><span class="line">查询网站的相关的DNS记录，根据历史记录分析真实<span class="built_in">IP</span></span><br><span class="line">节点吞吐量被消耗完后会使用真实<span class="built_in">IP</span>地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="子域名信息"><a href="#子域名信息" class="headerlink" title="子域名信息"></a>子域名信息</h3><p>工具：layer   onefarall     wydomain    google    </p>
 <ol>
 <li>浏览器访问：访问根域名下的某个子目录，有可能跳转到子域名。</li>
 <li>搜索引擎查找：如：site:songboy.net查询域名里面包含该二级域名的域名</li>
 <li>Layer子域名挖掘机：利用字典穷举</li>
 </ol>
-</li>
-<li><h4 id="端口信息"><a href="#端口信息" class="headerlink" title="端口信息"></a>端口信息</h4><p>工具：zmap    zmap    metasploit   </p>
-</li>
-<li><h4 id="域名注册信息"><a href="#域名注册信息" class="headerlink" title="域名注册信息"></a>域名注册信息</h4><p>工具：msf   站长之家</p>
+<h3 id="端口信息"><a href="#端口信息" class="headerlink" title="端口信息"></a>端口信息</h3><p>工具：nmap    zmap    metasploit   </p>
+<h3 id="域名注册信息"><a href="#域名注册信息" class="headerlink" title="域名注册信息"></a>域名注册信息</h3><p>工具：msf   站长之家</p>
 <ol>
 <li>whois信息查询</li>
 <li>邮箱反查域名</li>
 <li>ICP备案查询</li>
 </ol>
-</li>
-<li><h4 id="网站后台地址"><a href="#网站后台地址" class="headerlink" title="网站后台地址"></a>网站后台地址</h4><p>工具：搜索引擎  御剑</p>
+<h3 id="网站后台地址"><a href="#网站后台地址" class="headerlink" title="网站后台地址"></a>网站后台地址</h3><p>工具：搜索引擎  御剑 </p>
 <ol>
 <li>使用搜索引擎查找泄漏后台地址：site:google.com inurl:admin</li>
 <li>御剑后台扫描器</li>
 </ol>
+<h3 id="网站目录分析"><a href="#网站目录分析" class="headerlink" title="网站目录分析"></a>网站目录分析</h3><ul>
+<li><strong>kali</strong>: dirb0`            .</li>
+</ul>
+<h3 id="站点搭建分析"><a href="#站点搭建分析" class="headerlink" title="站点搭建分析"></a>站点搭建分析</h3><ul>
+<li>搭建习惯-目录型站点</li>
+<li>搭建习惯-端口类站点</li>
+<li>搭建习惯-子域名站点</li>
+<li>搭建习惯-类似域名站点</li>
+<li>搭建习惯-旁注, c段站点</li>
+<li>搭建习惯-搭建软件特征站点</li>
+</ul>
+<h3 id="WAF防护分析"><a href="#WAF防护分析" class="headerlink" title="WAF防护分析"></a>WAF防护分析</h3><ul>
+<li><h4 id="什么是WAF应用"><a href="#什么是WAF应用" class="headerlink" title="什么是WAF应用?"></a>什么是WAF应用?</h4><p>  Web应用防护系统（也称为：网站应用级入侵防御系统。英文：Web Application Firewall，简称：WAF）。WAF与常规防火墙的区别在于，WAF能够过滤特定Web应用程序的内容，而常规防火墙则充当服务器之间的安全门。通过检查HTTP流量，它可以防止源自Web应用程序安全漏洞的攻击，例如SQL注入、跨站点脚本，文件包含和安全性错误配置。WAF具备以下<strong>特点</strong>：</p>
+<ul>
+<li>全面检测WEB代码</li>
+<li>深入检测HTTP/HTTPS</li>
+<li>强大的特征库</li>
+<li>网络层的防篡改机制</li>
+</ul>
 </li>
+<li><h4 id="WAF的分类"><a href="#WAF的分类" class="headerlink" title="WAF的分类"></a>WAF的分类</h4><ul>
+<li><p><strong>云waf</strong></p>
+<p>一般以<strong>反向代理</strong>的形式工作，通过配置<strong>NS或CNAME</strong>记录，使得对网站的请求报文<strong>优先经过WAF主机</strong>，经过WAF主机过滤后，将被认为无害的请求报文再发送给实际网站服务器进行请求，可以认为是自带防护功能的CDN</p>
+<p>常见的云waf有：百度安全宝、阿里云盾、长亭雷池，华为云，360磐云、亚马逊云、知道创宇-创宇盾等。</p>
+</li>
+<li><p><strong>硬件waf</strong></p>
+<p>硬件WAF通常部署在<strong>Web服务器之前</strong>，过滤所有外部访问流量，并对请求包进行解析，通过安全规则库的攻击规则进行匹配，识别异常并进行请求阻断</p>
+<p>常见的硬件waf有：绿盟、安恒、铱迅、天融信、深信服、启明星辰、知道创宇等公司商业产品</p>
+</li>
+<li><p><strong>软件waf</strong></p>
+<p>软件WAF安装在需要防护的服务器上，通过监听端口或以Web容器扩展方式进行请求检测和阻断。</p>
+<p>常见产品有安全狗、云锁、D盾、网防G01、护卫神、智创、UPUPW、宝塔网站防火墙、悬镜、安骑士等。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="waf指纹识别工具-WAFW00F"><a href="#waf指纹识别工具-WAFW00F" class="headerlink" title="waf指纹识别工具-WAFW00F"></a>waf指纹识别工具-WAFW00F</h4><ul>
+<li><p><strong>WAFW00F原理</strong></p>
+<p>WAFW00F是一个Web应用防火墙（WAF）<strong>指纹识别的工具</strong>。可以在WAF指纹目录下自行编写脚本。这类WAF识别工具的原理基本都是根据<strong>HTTP头部信息、状态码以及WAF拦截页</strong>中的图片、文字作为特征来进行检测。</p>
+</li>
+</ul>
+</li>
+<li><h4 id="识别WAF对于安全测试的意义"><a href="#识别WAF对于安全测试的意义" class="headerlink" title="识别WAF对于安全测试的意义?"></a>识别WAF对于安全测试的意义?</h4></li>
+</ul>
+<h3 id="旁注和C段"><a href="#旁注和C段" class="headerlink" title="旁注和C段"></a>旁注和C段</h3><ul>
+<li><strong>旁注</strong>：同服务器不同站点</li>
+<li><strong>C段</strong>：独立站点服务器 </li>
 </ul>
 <h2 id="源码泄漏搜集"><a href="#源码泄漏搜集" class="headerlink" title="源码泄漏搜集"></a>源码泄漏搜集</h2><ul>
 <li><h4 id="Git源码泄漏"><a href="#Git源码泄漏" class="headerlink" title="Git源码泄漏"></a>Git源码泄漏</h4><p>工具：GitHack</p>
@@ -382,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">主机信息搜集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%9F%9F%E5%90%8D%E4%BF%A1%E6%81%AF"><span class="nav-number">1.0.1.</span> <span class="nav-text">子域名信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF"><span class="nav-number">1.0.2.</span> <span class="nav-text">端口信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E4%BF%A1%E6%81%AF"><span class="nav-number">1.0.3.</span> <span class="nav-text">域名注册信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0%E5%9C%B0%E5%9D%80"><span class="nav-number">1.0.4.</span> <span class="nav-text">网站后台地址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F%E6%90%9C%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">源码泄漏搜集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Git%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.1.</span> <span class="nav-text">Git源码泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVN%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.2.</span> <span class="nav-text">SVN源码泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DS-Store%E6%96%87%E4%BB%B6%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.3.</span> <span class="nav-text">.DS_Store文件泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%A4%87%E4%BB%BD%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="nav-number">2.0.4.</span> <span class="nav-text">网站备份压缩文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WEB-INF%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.5.</span> <span class="nav-text">WEB-INF泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zmap%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="nav-number">2.0.6.</span> <span class="nav-text">zmap的安装：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">网站信息搜集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN%E6%8A%80%E6%9C%AF"><span class="nav-number">1.1.</span> <span class="nav-text">CDN技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%9F%9F%E5%90%8D%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.</span> <span class="nav-text">子域名信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF"><span class="nav-number">1.3.</span> <span class="nav-text">端口信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E4%BF%A1%E6%81%AF"><span class="nav-number">1.4.</span> <span class="nav-text">域名注册信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0%E5%9C%B0%E5%9D%80"><span class="nav-number">1.5.</span> <span class="nav-text">网站后台地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95%E5%88%86%E6%9E%90"><span class="nav-number">1.6.</span> <span class="nav-text">网站目录分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA%E5%88%86%E6%9E%90"><span class="nav-number">1.7.</span> <span class="nav-text">站点搭建分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WAF%E9%98%B2%E6%8A%A4%E5%88%86%E6%9E%90"><span class="nav-number">1.8.</span> <span class="nav-text">WAF防护分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFWAF%E5%BA%94%E7%94%A8"><span class="nav-number">1.8.1.</span> <span class="nav-text">什么是WAF应用?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WAF%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.8.2.</span> <span class="nav-text">WAF的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#waf%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7-WAFW00F"><span class="nav-number">1.8.3.</span> <span class="nav-text">waf指纹识别工具-WAFW00F</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%86%E5%88%ABWAF%E5%AF%B9%E4%BA%8E%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.8.4.</span> <span class="nav-text">识别WAF对于安全测试的意义?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%81%E6%B3%A8%E5%92%8CC%E6%AE%B5"><span class="nav-number">1.9.</span> <span class="nav-text">旁注和C段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F%E6%90%9C%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">源码泄漏搜集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Git%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.1.</span> <span class="nav-text">Git源码泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVN%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.2.</span> <span class="nav-text">SVN源码泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DS-Store%E6%96%87%E4%BB%B6%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.3.</span> <span class="nav-text">.DS_Store文件泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%A4%87%E4%BB%BD%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="nav-number">2.0.4.</span> <span class="nav-text">网站备份压缩文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WEB-INF%E6%B3%84%E6%BC%8F"><span class="nav-number">2.0.5.</span> <span class="nav-text">WEB-INF泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zmap%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="nav-number">2.0.6.</span> <span class="nav-text">zmap的安装：</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +445,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
