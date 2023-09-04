@@ -24,13 +24,13 @@
   <meta property="og:type" content="article">
 <meta property="og:title" content="Java泛型">
 <meta property="og:url" content="http://www.zcwww.top/2023/09/03/Java%E6%B3%9B%E5%9E%8B/index.html">
-<meta property="og:site_name" content="欢迎来到成伟的部落">
+<meta property="og:site_name" content="THIS IS B3c0me">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.zcwww.top/2023/09/03/Java%E6%B3%9B%E5%9E%8B/u=3907558151,2027367748&fm=253&fmt=auto&app=138&f=JPEG.jpeg">
-<meta property="og:image" content="http://www.zcwww.top/2023/09/03/Java%E6%B3%9B%E5%9E%8B/Blog/source_posts/Java泛型/image-20230903185017053.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/09/03/Java%E6%B3%9B%E5%9E%8B/image-20230903185017053.png">
 <meta property="article:published_time" content="2023-09-03T07:41:57.000Z">
-<meta property="article:modified_time" content="2023-09-03T12:02:04.854Z">
-<meta property="article:author" content="Markcheng">
+<meta property="article:modified_time" content="2023-09-04T12:50:21.617Z">
+<meta property="article:author" content="B3c0me">
 <meta property="article:tag" content="学习 生活 分享 交流">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://www.zcwww.top/2023/09/03/Java%E6%B3%9B%E5%9E%8B/u=3907558151,2027367748&fm=253&fmt=auto&app=138&f=JPEG.jpeg">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Java泛型 | 欢迎来到成伟的部落</title>
+  <title>Java泛型 | THIS IS B3c0me</title>
   
 
 
@@ -99,7 +99,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">欢迎来到成伟的部落</h1>
+      <h1 class="site-title">THIS IS B3c0me</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
@@ -175,12 +175,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="Markcheng">
+      <meta itemprop="name" content="B3c0me">
       <meta itemprop="description" content="去爱 去工作">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="欢迎来到成伟的部落">
+      <meta itemprop="name" content="THIS IS B3c0me">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -193,10 +193,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-09-03 15:41:57 / 修改时间：20:02:04" itemprop="dateCreated datePublished" datetime="2023-09-03T15:41:57+08:00">2023-09-03</time>
+              <time title="创建时间：2023-09-03 15:41:57" itemprop="dateCreated datePublished" datetime="2023-09-03T15:41:57+08:00">2023-09-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-04 20:50:21" itemprop="dateModified" datetime="2023-09-04T20:50:21+08:00">2023-09-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -228,6 +234,9 @@
         <p><img src="/2023/09/03/Java%E6%B3%9B%E5%9E%8B/u=3907558151,2027367748&fm=253&fmt=auto&app=138&f=JPEG.jpeg"></p>
 <span id="more"></span>
 
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>本文基本是转载的CSDN博主「林二月er」的原创文章</p>
+<p>代码是自己敲的</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45395059/article/details/126006369">https://blog.csdn.net/weixin_45395059/article/details/126006369</a></p>
 <h1 id="一、泛型概述"><a href="#一、泛型概述" class="headerlink" title="一、泛型概述"></a>一、泛型概述</h1><h2 id="1-什么是泛型？为什么要使用泛型？"><a href="#1-什么是泛型？为什么要使用泛型？" class="headerlink" title="1.什么是泛型？为什么要使用泛型？"></a>1.什么是泛型？为什么要使用泛型？</h2><p>泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参列表，普通方法的形参列表中，每个形参的数据类型是确定的，而变量是一个参数。在调用普通方法时需要传入对应形参数据类型的变量（实参），若传入的实参与形参定义的数据类型不匹配，则会报错。</p>
 <p>那<code>参数化类型</code>是什么？以方法的定义为例，在方法定义时，将方法签名中的<code>形参的数据类型</code>也设置为参数（也可称之为类型参数），在调用该方法时再从外部传入一个具体的数据类型和变量。</p>
 <p>泛型的本质是为了将类型参数化， 也就是说在泛型使用过程中，数据类型被设置为一个参数，在使用时再从外部传入一个数据类型；而一旦传入了具体的数据类型后，传入变量（实参）的数据类型如果不匹配，编译器就会直接报错。这种参数化类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。</p>
@@ -242,7 +251,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">list.add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;bbb&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;ccc&quot;</span>);</span><br><span class="line">list.add(<span class="number">111</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++)&#123;</span><br><span class="line">System.out.println((String)list.get(i));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里会报错，提示整型不能强转为字符型</p>
-<p><img src="/2023/09/03/Java%E6%B3%9B%E5%9E%8B/Blog\source_posts\Java泛型\image-20230903185017053.png" alt="image-20230903185017053"></p>
+<p><img src="/2023/09/03/Java%E6%B3%9B%E5%9E%8B/image-20230903185017053.png"></p>
 <p><strong>那如何可以避免上述异常的出现？即我们希望当我们向集合中添加了不符合类型要求的对象时，编译器能直接给我们报错，而不是在程序运行后才产生异常。这个时候便可以使用<code>泛型</code>了。</strong></p>
 <p>使用泛型的代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       list.add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">       list.add(<span class="string">&quot;bbb&quot;</span>);</span><br><span class="line">       list.add(<span class="string">&quot;ccc&quot;</span>);</span><br><span class="line">       list.add(<span class="number">111</span>);</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++)&#123;</span><br><span class="line">           System.out.println((String)list.get(i));</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -397,20 +406,368 @@
 
 
 
+<h1 id="五、类型擦除"><a href="#五、类型擦除" class="headerlink" title="五、类型擦除"></a>五、类型擦除</h1><h2 id="1-什么是类型擦除"><a href="#1-什么是类型擦除" class="headerlink" title="1.什么是类型擦除"></a>1.什么是类型擦除</h2><blockquote>
+<p>泛型的本质是将数据类型参数化，它通过擦除的方式来实现，即编译器会在编译期间擦除代码中的所有泛型语法并相应的做出一些类型转换动作。</p>
+<p>换而言之，泛型信息只存在于代码编译阶段，在代码编译结束后，与泛型相关的信息会被擦除掉，专业术语叫做类型擦除。也就是说，成功编译过后的 class 文件中不包含任何泛型信息，泛型信息不会进入到运行时阶段。</p>
+</blockquote>
+<p><strong>看一个例子，假如我们给 ArrayList 集合传入两种不同的数据类型，并比较它们的类信息。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; integerArrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        System.out.println(list.getClass() == integerArrayList.getClass()); <span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在这个例子中，我们定义了两个 ArrayList 集合，不过一个是 ArrayList&lt; String&gt;，只能存储字符串。一个是 ArrayList&lt; Integer&gt;，只能存储整型对象。我们通过 arrayString 对象和 arrayInteger 对象的 getClass() 方法获取它们的类信息并比较，发现结果为true。</li>
+<li>明明我们在 &lt;&gt; 中传入了两种不同的数据类型，按照上文所说的，它们的类型参数 T 不是应该被替换成我们传入的数据类型了吗，那为什么它们的类信息还是相同呢？ 这是因为，在编译期间，所有的泛型信息都会被擦除， ArrayList&lt; Integer &gt; 和 ArrayList&lt; String &gt;类型，在编译后都会变成ArrayList&lt; Objec t&gt;类型。</li>
+</ul>
+<p><strong>再看一个例子，假设定义一个泛型类如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Caculate</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> T num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在该泛型类中定义了一个属性 num，该属性的数据类型是泛型类声明的类型参数 T ，这个 T 具体是什么类型，我们也不知道，它只与外部传入的数据类型有关。将这个泛型类反编译:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Caculate</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Caculate</span><span class="params">()</span> </span>&#123;&#125;<span class="comment">// 默认构造器，不用管</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Object num;<span class="comment">// T 被替换为 Object 类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以发现编译器<code>擦除</code>了 Caculate 类后面的泛型标识 &lt; T &gt;，并且将 num 的数据类型替换为 Object 类型，而替换了 T 的数据类型我们称之为<code>原始数据类型</code>。</li>
+</ul>
+<p><strong>那么是不是所有的类型参数被擦除后都以 Object 类进行替换呢？</strong></p>
+<ul>
+<li><strong>答案是否定的，大部分情况下，类型参数 T 被擦除后都会以 Object 类进行替换；而有一种情况则不是，那就是使用到了 extends 和 super 语法的<code>有界类型参数</code>（即<code>泛型通配符</code>，后面我们会详细解释）。</strong></li>
+</ul>
+<p>再看一个例子，假设定义一个泛型类如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Caculate</span>&lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">Number</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> T num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将其反编译：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Caculate</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Caculate</span><span class="params">()</span> </span>&#123;&#125;<span class="comment">// 默认构造器，不用管</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Number num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以发现，使用到了 extends 语法的类型参数 T 被擦除后会替换为 Number 而不再是 Object。</li>
+</ul>
+<ul>
+<li>extends 和 super 是一个限定类型参数边界的语法，extends 限定 T 只能是 Number 或者是 Number 的子类。 也就是说，在创建 Caculate 类对象的时候，尖括号 &lt;&gt; 中只能传入 Number 类或者 Number 的子类的数据类型，所以在创建 Caculate 类对象时无论传入什么数据类型，Number 都是其父类，于是可以使用 Number 类作为 T 的原始数据类型，进行类型擦除并替换。（这一部分涉及到了泛型通配符，在下面还会具体介绍）</li>
+</ul>
+<h2 id="2-类型擦除的原理"><a href="#2-类型擦除的原理" class="headerlink" title="2.类型擦除的原理"></a>2.类型擦除的原理</h2><p>假如我们定义了一个 ArrayList&lt; Integer &gt; 泛型集合，若向该集合中插入 String 类型的对象，不需要运行程序，编译器就会直接报错。这里可能有小伙伴就产生了疑问：</p>
+<ul>
+<li><p>不是说泛型信息在编译的时候就会被擦除掉吗？那既然泛型信息被擦除了，如何保证我们在集合中只添加指定的数据类型的对象呢？</p>
+</li>
+<li><p>换而言之，我们虽然定义了 ArrayList&lt; Integer &gt; 泛型集合，但其泛型信息最终被擦除后就变成了 ArrayList&lt; Object &gt; 集合，那为什么不允许向其中插入 String 对象呢？</p>
+</li>
+</ul>
+<p><strong>Java 是如何解决这个问题的？</strong></p>
+<ul>
+<li>其实在创建一个泛型类的对象时， Java 编译器是先检查代码中传入 &lt; T &gt; 的数据类型，并记录下来，然后再对代码进行编译，<code>编译的同时进行类型擦除</code>；如果需要对被擦除了泛型信息的对象进行操作，编译器会自动将对象进行类型转换。</li>
+</ul>
+<blockquote>
+<p>可以把泛型的类型安全检查机制和类型擦除想象成演唱会的验票机制：以 ArrayList&lt; Integer&gt; 泛型集合为例。</p>
+<p>当我们在创建一个 ArrayList&lt; Integer &gt; 泛型集合的时候，ArrayList 可以看作是演唱会场馆，而&lt; T &gt;就是场馆的验票系统，Integer 是验票系统设置的门票类型；<br>当验票系统设置好为&lt; Integer &gt;后，只有持有 Integer 门票的人才可以通过验票系统，进入演唱会场馆（集合）中；若是未持有 Integer 门票的人想进场，则验票系统会发出警告（编译器报错）。<br>在通过验票系统时，门票会被收掉（类型擦除），但场馆后台（JVM）会记录下观众信息（泛型信息）。<br>进场后的观众变成了没有门票的普通人（原始数据类型）。但是，在需要查看观众的信息时（操作对象），场馆后台可以找到记录的观众信息（编译器会自动将对象进行类型转换）。</p>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        ArrayList&lt;Integer&gt; arrayInteger = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();<span class="comment">// 设置验票系统   </span></span><br><span class="line">        arrayInteger.add(<span class="number">111</span>);<span class="comment">// 观众进场，验票系统验票，门票会被收走（类型擦除）</span></span><br><span class="line">        Integer n = arrayInteger.get(<span class="number">0</span>);<span class="comment">// 获取观众信息，编译器会进行强制类型转换</span></span><br><span class="line">        System.out.println(n);</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>擦除 ArrayList&lt; Integer &gt; 的泛型信息后，get() 方法的返回值将返回 Object 类型，但编译器会自动插入 Integer 的强制类型转换。也就是说，编译器把 get() 方法调用翻译为两条字节码指令：</p>
+<ul>
+<li>对原始方法 get() 的调用，返回的是 Object 类型；</li>
+<li>将返回的 Object 类型强制转换为 Integer 类型；</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer n = arrayInteger.get(<span class="number">0</span>);<span class="comment">// 这条代码底层如下：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//（1）get() 方法的返回值返回的是 Object 类型</span></span><br><span class="line">Object object = arrayInteger.get(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//（2）编译器自动插入 Integer 的强制类型转换</span></span><br><span class="line">Integer n = (Integer) object;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-类型擦除小结"><a href="#3-类型擦除小结" class="headerlink" title="3.类型擦除小结"></a>3.类型擦除小结</h2><p>泛型信息（包括泛型类、接口、方法）只在代码编译阶段存在，在代码成功编译后，其内的所有泛型信息都会被擦除，并且类型参数 T 会被统一替换为其原始类型（默认是 Object 类，若有 extends 或者 super 则另外分析）；</p>
+<p>在泛型信息被擦除后，若还需要使用到对象相关的泛型信息，编译器底层会自动进行类型转换（从原始类型转换为未擦除前的数据类型）</p>
+<h1 id="六、泛型通配符"><a href="#六、泛型通配符" class="headerlink" title="六、泛型通配符"></a>六、泛型通配符</h1><h2 id="1-泛型的继承"><a href="#1-泛型的继承" class="headerlink" title="1.泛型的继承"></a>1.泛型的继承</h2><p><strong>在介绍泛型通配符之前，先提出一个问题，在 Java 的多态中，我们知道可以将一个子类对象赋值给其父类的引用，这也叫<code>向上转型</code>。</strong></p>
+<p>举例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ArrayList 是 List的子类</span></span><br><span class="line">List list = <span class="keyword">new</span> ArrayList();</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码很好地体现了Java的多态的特性</p>
+<p><strong>在 Java 标准库中的集合 ArrayList&lt; T &gt; 类实现了 List&lt; T &gt;接口，其源码大致如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>那现在我们思考一个问题，在 ArrayList&lt; T &gt; 泛型集合中，当传入 &lt; T &gt; 中的数据类型相同时，是否还能将一个 ArrayList&lt; T &gt; 对象赋值给其父类的引用 List&lt; T &gt;。</strong></p>
+<p>代码如下:</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="keyword">String</span>&gt; list = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;<span class="keyword">String</span>&gt;();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面的代码没有问题， 即 ArrayList&lt; T &gt; 对象可以向上转型为 List&lt; T &gt;，但两者传入 &lt; T &gt; 中的数据类型必须相同。</li>
+</ul>
+<p><strong>继续思考一个问题，已知 Integer 类是 Number 类的子类，那如果 ArrayList&lt;&gt; 泛型集合中，在 &lt;&gt; 之间使用<code>向上转型</code>，也就是将 ArrayList&lt; Integer &gt; 对象赋值给 List&lt; Number &gt; 的引用，是否被允许呢？</strong></p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Number&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(); <span class="comment">//编译错误</span></span><br><span class="line"></span><br><span class="line">ArrayList&lt;Number&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(); <span class="comment">//编译错误</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上面代码会报错，我们发现并不能把 ArrayList&lt; Integer &gt; 对象赋值给 List&lt; Number &gt;的引用，甚至不能把 ArrayList&lt; Integer &gt; 对象赋值给 ArrayList&lt; Number &gt;的引用。<code>这也说明了在一般泛型中，不能向上转型</code>。</li>
+</ul>
+<p><strong>这是为什么？如果我们假设 ArrayList&lt; Integer &gt;可以向上转型为 ArrayList&lt; Number &gt;</strong></p>
+<p>观察下面的代码：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//创建一个ArrayList&lt;<span class="type">Integer</span>&gt;集合</span><br><span class="line">ArrayList&lt;<span class="type">Integer</span>&gt; arrayList = <span class="built_in">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">//添加一个<span class="type">Integer</span>对象</span><br><span class="line">arrayList.<span class="keyword">add</span>(<span class="built_in">new</span> <span class="type">Integer</span>(<span class="number">123</span>));</span><br><span class="line"></span><br><span class="line">// “向上转型”为 ArrayList&lt;Number&gt;</span><br><span class="line">ArrayList&lt;Number&gt; numberList = arrayList;</span><br><span class="line">		</span><br><span class="line">// 添加一个 <span class="type">Float</span> 对象，<span class="type">Float</span> 也是 Number 的子类，编译器不报错</span><br><span class="line">numberList.<span class="keyword">add</span>(<span class="built_in">new</span> <span class="type">Float</span>(<span class="number">12.34</span>));</span><br><span class="line">		</span><br><span class="line">// 从 ArrayList&lt;<span class="type">Integer</span>&gt; 集合中获取索引为 <span class="number">1</span> 的元素（即添加的 <span class="type">Float</span> 对象）：</span><br><span class="line"><span class="type">Integer</span> n = integerList.<span class="keyword">get</span>(<span class="number">1</span>); // ClassCastException，运行出错</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>当我们把一个 ArrayList&lt; Integer &gt; 向上转型为 ArrayList&lt; Number &gt; 类型后，这个 ArrayList&lt; Number &gt; 集合就可以接收 Float 对象了，因为 Float 类是 Number 类的子类。</p>
+</li>
+<li><p>但是，ArrayList&lt; Number &gt; 实际上和 ArrayList&lt; Integer &gt; 是同一个集合，而在泛型的定义中， ArrayList&lt; Integer &gt; 集合是不可以接收 Float 对象的。这是因为，在使用 get() 方法获取集合元素的时候，编译器会自动将 Float 对象强转成 Integer 对象，而这会产生 ClassCastException 异常。</p>
+<p><strong>正因如此，编译器为了避免发生这种错误，根本就不允许把 ArrayList&lt; Integer &gt;对象向上转型为 ArrayList&lt; Number &gt;；换而言之， ArrayList&lt; Integer &gt; 和 ArrayList&lt; Number &gt; 两者之间没有继承关系。</strong></p>
+</li>
+</ul>
+<h2 id="2-泛型通配符的引入"><a href="#2-泛型通配符的引入" class="headerlink" title="2.泛型通配符的引入"></a>2.泛型通配符的引入</h2><p><strong>我们上面讲到了泛型的继承关系，ArrayList&lt; Integer &gt; 不是 ArrayList&lt; Number &gt; 的子类。</strong></p>
+<p><strong>（1）先看一个问题：假设我们定义了一个 Pair&lt; T &gt;类，如下</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt;()</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> T first;</span><br><span class="line">	<span class="keyword">private</span> T last;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Pari</span><span class="params">(T first, T last)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.first = first;</span><br><span class="line">		<span class="keyword">this</span>.last = last;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> first;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getLast</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> last;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirst</span><span class="params">(T first)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.first = first;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLasst</span><span class="params">(T last)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.last = last;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）然后，我们针对 Pair&lt; Number &gt;类型写了一个静态方法，它接收的参数类型是 Pair&lt; Number &gt;：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PairHelper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">addPair</span><span class="params">(Pair&lt;Number&gt; p)</span></span>&#123;</span><br><span class="line">        Number first = p.getFirst();</span><br><span class="line">        Number last = p.getLast();</span><br><span class="line">        <span class="keyword">return</span> first.intValue() + last.intValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）在测试类中创建一个 Pair&lt; Number &gt; 对象，并调用 addPair() 方法。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Pair&lt;Number&gt; pair = <span class="keyword">new</span> Pair&lt;Number&gt;(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">int</span> sum = PairHelper.addPair(pair);</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）上面的代码正常编译运行。但我们发现，在实际创建 Pair&lt; Number &gt; 对象的时候，我们传入的实参 (1, 2) 实际上是 Integer 类型；那我们是否可以直接创建一个 Pair&lt; Integer &gt; 对象，并将其传给 add() 方法呢？</strong></p>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">		Pair&lt;Integer&gt; pairInteger = <span class="keyword">new</span> Pair&lt;&gt;(<span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line">       	<span class="keyword">int</span> sum = PairHelper.addPair(pairInteger);</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>编译器会直接报错，<code>原因是 Pair&lt; Integer &gt; 并不是 Pair&lt; Number &gt; 的子类</code>，而 addPair() 方法的形参数据类型为 Pair&lt; Number &gt;。因此， Pair&lt; Integer &gt; 对象不能传给 addPair() 方法。</li>
+</ul>
+<p>那有没有办法使得 addPair() 方法可以接收 Pair&lt; Integer &gt; 对象？总不能重新定义一个新的 addPair() 方法来处理 Pair&lt; Integer &gt; 对象吧，这显然与 Java 中的多态理念相违背。</p>
+<p>因此我们需要一个在逻辑上可以表示为 Pair&lt; Integer &gt; 和 Pair&lt; Number &gt; 这两者的父类引用类型，由此，<strong>泛型通配符</strong>便应运而生。</p>
+<h2 id="3-什么是泛型通配符"><a href="#3-什么是泛型通配符" class="headerlink" title="3.什么是泛型通配符"></a>3.什么是泛型通配符</h2><blockquote>
+<p><strong>在现实编码中，确实有这样的需求，希望泛型能够处理<code>某一类型范围内</code>的类型参数，比如某个泛型类和它的子类，为此 Java 引入了<code>泛型通配符</code>这个概念。</strong></p>
+</blockquote>
+<p><strong>泛型通配符有 3 种形式：</strong></p>
+<ol>
+<li><strong>&lt;?&gt; ：被称作无限定的通配符。</strong></li>
+<li><strong>&lt;? extends T&gt; ：被称作有上界的通配符。</strong></li>
+<li><strong>&lt;? super T&gt; ：被称作有下界的通配符</strong></li>
+</ol>
+<p>接下来分别介绍三种通配符：</p>
+<h2 id="4-上界通配符-lt-extends-T-gt"><a href="#4-上界通配符-lt-extends-T-gt" class="headerlink" title="4.上界通配符&lt;? extends T&gt;"></a>4.上界通配符&lt;? extends T&gt;</h2><p><strong>上界通配符 <code>&lt;? extends T&gt;</code>：T 代表了类型参数的上界，<code>&lt;? extends T&gt;</code>表示类型参数的范围是 T 和 T 的子类。需要注意的是： <code>&lt;? extends T&gt;</code> 也是一个数据类型实参，它和 Number、String、Integer 一样都是一种实际的数据类型。</strong></p>
+<p>（1）在泛型的继承中我们说到，ArrayList&lt; Integer &gt; 和 ArrayList&lt; Number &gt; 之间不存在继承关系。而引入上界通配符的概念后，我们便可以在逻辑上将 ArrayList&lt;? extends Number&gt; 看做是 ArrayList&lt; Integer &gt; 的父类，但<strong>实质上它们之间没有继承关系</strong>。<br><strong>举例如下</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;? extends Number&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();  <span class="comment">//编译正确</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>逻辑上可以将 ArrayList&lt;? extends Number&gt; 看做是 ArrayList&lt; Integer &gt; 的父类，因此，在使用了上界通配符 &lt;? extends Number&gt; 后，便可以将 ArrayList&lt; Integer &gt; 对象<code>向上转型</code>了。</li>
+</ul>
+<p>（2）ArrayList&lt;? extends Number&gt; 可以代表 ArrayList&lt; Integer &gt;、ArrayList&lt; Float &gt;、… 、ArrayList&lt; Number &gt;中的某一个集合，但我们<strong>不能指定</strong> ArrayList&lt;? extends Number&gt; 的数据类型。（这里有点难理解）</p>
+<p>举个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;? extends Number&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="keyword">new</span> Integer(<span class="number">1</span>)); <span class="comment">//编译错误</span></span><br><span class="line">list.add(<span class="keyword">new</span> Float(<span class="number">1.1</span>)); <span class="comment">//编译错误</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>可以这样理解，ArrayList&lt;? extends Number&gt; 集合表示了：我这个集合可能是 ArrayList&lt; Integer &gt; 集合，也可能是 ArrayList&lt; Float &gt; 集合，… ，还可能是 ArrayList&lt; Number &gt; 集合；但到底是哪一个集合，不能确定；程序员也不能指定。</p>
+</li>
+<li><p>所以，在上面代码中，创建了一个 ArrayList&lt;? extends Number&gt; 集合 list，但我们并不能往 list 中添加 Integer、Float 等对象，这也说明了 list 集合并<strong>不是某个确定了数据类型的集合</strong>。</p>
+</li>
+</ul>
+<p><strong>思考：那既然 ArrayList&lt;? extends Number&gt; 可以代表 ArrayList&lt; Integer &gt; 或 ArrayList&lt; Float &gt;，为什么不能向其中加入 Integer、Float 等对象呢？</strong></p>
+<ul>
+<li>其原因是 ArrayList&lt;? extends Number&gt; 表示的是一个<strong>未知类型</strong>的 ArrayList 集合，它可以代表 ArrayList&lt; Integer &gt;或 ArrayList&lt; Float &gt;… 等集合，但却不能确定它到底是 ArrayList&lt; Integer &gt; 还是 ArrayList&lt; Float &gt; 集合。</li>
+<li>因此，泛型的特性决定了不能往 ArrayList&lt;? extends Number&gt; 集合中加入 Integer 、 Float 等对象，以<strong>防止在获取 ArrayList&lt;? extends Number&gt; 集合中元素的时候，产生 ClassCastException 异常</strong></li>
+</ul>
+<p><strong>那为什么还需要引入<code>上界统配符</code>的概念？—- 答：是为了拓展方法形参中类型参数的范围。</strong></p>
+<p><strong>（1）在<code>泛型通配符的引入</code>部分，我们提出了一个问题，有没有办法使得 addPair(Pair&lt; Number&gt; p) 方法接收 Pair&lt; Integer &gt; 对象？而在有了上界通配符的概念后，这个问题便有了解决办法，就是将 addPair() 方法改写。</strong></p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改写前</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PairHelper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">addPair</span><span class="params">(Pair&lt;Number&gt; p)</span> </span>&#123;</span><br><span class="line">        Number first = p.getFirst();</span><br><span class="line">        Number last = p.getLast();</span><br><span class="line">        <span class="keyword">return</span> first.intValue() + last.intValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改写后</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PairHelper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">addPair</span><span class="params">(Pair&lt;? extends Number&gt; p)</span> </span>&#123;</span><br><span class="line">        Number first = p.getFirst();</span><br><span class="line">        Number last = p.getLast();</span><br><span class="line">        <span class="keyword">return</span> first.intValue() + last.intValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改写 addPair() 方法，用 &lt;? extends Number&gt; 替换了 &lt; Number &gt; ，由于 Pair&lt; Integer &gt; 可以向上转型为 Pair&lt;? extends Number&gt; ，所以调用 addPair() 方法时，我们便可以传入 Pair&lt; Integer &gt; 对象了。</p>
+<p>除了可以传入 Pair&lt; Integer &gt; 对象，我们还可以传入 Pair&lt; Double &gt; 对象，Pair&lt; BigDecimal &gt; 对象等等，因为 Double 类和 BigDecimal 类也都是 Number 的子类</p>
+<h3 id="lt-extends-T-gt-d的用法"><a href="#lt-extends-T-gt-d的用法" class="headerlink" title="&lt;? extends T&gt;d的用法"></a>&lt;? extends T&gt;d的用法</h3><p>上面说到，我们无法确定 ArrayList&lt;? extends Number&gt; 具体是什么数据类型的集合，因此其 add() 方法会受限（即不能往集合中添加任何数据类型的对象）；但是可以往集合中添加 null，因为 null 表示任何类型。</p>
+<p>我们可以调用 get() 方法从集合中获取元素，并赋值给集合中的最高父类 Number (即 &lt;? extends T&gt; 的上界)。</p>
+<p><strong>（1）上界通配符 &lt;? extends T&gt; 的正确用法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// 创建一个 ArrayList&lt;Integer&gt; 集合</span></span><br><span class="line">        ArrayList&lt;Integer&gt; integerList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        integerList.add(<span class="number">1</span>);</span><br><span class="line">        integerList.add(<span class="number">2</span>);</span><br><span class="line">        <span class="comment">// 将 ArrayList&lt;Integer&gt; 传入 printIntVal() 方法</span></span><br><span class="line">        printIntVal(integerList);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 创建一个 ArrayList&lt;Float&gt; 集合</span></span><br><span class="line">        ArrayList&lt;Float&gt; floatList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        floatList.add((<span class="keyword">float</span>) <span class="number">1.0</span>);</span><br><span class="line">        floatList.add((<span class="keyword">float</span>) <span class="number">2.0</span>);</span><br><span class="line">        <span class="comment">// 将 ArrayList&lt;Float&gt; 传入 printIntVal() 方法</span></span><br><span class="line">        printIntVal(floatList);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printIntVal</span><span class="params">(ArrayList&lt;? extends Number&gt; list)</span> </span>&#123;</span><br><span class="line"> 		<span class="comment">// 遍历传入的集合，并输出集合中的元素       </span></span><br><span class="line">        <span class="keyword">for</span> (Number number : list) &#123;</span><br><span class="line">            System.out.print(number.intValue() + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 printIntVal() 方法中，其形参为 ArrayList&lt;? extends Number&gt;，因此，可以给该方法传入 ArrayList&lt; Integer &gt;、ArrayList&lt; Float &gt; 等集合。</p>
+<p>需要注意的是：在 printIntVal() 方法内部，必须要将传入集合中的元素赋值给Number 对象，而不能赋值给某个子类对象； 是因为根据 ArrayList&lt;? extends Number&gt; 的特性，并不能确定传入集合的数据类型（即不能确定传入的是 ArrayList&lt; Integer &gt; 还是 ArrayList&lt; Float &gt;）</p>
+<ul>
+<li>假设在 printIntVal() 方法中存在下面代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer intNum = (Integer) number;</span><br></pre></td></tr></table></figure>
+
+<p>若是传入集合为 ArrayList&lt; Float &gt;，则必然会产生<code>ClassCastException 异常</code></p>
+<p><strong>（2）上界通配符 &lt;? extends T&gt; 的错误用法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;? extends Number&gt; list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">		list.add(<span class="keyword">null</span>);<span class="comment">// 编译正确</span></span><br><span class="line">		list.add(<span class="keyword">new</span> Integer(<span class="number">1</span>));<span class="comment">// 编译错误</span></span><br><span class="line">		list.add(<span class="keyword">new</span> Float(<span class="number">1.0</span>));<span class="comment">// 编译错误</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fillNumList</span><span class="params">(ArrayList&lt;? extends Number&gt; list)</span> </span>&#123;</span><br><span class="line">		list.add(<span class="keyword">new</span> Integer(<span class="number">0</span>));<span class="comment">//编译错误</span></span><br><span class="line">		list.add(<span class="keyword">new</span> Float(<span class="number">1.0</span>));<span class="comment">//编译错误</span></span><br><span class="line">		list.set(<span class="number">0</span>, <span class="keyword">new</span> Integer(<span class="number">2</span>));<span class="comment">// 编译错误</span></span><br><span class="line">		list.set(<span class="number">0</span>, <span class="keyword">null</span>);<span class="comment">// 编译成功，但不建议这样使用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 ArrayList&lt;? extends Number&gt; 集合中，不能添加任何数据类型的对象，只能添加空值 null，因为 null 可以表示任何数据类型。</li>
+</ul>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p><strong>一句话总结：使用 extends 通配符表示可以读，不能写。</strong></p>
+<h2 id="5-下界通配符-lt-super-T-gt"><a href="#5-下界通配符-lt-super-T-gt" class="headerlink" title="5. 下界通配符 &lt;? super T&gt;"></a>5. 下界通配符 &lt;? super T&gt;</h2><p>下界通配符 &lt;? super T&gt;：T 代表了类型参数的下界，&lt;? super T&gt;表示类型参数的范围是 T 和 T 的超类，直至 Object。需要注意的是： &lt;? super T&gt; 也是一个数据类型实参，它和 Number、String、Integer 一样都是一种实际的数据类型。</p>
+<p>（1）ArrayList&lt;? super Integer&gt; 在逻辑上表示为 Integer 类以及 Integer 类的所有父类，它可以代表 ArrayList&lt; Integer&gt;、ArrayList&lt; Number &gt;、 ArrayList&lt; Object &gt;中的某一个集合，但实质上它们之间没有继承关系。</p>
+<p>举个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">		ArrayList&lt;Integer&gt; list01 = <span class="keyword">new</span> ArrayList&lt;Number&gt;();<span class="comment">// 编译错误</span></span><br><span class="line">		ArrayList&lt;? <span class="keyword">super</span> Integer&gt; list02 = <span class="keyword">new</span> ArrayList&lt;Number&gt;();<span class="comment">// 编译正确</span></span><br><span class="line">	&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>逻辑上可以将 ArrayList&lt;? super Integer&gt; 看做是 ArrayList&lt; Number &gt; 的父类，因此，在使用了下界通配符 &lt;? super Integer&gt; 后，便可以将 ArrayList&lt; Number &gt; 对象向上转型了。<br><strong>（2）ArrayList&lt;? super Integer&gt; 只能表示指定类型参数范围中的某一个集合，但我们不能指定 ArrayList&lt;? super Integer&gt; 的数据类型。（这里有点难理解）</strong></p>
+<p>看一个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">		ArrayList&lt;? <span class="keyword">super</span> Number&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Integer(<span class="number">1</span>));<span class="comment">// 编译正确</span></span><br><span class="line">		list.add(<span class="keyword">new</span> Float(<span class="number">1.0</span>));<span class="comment">// 编译正确</span></span><br><span class="line">	</span><br><span class="line">		<span class="comment">// Object 是 Number 的父类 </span></span><br><span class="line">		list.add(<span class="keyword">new</span> Object());<span class="comment">// 编译错误</span></span><br><span class="line">	&#125;  </span><br><span class="line">&#125;		</span><br></pre></td></tr></table></figure>
+
+
+<p>这里奇怪的地方出现了，为什么和ArrayList&lt;? extends Number&gt; 集合不同， ArrayList&lt;? super Number&gt; 集合中可以添加 Number 类及其子类的对象呢？</p>
+<p>其原因是， ArrayList&lt;? super Number&gt; 的<strong>下界是 ArrayList&lt; Number &gt;</strong> 。因此，我们可以确定 Number 类及其子类的对象自然可以加入 ArrayList&lt;? super Number&gt; 集合中； 而 Number 类的父类对象就不能加入 ArrayList&lt;? super Number&gt; 集合中了，因为不能确定 ArrayList&lt;? super Number&gt; 集合的数据类型。</p>
+<h3 id="5-1-lt-super-T-gt-的用法"><a href="#5-1-lt-super-T-gt-的用法" class="headerlink" title="5.1 &lt;? super T&gt; 的用法"></a>5.1 &lt;? super T&gt; 的用法</h3><p><strong>（1）下界通配符 &lt;? super T&gt; 的正确用法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建一个 ArrayList&lt;? super Number&gt; 集合</span></span><br><span class="line">		ArrayList&lt;Number&gt; list = <span class="keyword">new</span> ArrayList(); </span><br><span class="line">		<span class="comment">// 往集合中添加 Number 类及其子类对象</span></span><br><span class="line">		list.add(<span class="keyword">new</span> Integer(<span class="number">1</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Float(<span class="number">1.1</span>));</span><br><span class="line">		<span class="comment">// 调用 fillNumList() 方法，传入 ArrayList&lt;Number&gt; 集合</span></span><br><span class="line">		fillNumList(list);</span><br><span class="line">		System.out.println(list);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fillNumList</span><span class="params">(ArrayList&lt;? <span class="keyword">super</span> Number&gt; list)</span> </span>&#123;</span><br><span class="line">	list.add(<span class="keyword">new</span> Integer(<span class="number">0</span>));</span><br><span class="line">	list.add(<span class="keyword">new</span> Float(<span class="number">1.0</span>));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>与带有上界通配符的集合ArrayList&lt;? extends T&gt;的用法不同，带有下界通配符的集合ArrayList&lt;? super Number&gt; 中可以添加 Number 类及其子类的对象；ArrayList&lt;? super Number&gt;的下界就是ArrayList<Number>集合，因此，其中必然可以添加 Number 类及其子类的对象；但不能添加 Number 类的父类对象（不包括 Number 类）。<br>（2）下界通配符 &lt;? super T&gt; 的错误用法：</Number></p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    	<span class="comment">// 创建一个 ArrayList&lt;Integer&gt; 集合</span></span><br><span class="line">        ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="type">Integer</span>(<span class="number">1</span>));</span><br><span class="line">        <span class="comment">// 调用 fillNumList() 方法，传入 ArrayList&lt;Integer&gt; 集合</span></span><br><span class="line">        fillNumList(list);<span class="comment">// 编译错误</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>public static void fillNumList(ArrayList&lt;? super Number&gt; list) &#123;
+    list.add(new Integer(0));// 编译正确
+    list.add(new Float(1.0));// 编译正确
+    
+    // 遍历传入集合中的元素，并赋值给 Number 对象；会编译错误
+    for (Number number : list) &#123;
+        System.out.print(number.intValue() + &quot; &quot;);
+        System.out.println();
+    &#125;
+    // 遍历传入集合中的元素，并赋值给 Object 对象；可以正确编译
+    // 但只能调用 Object 类的方法，不建议这样使用
+    for (Object obj : list) &#123;
+        System.out.println(obj);使用
+    &#125;
+&#125;
+&#125;
+</code></pre>
+<p>注意，ArrayList&lt;? super Number&gt; 代表了 ArrayList&lt; Number &gt;、 ArrayList&lt; Object &gt; 中的某一个集合，而 ArrayList&lt; Integer &gt; 并不属于 ArrayList&lt;? super Number&gt; 限定的范围，因此，不能往 fillNumList() 方法中传入 ArrayList&lt; Integer &gt; 集合。</p>
+<p>并且，不能将传入集合的元素赋值给 Number 对象，因为传入的可能是 ArrayList&lt; Object &gt; 集合，向下转型可能会产生ClassCastException 异常。</p>
+<p>不过，可以将传入集合的元素赋值给 Object 对象，因为 Object 是所有类的父类，不会产生ClassCastException 异常，但这样的话便只能调用 Object 类的方法了，不建议这样使用。</p>
+<h3 id="5-3-lt-super-T-gt-小结"><a href="#5-3-lt-super-T-gt-小结" class="headerlink" title="5.3 &lt;? super T&gt; 小结"></a>5.3 &lt;? super T&gt; 小结</h3><p><strong>一句话总结：使用 super 通配符表示可以写，不能读。</strong></p>
+<h2 id="6-无限定通配符-lt-gt"><a href="#6-无限定通配符-lt-gt" class="headerlink" title="6.无限定通配符 &lt;?&gt;"></a>6.无限定通配符 &lt;?&gt;</h2><p>我们已经讨论了<? extends T>和<? super T>作为方法参数的作用。实际上，Java 的泛型还允许使用无限定通配符<?>，即只定义一个?符号。</p>
+<p>无界通配符<?>：? 代表了任何一种数据类型，能代表任何一种数据类型的只有 null。需要注意的是： <?> 也是一个数据类型实参，它和 Number、String、Integer 一样都是一种实际的数据类型。</p>
+<p>注意：Object 本身也算是一种数据类型，但却不能代表任何一种数据类型，所以 ArrayList&lt; Object &gt; 和 ArrayList<?> 的含义是不同的，前者类型是 Object，也就是继承树的最高父类，而后者的类型完全是未知的；ArrayList<?> 是 ArrayList&lt; Object &gt; 逻辑上的父类。</p>
+<p><strong>（1）ArrayList&lt;?&gt; 在逻辑上表示为所有数据类型的父类，它可以代表 ArrayList&lt; Integer&gt;、ArrayList&lt; Number &gt;、ArrayList&lt; Object &gt;中的某一个集合，但实质上它们之间没有继承关系。</strong></p>
+<p>举例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericType</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; list01 = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line">        ArrayList&lt;?&gt; list02 = list01; <span class="comment">// 安全地向上转型</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>上述代码是可以正常编译运行的，因为 ArrayList<?> 在逻辑上是 ArrayList< Integer > 的父类，可以安全地向上转型。
+**（2）ArrayList<?> 既没有上界也没有下界，因此，它可以代表所有数据类型的某一个集合，但我们不能指定 ArrayList&lt;?&gt; 的数据类型。**</p>
+<p>举例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericType</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;?&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">null</span>);<span class="comment">// 编译正确</span></span><br><span class="line">        Object obj = list.get(<span class="number">0</span>);<span class="comment">// 编译正确</span></span><br><span class="line">        list.add(<span class="keyword">new</span> Integer(<span class="number">1</span>));<span class="comment">// 编译错误</span></span><br><span class="line">	Integer num = list.get(<span class="number">0</span>);<span class="comment">// 编译错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 
+<p>ArrayList<?> 集合的数据类型是不确定的，因此我们只能往集合中添加 null；而我们从 ArrayList<?> 集合中取出的元素，也只能赋值给 Object 对象，不然会产生ClassCastException 异常（原因可以结合上界和下界通配符理解）。<br><strong>（3）大多数情况下，可以用类型参数 &lt; T &gt; 代替 &lt;?&gt; 通配符。</strong></p>
+<p>举例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &lt;?&gt; <span class="keyword">void</span> <span class="function"><span class="title">isNull</span>(<span class="params">ArrayList&lt;?&gt; list</span>)</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>// 替换如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="function"><span class="title">isNull</span>(<span class="params">ArrayList&lt;T&gt; list</span>)</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-lt-extends-T-gt-与-lt-super-T-gt-对比"><a href="#7-lt-extends-T-gt-与-lt-super-T-gt-对比" class="headerlink" title="7.&lt;? extends T&gt;与&lt;? super T&gt; 对比"></a>7.&lt;? extends T&gt;与&lt;? super T&gt; 对比</h2><p>（1）对于&lt;? extends 类型&gt;，编译器将<strong>只允许读操作，不允许写操作。即只可以取值，不可以设值。</strong><br>（2）对于&lt;? super 类型&gt;，编译器将<strong>只允许写操作，不允许读操作</strong>。即只可以设值（比如 set 操作），不可以取值（比如 get 操作）。</p>
+<p>以上两点都是针对于源码里涉及到了类型参数的方法而言的。比如对于 List 而言，不允许的写操作有 add 方法，因为它的方法签名是boolean add(E e);，此时这个形参 E 就变成了一个涉及了通配符的类型参数；</p>
+<p>而不允许的读操作有 get 方法，因为它的方法签名是E get(int index);，此时这个返回值 E 就变成了一个涉及了通配符的类型参数。</p>
+<p>作为方法形参，&lt;? extends T&gt; 类型和 &lt;? super T&gt; 类型的区别在于：</p>
+<? extends T> 允许调用读方法T get()获取 T 的引用，但不允许调用写方法 set(T)传入 T 的引用（传入 null 除外）。
+<? super T> 允许调用写方法set(T)传入 T 的引用，但不允许调用读方法 T get()获取 T 的引用（获取 Object 除外）。
+先记住上面的结论，我们来看 Java 标准库的 Collections 类定义的 copy() 方法。
+
+**（1）copy() 方法的作用是把一个 List 中的每个元素依次添加到另一个 List 中。它的第一个形参是 List<? super T>，表示目标 List，第二个形参是 List<? extends T>，表示源 List。**
+
+代码如下：
+
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Collections &#123;</span><br><span class="line">    <span class="comment">// 把 src 的每个元素复制到 dest 中:</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="keyword">copy</span>(List&lt;? <span class="keyword">super</span> T&gt; dest, List&lt;? <span class="keyword">extends</span> T&gt; src) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; src.<span class="keyword">size</span>(); i++) &#123;</span><br><span class="line">        	<span class="comment">// 获取 src 集合中的元素，并赋值给变量 t，其数据类型为 T</span></span><br><span class="line">            T t = src.get(i);</span><br><span class="line">            <span class="comment">// 将变量 t 添加进 dest 集合中 </span></span><br><span class="line">            dest.add(t);<span class="comment">// 添加元素进入 dest 集合中</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+我们可以简单地用 for 循环实现复制。在 for 循环中，我们可以看到，对于 <? extends T> 集合 src，我们可以安全地获取类型参数 T的引用（即变量 t），而对于 <? super T> 的集合 dest，我们可以安全地传入类型参数 T的引用。
+**（2）copy() 方法的定义完美地展示了通配符 extends 和 super 的意图：**
+
+copy() 方法内部不会读取 dest，因为不能调用 dest.get() 方法来获取 T 的引用（如果调用则编译器会直接报错）。
+copy() 方法内部也不会修改 src，因为不能调用 src.add(T) 方法（如果调用则编译器会直接报错）。
+这是由编译器检查来实现的。如果在方法代码中意外修改了 src 集合，或者意外读取了 dest ，就会导致一个编译错误。
+
+代码如下：
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Collections</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 把 src 的每个元素复制到 dest 中:</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> &lt;T&gt; <span class="keyword">void</span> copy(<span class="keyword">List</span><span class="meta">&lt;?</span> super T&gt; dest, <span class="keyword">List</span><span class="meta">&lt;?</span> <span class="keyword">extends</span> T&gt; src) &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 获取 <span class="meta">&lt;?</span> super T&gt; 集合的元素只能赋值给 Object 对象</span></span><br><span class="line">        T t = dest.get(<span class="number">0</span>); <span class="comment">// 编译错误</span></span><br><span class="line">        <span class="comment">// 不能向 <span class="meta">&lt;?</span> extends T&gt; 集合中添加任何类型的对象，除了 null</span></span><br><span class="line">        src.add(t); <span class="comment">// 编译错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+根据上面介绍的，获取 <? super T> 集合 dest 的元素后只能赋值给 Object 对象，而不能赋值给其下界类型 T；我们不能向 <? extends T> 集合 src 中添加任何类型的对象，除了 null。
+**（3）copy() 方法的另一个好处是可以安全地把一个 List< Integer >添加到 List< Number >，但是无法反过来添加。**
+
+代码如下：
+
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">//</span> 将 <span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">Integer</span><span class="operator">&gt;</span> 复制到 <span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">Number</span><span class="operator">&gt;</span></span><br><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">Number</span><span class="operator">&gt;</span> <span class="variable">numList</span> <span class="operator">=</span> <span class="operator">...;</span></span><br><span class="line"><span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">Integer</span><span class="operator">&gt;</span> <span class="variable">intList</span> <span class="operator">=</span> <span class="operator">...;</span></span><br><span class="line"><span class="variable">Collections</span><span class="operator">.</span><span class="variable">copy</span><span class="punctuation">(</span><span class="variable">numList</span><span class="operator">,</span> <span class="variable">intList</span><span class="punctuation">)</span><span class="operator">;//</span> 编译正确</span><br><span class="line"></span><br><span class="line"><span class="operator">//</span> 不能将 <span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">Number</span><span class="operator">&gt;</span> 复制到 <span class="built_in">List</span><span class="operator">&lt;</span><span class="built_in">Integer</span><span class="operator">&gt;</span></span><br><span class="line"><span class="variable">Collections</span><span class="operator">.</span><span class="variable">copy</span><span class="punctuation">(</span><span class="variable">intList</span><span class="operator">,</span> <span class="variable">numList</span><span class="punctuation">)</span><span class="operator">;//</span> 编译错误</span><br></pre></td></tr></table></figure>
+
+
+这个很好理解，List< Number > 集合中可能有 Integer、Float 等对象，所以肯定不能复制到List< Integer > 集合中；而 List< Integer > 集合中只有 Integer 对象，因此肯定可以复制到 List< Number > 集合中。
+
+## 8.PECS 原则
+
+我们何时使用 extends，何时使用 super 通配符呢？为了便于记忆，我们可以用 PECS 原则：Producer Extends Consumer Super。
+
+即：如果需要返回 T，则它是生产者（Producer），要使用 extends 通配符；如果需要写入 T，则它是消费者（Consumer），要使用 super 通配符。
+
+还是以 Collections 的 copy() 方法为例：
+
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> Collections &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="keyword">copy</span>(List&lt;? <span class="keyword">super</span> T&gt; dest, List&lt;? <span class="keyword">extends</span> T&gt; src) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; src.<span class="keyword">size</span>(); i++) &#123;</span><br><span class="line">            T t = src.get(i); <span class="comment">// src 是 producer</span></span><br><span class="line">            dest.add(t); <span class="comment">// dest 是 consumer</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+需要返回 T 的 src 是生产者，因此声明为List<? extends T>，需要写入 T 的 dest 是消费者，因此声明为List<? super T>。
+
+# 七、面试题
+
+##### 1、Java中的泛型是什么 ? 使用泛型的好处是什么?
+
+泛型是一种参数化类型的机制。它可以使得代码适用于各种数据类型，从而编写更加通用的代码，例如集合框架。
+泛型是一种编译时类型确认机制。它提供了代码编译期的类型安全，确保在泛型类型（通常为泛型集合）上只能使用正确类型的对象，避免了在运行时产生ClassCastException 异常。
+
+##### 2、Java的泛型是如何工作的 ? 什么是类型擦除 ?
+
+泛型的正常工作是依赖编译器在编译源码的时候，先进行类型检查，然后进行类型擦除并且在类型参数出现的地方插入强制转换的相关指令实现的。
+类型擦除：编译器在编译时擦除了代码中所有与泛型相关的信息，所以在运行时不存在任何泛型信息。例如 List< String > 类在运行时仅用一个 List 类型来表示。而为什么要进行擦除呢？这是为了避免类型膨胀。
+
+##### 3、什么是泛型中的限定通配符和非限定通配符 ?
+
+限定通配符对类型参数的范围进行了限制。有两种限定通配符，一种是 <？ extends t> ，它通过确保泛型类型必须是T 的子类来设定类型参数的上界；另一种是 <？super t>，它通过确保泛型类型必须是T 的父类来设定类型参数的下界。
+泛型类型必须使用限定范围内的类型来进行初始化，否则会导致编译错误。另一方面 <?><p> 表示了非限定通配符，因为 &lt;?&gt; 可以用任意数据类型来替代。</p>
+<h5 id="4、List-lt-extends-T-gt-和-List-lt-super-T-gt-之间有什么区别"><a href="#4、List-lt-extends-T-gt-和-List-lt-super-T-gt-之间有什么区别" class="headerlink" title="4、List&lt;? extends T&gt; 和 List &lt;? super T&gt; 之间有什么区别 ?"></a>4、List&lt;? extends T&gt; 和 List &lt;? super T&gt; 之间有什么区别 ?</h5><p>这和上一题有联系，有时面试官会用这个问题来评估你对泛型的理解，而不是直接问你什么是限定通配符和非限定通配符。<br>这两个 List 的声明都是限定通配符的例子，List&lt;? extends T&gt; 可以接受任何继承自T 的类型的 List，而 List&lt;? super T&gt; 可以接受任何T 的父类构成的 List。<br>例如：List&lt;? extends Number&gt; 可以接受 List&lt; Integer &gt; 或 List&lt; Float &gt;；List &lt;? super Number&gt; 可以接受 List&lt; Object &gt; 但不能接受 List&lt; Integer &gt;。</p>
+<h5 id="5、如何编写一个泛型方法，让它能接受泛型参数并返回泛型类型"><a href="#5、如何编写一个泛型方法，让它能接受泛型参数并返回泛型类型" class="headerlink" title="5、如何编写一个泛型方法，让它能接受泛型参数并返回泛型类型?"></a>5、如何编写一个泛型方法，让它能接受泛型参数并返回泛型类型?</h5><p>编写泛型方法并不困难，你需要用泛型类型来替代原始类型，比如使用 T，E，K，V 等被广泛认可的类型占位符。泛型方法的例子请参阅 Java 集合类框架，最简单的情况下，一个泛型方法可能会像这样：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">TestMethod</span>&lt;<span class="symbol">U</span>&gt; &#123;</span><br><span class="line">	<span class="keyword">public</span> &lt;T, S&gt; T testMethod(T t, S s) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
+<h5 id="6、Java-中如何使用泛型编写带有类型参数的类"><a href="#6、Java-中如何使用泛型编写带有类型参数的类" class="headerlink" title="6、Java 中如何使用泛型编写带有类型参数的类?"></a>6、Java 中如何使用泛型编写带有类型参数的类?</h5><p>这是上一道题的延伸，面试官可能会要求你用泛型编写一个类型安全的类，而不是编写一个泛型方法。关键仍然是使用泛型类型来代替原始类型，而且要使用 JDK 中采用的类型占位符。举例如下：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Generic</span>&lt;<span class="symbol">T</span>&gt; &#123; </span><br><span class="line">    <span class="comment">// key 这个成员变量的数据类型为 T, T 的类型由外部传入  </span></span><br><span class="line">    <span class="keyword">private</span> T key;</span><br></pre></td></tr></table></figure>
+
+<pre><code>// 泛型构造方法形参 key 的类型也为 T，T 的类型由外部传入
+public Generic(T key) &#123; 
+    this.key = key;
+&#125;
+
+// 泛型方法 getKey 的返回值类型为 T，T 的类型由外部指定
+public T getKey()&#123; 
+    return key;
+&#125;
+</code></pre>
+<h5 id="7、编写一段泛型程序来实现-LRU-缓存"><a href="#7、编写一段泛型程序来实现-LRU-缓存" class="headerlink" title="7、编写一段泛型程序来实现 LRU 缓存?"></a>7、编写一段泛型程序来实现 LRU 缓存?</h5><p>对于喜欢 Java 编程的人来说这相当于是一次练习。提示，LinkedHashMap 可以用来实现固定大小的 LRU 缓存，当 LRU 缓存已经满了的时候，它会把最老的键值对移出缓存。LinkedHashMap 提供了一个称为 removeEldestEntry() 的方法，该方法会被 put() 和 putAll() 调用来删除最老的键值对。</p>
+<h5 id="8、你可以把-List-lt-String-gt-传递给一个接受-List-lt-Object-gt-参数的方法吗？"><a href="#8、你可以把-List-lt-String-gt-传递给一个接受-List-lt-Object-gt-参数的方法吗？" class="headerlink" title="8、你可以把 List&lt; String &gt; 传递给一个接受 List&lt; Object &gt; 参数的方法吗？"></a>8、你可以把 List&lt; String &gt; 传递给一个接受 List&lt; Object &gt; 参数的方法吗？</h5><p>对任何一个不太熟悉泛型的人来说，这个Java泛型题目看起来令人疑惑，因为乍看起来 String 是 Object 的子类，所以 List&lt; String &gt; 应当可以向上转型为 List&lt; Object &gt; 。但是事实并非如此， List&lt; String &gt; 与 List&lt; Object &gt; 之间没有继承关系，真这样做的话会导致编译错误。</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object&gt; objectList<span class="comment">;</span></span><br><span class="line">List&lt;String&gt; stringList<span class="comment">;</span></span><br><span class="line">      </span><br><span class="line"><span class="attribute">objectList</span> = stringList<span class="comment">;// 编译错误</span></span><br></pre></td></tr></table></figure>
 
 
 
+<h5 id="9、Array-中可以用泛型吗"><a href="#9、Array-中可以用泛型吗" class="headerlink" title="9、Array 中可以用泛型吗?"></a>9、Array 中可以用泛型吗?</h5><p>这可能是 Java 泛型面试题中最简单的一个了，当然前提是你要知道 Array 事实上并不支持泛型，这也是为什么《 Effective Java》 一书中建议使用 List 来代替 Array，因为 List 可以提供编译期的类型安全保证，而 Array 却不能。</p>
+<h5 id="10、Java-中-List-lt-Object-gt-和原始类型-List-之间的区别"><a href="#10、Java-中-List-lt-Object-gt-和原始类型-List-之间的区别" class="headerlink" title="10、Java 中 List&lt; Object &gt; 和原始类型 List 之间的区别?"></a>10、Java 中 List&lt; Object &gt; 和原始类型 List 之间的区别?</h5><p>原始类型和 &lt; Object &gt; 之间的主要区别是，在编译时编译器不会对原始类型进行类型安全检查，却会对泛型类型 &lt; Object &gt; 进行检查。&lt; Object &gt; 通过使用 Object 作为类型参数，可以告知编译器可以接收任何数据类型的对象，比如 String 或 Integer。 这道题的考察点在于对泛型中原始类型的正确理解。</p>
+<p>它们之间的第二点区别是，你可以把任何泛型类型传递给接收原始类型 List 的方法，但却不能把 List&lt; String &gt; 传递给 List&lt; Object &gt; 的方法，因为会产生编译错误。举例如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="comment">// 创建一个 ArrayList&lt;String&gt; 集合</span></span><br><span class="line">		List&lt;<span class="built_in">String</span>&gt; list = <span class="keyword">new</span> ArrayList(); </span><br></pre></td></tr></table></figure>
+
+<p>​<br>​        fillNumList(list);// 编译正确<br>​        fillObjList(list);// 编译错误<br>​    }<br>​<br>    public static void fillList(List list) {<br>        …<br>    }</p>
+<pre><code>public static void fillObjList(List&lt;Object&gt; list) &#123;
+    ...
+&#125;
+</code></pre>
+<p>11、Java 中 List&lt;?&gt; 和 List&lt; Object &gt; 之间的区别是什么?</p>
+<p>这道题跟上一道题看起来很像，实质上却完全不同。List<?> 是一个不确定的未知类型的 List，而 List< Object > 是一个确定的 Object 类型的 List。
+List<?> 在逻辑上是所有 List&lt; T &gt; 的父类，你可以把 List&lt; String &gt;、 List&lt; Integer &gt; 等集合赋值给 List&lt;?&gt; 的引用；而 List&lt; Object &gt; 只代表了自己这个泛型集合类，只能把 List&lt; Object &gt; 赋值给 List&lt; Object &gt; 的引用，但是 List&lt; Object &gt; 集合中可以加入任意类型的数据，因为 Object 类是最高父类。 举例如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">List</span><span class="meta">&lt;?</span>&gt; listOfAnyType;</span><br><span class="line"><span class="keyword">List</span>&lt;<span class="keyword">Object</span>&gt; listOfObject = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">Object</span>&gt;();</span><br><span class="line"><span class="keyword">List</span>&lt;<span class="keyword">String</span>&gt; listOfString = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;();</span><br><span class="line"><span class="keyword">List</span>&lt;<span class="keyword">Integer</span>&gt; listOfInteger = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">Integer</span>&gt;();</span><br><span class="line">      </span><br><span class="line">listOfAnyType = listOfString;<span class="comment">// 编译正确</span></span><br><span class="line">listOfAnyType = listOfInteger;<span class="comment">// 编译正确</span></span><br><span class="line">listOfObjectType =  listOfString;<span class="comment">// 编译错误</span></span><br></pre></td></tr></table></figure>
 
 
+
+<h5 id="12、Java-中-List-lt-String-gt-和原始类型-List-之间的区别。"><a href="#12、Java-中-List-lt-String-gt-和原始类型-List-之间的区别。" class="headerlink" title="12、Java 中 List&lt; String &gt; 和原始类型 List 之间的区别。"></a>12、Java 中 List&lt; String &gt; 和原始类型 List 之间的区别。</h5><p>该题类似于“List&lt; Object &gt; 和原始类型 List 之间的区别”。泛型数据类型是类型安全的，而且其类型安全是由编译器保证的，但原始类型 List 却不是类型安全的。你不能把 String 之外的任何其它类型的对象存入 List&lt; String &gt; 中，而你可以把任何类型的对象存入原始 List 中。</p>
+<p>使用泛型数据类型你不需要进行类型转换，但是对于原始类型，你则需要进行显式的类型转换。举例如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List listOfRawTypes = new ArrayList();</span><br><span class="line">listOfRawTypes.<span class="builtin-name">add</span>(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">listOfRawTypes.<span class="builtin-name">add</span>(123);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> item = (<span class="keyword">String</span>) listOfRawTypes.<span class="built_in">get</span>(<span class="number">0</span>);<span class="comment">// 获取元素时需要显式的类型转换</span></span><br><span class="line"><span class="comment">// 编译器不报错，但运行时会产生 ClassCastException异常，因为 Integer不能被转换为 String</span></span><br><span class="line">item = (<span class="keyword">String</span>) listOfRawTypes.<span class="built_in">get</span>(<span class="number">1</span>);</span><br><span class="line">      </span><br><span class="line">List&lt;<span class="keyword">String</span>&gt; listOfString = <span class="keyword">new</span> ArrayList();</span><br><span class="line">listOfString.<span class="built_in">add</span>(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line">listOfString.<span class="built_in">add</span>(<span class="number">1234</span>);<span class="comment">// 编译器直接报错</span></span><br><span class="line">item = listOfString.<span class="built_in">get</span>(<span class="number">0</span>); <span class="comment">// 不需要显式的类型转换，编译器会自动转换</span></span><br></pre></td></tr></table></figure>
+
+
+<p>总结<br>博主花了一周多的时间，对 Java 泛型的知识进行详细地整理总结。但是受限于个人的知识水平，导致篇幅可能过长，再加上排版的问题，不知道小伙伴们的最后的观感如何。</p>
+<p>但是终于终于把 Java 泛型的知识整理完了（可能还有些遗漏，后面会慢慢补充的）。其中需要完善的地方，等过段时间再回来完善，如果文章中有什么错误和需要修改的地方，还望小伙伴们提出和批评指正，博主一定会尽快更改。谢谢大家！</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45395059/article/details/126006369">https://blog.csdn.net/weixin_45395059/article/details/126006369</a></p>
-
+</？super></？>
     </div>
 
     
@@ -506,15 +863,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、泛型概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%9B%E5%9E%8B%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.什么是泛型？为什么要使用泛型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.</span> <span class="nav-text">2.泛型的使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0%E5%B0%8F%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">3.泛型概述小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">二、泛型类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B3%9B%E5%9E%8B%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">1.泛型类的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%9B%E5%9E%8B%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">2.泛型类的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%B3%9B%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.</span> <span class="nav-text">三、泛型接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">四、泛型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text">1.泛型方法的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">2.泛型方法的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD"><span class="nav-number">4.3.</span> <span class="nav-text">3.泛型方法中的类型判断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">一、泛型概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%9B%E5%9E%8B%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">1.什么是泛型？为什么要使用泛型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.</span> <span class="nav-text">2.泛型的使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0%E5%B0%8F%E7%BB%93"><span class="nav-number">2.3.</span> <span class="nav-text">3.泛型概述小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">二、泛型类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B3%9B%E5%9E%8B%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">3.1.</span> <span class="nav-text">1.泛型类的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%9B%E5%9E%8B%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2.泛型类的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%B3%9B%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.</span> <span class="nav-text">三、泛型接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">四、泛型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">5.1.</span> <span class="nav-text">1.泛型方法的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.2.</span> <span class="nav-text">2.泛型方法的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD"><span class="nav-number">5.3.</span> <span class="nav-text">3.泛型方法中的类型判断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4"><span class="nav-number">6.</span> <span class="nav-text">五、类型擦除</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4"><span class="nav-number">6.1.</span> <span class="nav-text">1.什么是类型擦除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">6.2.</span> <span class="nav-text">2.类型擦除的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%B1%BB%E5%9E%8B%E6%93%A6%E9%99%A4%E5%B0%8F%E7%BB%93"><span class="nav-number">6.3.</span> <span class="nav-text">3.类型擦除小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%B3%9B%E5%9E%8B%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">7.</span> <span class="nav-text">六、泛型通配符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B3%9B%E5%9E%8B%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="nav-number">7.1.</span> <span class="nav-text">1.泛型的继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%9B%E5%9E%8B%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E5%BC%95%E5%85%A5"><span class="nav-number">7.2.</span> <span class="nav-text">2.泛型通配符的引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%9B%E5%9E%8B%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">7.3.</span> <span class="nav-text">3.什么是泛型通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%B8%8A%E7%95%8C%E9%80%9A%E9%85%8D%E7%AC%A6-lt-extends-T-gt"><span class="nav-number">7.4.</span> <span class="nav-text">4.上界通配符&lt;? extends T&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-extends-T-gt-d%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">7.4.1.</span> <span class="nav-text">&lt;? extends T&gt;d的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">7.4.2.</span> <span class="nav-text">总结：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%B8%8B%E7%95%8C%E9%80%9A%E9%85%8D%E7%AC%A6-lt-super-T-gt"><span class="nav-number">7.5.</span> <span class="nav-text">5. 下界通配符 &lt;? super T&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-lt-super-T-gt-%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">7.5.1.</span> <span class="nav-text">5.1 &lt;? super T&gt; 的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-lt-super-T-gt-%E5%B0%8F%E7%BB%93"><span class="nav-number">7.5.2.</span> <span class="nav-text">5.3 &lt;? super T&gt; 小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%97%A0%E9%99%90%E5%AE%9A%E9%80%9A%E9%85%8D%E7%AC%A6-lt-gt"><span class="nav-number">7.6.</span> <span class="nav-text">6.无限定通配符 &lt;?&gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-lt-extends-T-gt-%E4%B8%8E-lt-super-T-gt-%E5%AF%B9%E6%AF%94"><span class="nav-number">7.7.</span> <span class="nav-text">7.&lt;? extends T&gt;与&lt;? super T&gt; 对比</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81List-lt-extends-T-gt-%E5%92%8C-List-lt-super-T-gt-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">7.7.0.0.1.</span> <span class="nav-text">4、List&lt;? extends T&gt; 和 List &lt;? super T&gt; 之间有什么区别 ?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95%EF%BC%8C%E8%AE%A9%E5%AE%83%E8%83%BD%E6%8E%A5%E5%8F%97%E6%B3%9B%E5%9E%8B%E5%8F%82%E6%95%B0%E5%B9%B6%E8%BF%94%E5%9B%9E%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B"><span class="nav-number">7.7.0.0.2.</span> <span class="nav-text">5、如何编写一个泛型方法，让它能接受泛型参数并返回泛型类型?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6%E3%80%81Java-%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B%E7%BC%96%E5%86%99%E5%B8%A6%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%E7%9A%84%E7%B1%BB"><span class="nav-number">7.7.0.0.3.</span> <span class="nav-text">6、Java 中如何使用泛型编写带有类型参数的类?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81%E7%BC%96%E5%86%99%E4%B8%80%E6%AE%B5%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E6%9D%A5%E5%AE%9E%E7%8E%B0-LRU-%E7%BC%93%E5%AD%98"><span class="nav-number">7.7.0.0.4.</span> <span class="nav-text">7、编写一段泛型程序来实现 LRU 缓存?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8%E3%80%81%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8A%8A-List-lt-String-gt-%E4%BC%A0%E9%80%92%E7%BB%99%E4%B8%80%E4%B8%AA%E6%8E%A5%E5%8F%97-List-lt-Object-gt-%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%97%EF%BC%9F"><span class="nav-number">7.7.0.0.5.</span> <span class="nav-text">8、你可以把 List&lt; String &gt; 传递给一个接受 List&lt; Object &gt; 参数的方法吗？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9%E3%80%81Array-%E4%B8%AD%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%B3%9B%E5%9E%8B%E5%90%97"><span class="nav-number">7.7.0.0.6.</span> <span class="nav-text">9、Array 中可以用泛型吗?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10%E3%80%81Java-%E4%B8%AD-List-lt-Object-gt-%E5%92%8C%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B-List-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.7.0.0.7.</span> <span class="nav-text">10、Java 中 List&lt; Object &gt; 和原始类型 List 之间的区别?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12%E3%80%81Java-%E4%B8%AD-List-lt-String-gt-%E5%92%8C%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B-List-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%82"><span class="nav-number">7.7.0.0.8.</span> <span class="nav-text">12、Java 中 List&lt; String &gt; 和原始类型 List 之间的区别。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Markcheng"
+    <img class="site-author-image" itemprop="image" alt="B3c0me"
       src="/images/head.jpg">
-  <p class="site-author-name" itemprop="name">Markcheng</p>
+  <p class="site-author-name" itemprop="name">B3c0me</p>
   <div class="site-description" itemprop="description">去爱 去工作</div>
 </div>
 <div class="site-state-wrap motion-element">
