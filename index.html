@@ -167,6 +167,275 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/05/upload-labs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="B3c0me">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="THIS IS B3c0me">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/05/upload-labs/" class="post-title-link" itemprop="url">Upload-Labs</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-09-05 19:39:58 / 修改时间：20:58:37" itemprop="dateCreated datePublished" datetime="2023-09-05T19:39:58+08:00">2023-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<h1 id="一、文件上传漏洞"><a href="#一、文件上传漏洞" class="headerlink" title="一、文件上传漏洞"></a>一、文件上传漏洞</h1><h2 id="1-1-文件上传漏洞概述"><a href="#1-1-文件上传漏洞概述" class="headerlink" title="1.1 文件上传漏洞概述"></a>1.1 文件上传漏洞概述</h2><p>​    文件上传是web应用程序常见的一种功能，通过文件上传功能用户可以上传图片、视频以及其他类型的文件到web应用服务器或者数据库，但是随着web中包含的功能越来越多，文件上传的存在的风险也越来越大。</p>
+<p>​    如果用户上传了恶意的可执行文件或者脚本，就有可能导致网站被控制或者服务器沦陷，以至于引发网络安全事件。</p>
+<h2 id="1-2-文件上传漏洞的原理"><a href="#1-2-文件上传漏洞的原理" class="headerlink" title="1.2 文件上传漏洞的原理"></a>1.2 文件上传漏洞的原理</h2><p>漏洞的原理在于，应用程序未正确验证和限制用户上传的文件类型、大小和内容，或者未对上传的文件进行充分的检查和过滤。攻击者利用这个漏洞，可能会上传各种类型的恶意文件，如：</p>
+<p>可执行文件：例如恶意脚本、木马、后门程序，允许攻击者在服务器上执行任意代码。</p>
+<p>Web Shell：用于在服务器上执行命令并获取控制权的恶意脚本。</p>
+<p>恶意文档：包含宏病毒的文档，可能感染用户系统并传播恶意代码。</p>
+<p>恶意图片：利用图片解析漏洞进行攻击，例如通过包含恶意脚本的图片进行跨站脚本攻击（XSS）。</p>
+<p>伪装文件：攻击者可能上传伪装成其他类型文件的恶意文件，绕过安全检查。</p>
+<h2 id="1-3-文件上传的思路"><a href="#1-3-文件上传的思路" class="headerlink" title="1.3 文件上传的思路"></a>1.3 文件上传的思路</h2><h3 id="1-3-1-常规类"><a href="#1-3-1-常规类" class="headerlink" title="1.3.1.常规类"></a>1.3.1.常规类</h3><ul>
+<li>扫描获取上传</li>
+<li>会员中心头像上</li>
+<li>后台系统上传</li>
+<li>其他途径上传</li>
+</ul>
+<h3 id="1-3-2-cms类"><a href="#1-3-2-cms类" class="headerlink" title="1.3.2.cms类"></a>1.3.2.cms类</h3><ul>
+<li>已知道的cms源码的上传漏洞</li>
+</ul>
+<h3 id="1-3-3-编辑类"><a href="#1-3-3-编辑类" class="headerlink" title="1.3.3.编辑类"></a>1.3.3.编辑类</h3><ul>
+<li>ckeditor</li>
+<li>fckeditor</li>
+<li>kindeditor</li>
+<li>xxxxeditor。</li>
+</ul>
+<h3 id="1-3-4-其他类-CVE"><a href="#1-3-4-其他类-CVE" class="headerlink" title="1.3.4.其他类/CVE"></a>1.3.4.其他类/CVE</h3><ul>
+<li>代码审计</li>
+<li>平台或第三方应用</li>
+</ul>
+<h2 id="1-4-web界面存在的风险点"><a href="#1-4-web界面存在的风险点" class="headerlink" title="1.4 web界面存在的风险点"></a>1.4 web界面存在的风险点</h2><p>上传头像、上传身份认证、上传文件以及有存在文件上传的地方就可能存在相关的漏洞，但不是有文件上传就一定有漏洞，但有文件上传就能进行测试。</p>
+<h2 id="1-5-文件上传的实战思路"><a href="#1-5-文件上传的实战思路" class="headerlink" title="1.5 文件上传的实战思路"></a>1.5 文件上传的实战思路</h2><p>上传文件和文件执行是两个东西<br>  漏洞分类：解析漏洞、cms漏洞、其他漏洞（编辑器漏洞、cve漏洞、安全修复）<br>  思路：<br>  如果有一个网站，要从文件上传的方向开始<br>  第一步：先看中间件，看是否存在解析漏洞/CMS/编辑器漏洞/CVE/<br>  如果有，如何找：<br>    字典扫描：扫描会员中心，文件上传的位置<br>  找到后，如何利用：<br>    验证/绕过</p>
+<h1 id="二、文件上传绕过分类"><a href="#二、文件上传绕过分类" class="headerlink" title="二、文件上传绕过分类"></a>二、文件上传绕过分类</h1><h2 id="2-1-JS前端验证防护"><a href="#2-1-JS前端验证防护" class="headerlink" title="2.1 JS前端验证防护"></a>2.1 JS前端验证防护</h2><h3 id="示例：upload-labs第一关"><a href="#示例：upload-labs第一关" class="headerlink" title="示例：upload-labs第一关"></a><strong>示例：upload-labs第一关</strong></h3><h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h4><ul>
+<li>我们发现当我们向上传一个<code>*.txt</code>文档时web页面提示我们文件类型不允许，还提示我们上传.jpg/.png/.gif格式的文件，文件类型的检测点在哪里呢？</li>
+</ul>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905200418048.png" alt="image-20230905200418048"></p>
+<ul>
+<li><p>点击<code>f12</code>查看网页源码发现了下面的js函数：可以判定类型判断就在Js函数里面，下面我们想办法绕过它！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="comment">//获取文件</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="built_in">document</span>.getElementsByName(<span class="string">&#x27;upload_file&#x27;</span>)[<span class="number">0</span>].value;</span><br><span class="line"><span class="comment">//检查文件是否为空</span></span><br><span class="line"><span class="keyword">if</span> (file == <span class="literal">null</span> || file == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">alert(<span class="string">&quot;请选择要上传的文件!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义允许上传的文件类型</span></span><br><span class="line"><span class="keyword">var</span> allow_ext = <span class="string">&quot;.jpg|.png|.gif&quot;</span>;</span><br><span class="line"><span class="comment">//提取上传文件的类型 从最后一个‘.’截断，判断后缀名</span></span><br><span class="line"><span class="keyword">var</span> ext_name = file.substring(file.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line"><span class="comment">//判断上传文件类型是否允许上传</span></span><br><span class="line"><span class="keyword">if</span> (allow_ext.indexOf(ext_name) == -<span class="number">1</span>) &#123;</span><br><span class="line"><span class="keyword">var</span> errMsg = <span class="string">&quot;该文件不允许上传，请上传&quot;</span> + allow_ext + <span class="string">&quot;类型的文件,当前文件类型为：&quot;</span> + ext_name;</span><br><span class="line">alert(errMsg);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>既然它在前端不让我们上传.php文件，那我们暂且满足它的要求，上传一个.jpg后缀的文件（文件内容是Php一句话木马），然后对上传进行抓包，在抓取的数据包中修改文件的后缀名为.php 。发送数据包</p>
+</li>
+</ul>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905203454335.png" alt="image-20230905203454335"></p>
+<ul>
+<li><p>此时文件已经上传成功了。我们尝试使用蚁剑连接，但是到目前为止我们一直是黑盒测试，并不知道我们上传的文件的后台具体位置，暂时无法填写蚁剑的URL地址，所以无法连接。正常情况下要对网站进行目录扫描，找到可以的上传点。但是此处upload环境比较简单，所以直接人工遍历，最后发现在网站根目录下有一个inlcude目录，我们猜测上传的文件会到这个文件夹。</p>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905205103156.png" alt="image-20230905205103156"></p>
+</li>
+<li><p>使用蚁剑连接成功！</p>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905205220656.png" alt="image-20230905205220656"></p>
+</li>
+</ul>
+<h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p>打开浏览器的开发者选项，勾选禁用JavaScript，这样也可以使前端的验证失效，此时直接上传webshell.php即可</p>
+<h2 id="2-2-服务端黑名单检测"><a href="#2-2-服务端黑名单检测" class="headerlink" title="2.2 服务端黑名单检测"></a>2.2 服务端黑名单检测</h2><h1 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h1><p>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44268918/article/details/128074253">https://blog.csdn.net/weixin_44268918/article/details/128074253</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://jay1an.github.io/2023/08/03/upload-labs/">https://jay1an.github.io/2023/08/03/upload-labs/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/05/Docker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="B3c0me">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="THIS IS B3c0me">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/05/Docker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Docker使用总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-09-05 19:31:09 / 修改时间：19:41:12" itemprop="dateCreated datePublished" datetime="2023-09-05T19:31:09+08:00">2023-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">渗透测试工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/05/CommonsCollections3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="B3c0me">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="THIS IS B3c0me">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/05/CommonsCollections3/" class="post-title-link" itemprop="url">CommonsCollections3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-05 09:40:09" itemprop="dateCreated datePublished" datetime="2023-09-05T09:40:09+08:00">2023-09-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-08 10:18:20" itemprop="dateModified" datetime="2023-09-08T10:18:20+08:00">2023-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Java安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/2023/09/05/CommonsCollections3/u=3563828763,3654639210&fm=253&fmt=auto&app=120&f=JPEG.jpeg"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/05/CommonsCollections3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/03/Java%E6%B3%9B%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -562,243 +831,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/08/29/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="B3c0me">
-      <meta itemprop="description" content="去爱 去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="THIS IS B3c0me">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/29/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Java反射机制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-08-29 12:51:52" itemprop="dateCreated datePublished" datetime="2023-08-29T12:51:52+08:00">2023-08-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-08-30 09:53:52" itemprop="dateModified" datetime="2023-08-30T09:53:52+08:00">2023-08-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Java安全</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/2023/08/29/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/u=2511715261,3350561360&fm=253&fmt=auto&app=138&f=JPEG.jpeg"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/08/29/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/08/29/URLDNS%E9%93%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="B3c0me">
-      <meta itemprop="description" content="去爱 去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="THIS IS B3c0me">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/29/URLDNS%E9%93%BE/" class="post-title-link" itemprop="url">URLDNS链</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-08-29 11:57:50" itemprop="dateCreated datePublished" datetime="2023-08-29T11:57:50+08:00">2023-08-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-08-30 13:39:41" itemprop="dateModified" datetime="2023-08-30T13:39:41+08:00">2023-08-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Java安全</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​    <img src="/2023/08/29/URLDNS%E9%93%BE/u=2688888537,2596471934&fm=253&fmt=auto.jpeg"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/08/29/URLDNS%E9%93%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/08/29/java%E5%8E%9F%E7%94%9F%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="B3c0me">
-      <meta itemprop="description" content="去爱 去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="THIS IS B3c0me">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/29/java%E5%8E%9F%E7%94%9F%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">Java序列化与反序列化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-08-29 09:44:25 / 修改时间：11:56:18" itemprop="dateCreated datePublished" datetime="2023-08-29T09:44:25+08:00">2023-08-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Java安全</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/2023/08/29/java%E5%8E%9F%E7%94%9F%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/u=1247480168,473012107&fm=253&fmt=auto&app=120&f=JPEG.jpeg"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/08/29/java%E5%8E%9F%E7%94%9F%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -870,7 +902,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

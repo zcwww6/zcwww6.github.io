@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.zcwww.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、文件上传漏洞1.1 文件上传漏洞概述​    文件上传是web应用程序常见的一种功能，通过文件上传功能用户可以上传图片、视频以及其他类型的文件到web应用服务器或者数据库，但是随着web中包含的功能越来越多，文件上传的存在的风险也越来越大。 ​    如果用户上传了恶意的可执行文件或者脚本，就有可能导致网站被控制或者服务器沦陷，以至于引发网络安全事件。 1.2 文件上传漏洞的原理漏洞的原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Upload-Labs">
+<meta property="og:url" content="http://www.zcwww.top/2023/09/05/upload-labs/index.html">
+<meta property="og:site_name" content="THIS IS B3c0me">
+<meta property="og:description" content="一、文件上传漏洞1.1 文件上传漏洞概述​    文件上传是web应用程序常见的一种功能，通过文件上传功能用户可以上传图片、视频以及其他类型的文件到web应用服务器或者数据库，但是随着web中包含的功能越来越多，文件上传的存在的风险也越来越大。 ​    如果用户上传了恶意的可执行文件或者脚本，就有可能导致网站被控制或者服务器沦陷，以至于引发网络安全事件。 1.2 文件上传漏洞的原理漏洞的原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.zcwww.top/2023/09/05/upload-labs/Blog/source_posts/upload-labs/image-20230905200418048.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/09/05/upload-labs/Blog/source_posts/upload-labs/image-20230905203454335.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/09/05/upload-labs/Blog/source_posts/upload-labs/image-20230905205103156.png">
+<meta property="og:image" content="http://www.zcwww.top/2023/09/05/upload-labs/Blog/source_posts/upload-labs/image-20230905205220656.png">
+<meta property="article:published_time" content="2023-09-05T11:39:58.000Z">
+<meta property="article:modified_time" content="2023-09-05T12:58:37.145Z">
+<meta property="article:author" content="B3c0me">
+<meta property="article:tag" content="学习 生活 分享 交流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zcwww.top/2023/09/05/upload-labs/Blog/source_posts/upload-labs/image-20230905200418048.png">
+
+<link rel="canonical" href="http://www.zcwww.top/2023/09/05/upload-labs/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Upload-Labs | THIS IS B3c0me</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">THIS IS B3c0me</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/zcwww6" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/05/upload-labs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="B3c0me">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="THIS IS B3c0me">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Upload-Labs
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-09-05 19:39:58 / 修改时间：20:58:37" itemprop="dateCreated datePublished" datetime="2023-09-05T19:39:58+08:00">2023-09-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">web安全</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="一、文件上传漏洞"><a href="#一、文件上传漏洞" class="headerlink" title="一、文件上传漏洞"></a>一、文件上传漏洞</h1><h2 id="1-1-文件上传漏洞概述"><a href="#1-1-文件上传漏洞概述" class="headerlink" title="1.1 文件上传漏洞概述"></a>1.1 文件上传漏洞概述</h2><p>​    文件上传是web应用程序常见的一种功能，通过文件上传功能用户可以上传图片、视频以及其他类型的文件到web应用服务器或者数据库，但是随着web中包含的功能越来越多，文件上传的存在的风险也越来越大。</p>
+<p>​    如果用户上传了恶意的可执行文件或者脚本，就有可能导致网站被控制或者服务器沦陷，以至于引发网络安全事件。</p>
+<h2 id="1-2-文件上传漏洞的原理"><a href="#1-2-文件上传漏洞的原理" class="headerlink" title="1.2 文件上传漏洞的原理"></a>1.2 文件上传漏洞的原理</h2><p>漏洞的原理在于，应用程序未正确验证和限制用户上传的文件类型、大小和内容，或者未对上传的文件进行充分的检查和过滤。攻击者利用这个漏洞，可能会上传各种类型的恶意文件，如：</p>
+<p>可执行文件：例如恶意脚本、木马、后门程序，允许攻击者在服务器上执行任意代码。</p>
+<p>Web Shell：用于在服务器上执行命令并获取控制权的恶意脚本。</p>
+<p>恶意文档：包含宏病毒的文档，可能感染用户系统并传播恶意代码。</p>
+<p>恶意图片：利用图片解析漏洞进行攻击，例如通过包含恶意脚本的图片进行跨站脚本攻击（XSS）。</p>
+<p>伪装文件：攻击者可能上传伪装成其他类型文件的恶意文件，绕过安全检查。</p>
+<h2 id="1-3-文件上传的思路"><a href="#1-3-文件上传的思路" class="headerlink" title="1.3 文件上传的思路"></a>1.3 文件上传的思路</h2><h3 id="1-3-1-常规类"><a href="#1-3-1-常规类" class="headerlink" title="1.3.1.常规类"></a>1.3.1.常规类</h3><ul>
+<li>扫描获取上传</li>
+<li>会员中心头像上</li>
+<li>后台系统上传</li>
+<li>其他途径上传</li>
+</ul>
+<h3 id="1-3-2-cms类"><a href="#1-3-2-cms类" class="headerlink" title="1.3.2.cms类"></a>1.3.2.cms类</h3><ul>
+<li>已知道的cms源码的上传漏洞</li>
+</ul>
+<h3 id="1-3-3-编辑类"><a href="#1-3-3-编辑类" class="headerlink" title="1.3.3.编辑类"></a>1.3.3.编辑类</h3><ul>
+<li>ckeditor</li>
+<li>fckeditor</li>
+<li>kindeditor</li>
+<li>xxxxeditor。</li>
+</ul>
+<h3 id="1-3-4-其他类-CVE"><a href="#1-3-4-其他类-CVE" class="headerlink" title="1.3.4.其他类/CVE"></a>1.3.4.其他类/CVE</h3><ul>
+<li>代码审计</li>
+<li>平台或第三方应用</li>
+</ul>
+<h2 id="1-4-web界面存在的风险点"><a href="#1-4-web界面存在的风险点" class="headerlink" title="1.4 web界面存在的风险点"></a>1.4 web界面存在的风险点</h2><p>上传头像、上传身份认证、上传文件以及有存在文件上传的地方就可能存在相关的漏洞，但不是有文件上传就一定有漏洞，但有文件上传就能进行测试。</p>
+<h2 id="1-5-文件上传的实战思路"><a href="#1-5-文件上传的实战思路" class="headerlink" title="1.5 文件上传的实战思路"></a>1.5 文件上传的实战思路</h2><p>上传文件和文件执行是两个东西<br>  漏洞分类：解析漏洞、cms漏洞、其他漏洞（编辑器漏洞、cve漏洞、安全修复）<br>  思路：<br>  如果有一个网站，要从文件上传的方向开始<br>  第一步：先看中间件，看是否存在解析漏洞/CMS/编辑器漏洞/CVE/<br>  如果有，如何找：<br>    字典扫描：扫描会员中心，文件上传的位置<br>  找到后，如何利用：<br>    验证/绕过</p>
+<h1 id="二、文件上传绕过分类"><a href="#二、文件上传绕过分类" class="headerlink" title="二、文件上传绕过分类"></a>二、文件上传绕过分类</h1><h2 id="2-1-JS前端验证防护"><a href="#2-1-JS前端验证防护" class="headerlink" title="2.1 JS前端验证防护"></a>2.1 JS前端验证防护</h2><h3 id="示例：upload-labs第一关"><a href="#示例：upload-labs第一关" class="headerlink" title="示例：upload-labs第一关"></a><strong>示例：upload-labs第一关</strong></h3><h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h4><ul>
+<li>我们发现当我们向上传一个<code>*.txt</code>文档时web页面提示我们文件类型不允许，还提示我们上传.jpg/.png/.gif格式的文件，文件类型的检测点在哪里呢？</li>
+</ul>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905200418048.png" alt="image-20230905200418048"></p>
+<ul>
+<li><p>点击<code>f12</code>查看网页源码发现了下面的js函数：可以判定类型判断就在Js函数里面，下面我们想办法绕过它！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="comment">//获取文件</span></span><br><span class="line"><span class="keyword">var</span> file = <span class="built_in">document</span>.getElementsByName(<span class="string">&#x27;upload_file&#x27;</span>)[<span class="number">0</span>].value;</span><br><span class="line"><span class="comment">//检查文件是否为空</span></span><br><span class="line"><span class="keyword">if</span> (file == <span class="literal">null</span> || file == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">alert(<span class="string">&quot;请选择要上传的文件!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义允许上传的文件类型</span></span><br><span class="line"><span class="keyword">var</span> allow_ext = <span class="string">&quot;.jpg|.png|.gif&quot;</span>;</span><br><span class="line"><span class="comment">//提取上传文件的类型 从最后一个‘.’截断，判断后缀名</span></span><br><span class="line"><span class="keyword">var</span> ext_name = file.substring(file.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line"><span class="comment">//判断上传文件类型是否允许上传</span></span><br><span class="line"><span class="keyword">if</span> (allow_ext.indexOf(ext_name) == -<span class="number">1</span>) &#123;</span><br><span class="line"><span class="keyword">var</span> errMsg = <span class="string">&quot;该文件不允许上传，请上传&quot;</span> + allow_ext + <span class="string">&quot;类型的文件,当前文件类型为：&quot;</span> + ext_name;</span><br><span class="line">alert(errMsg);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>既然它在前端不让我们上传.php文件，那我们暂且满足它的要求，上传一个.jpg后缀的文件（文件内容是Php一句话木马），然后对上传进行抓包，在抓取的数据包中修改文件的后缀名为.php 。发送数据包</p>
+</li>
+</ul>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905203454335.png" alt="image-20230905203454335"></p>
+<ul>
+<li><p>此时文件已经上传成功了。我们尝试使用蚁剑连接，但是到目前为止我们一直是黑盒测试，并不知道我们上传的文件的后台具体位置，暂时无法填写蚁剑的URL地址，所以无法连接。正常情况下要对网站进行目录扫描，找到可以的上传点。但是此处upload环境比较简单，所以直接人工遍历，最后发现在网站根目录下有一个inlcude目录，我们猜测上传的文件会到这个文件夹。</p>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905205103156.png" alt="image-20230905205103156"></p>
+</li>
+<li><p>使用蚁剑连接成功！</p>
+<p><img src="/2023/09/05/upload-labs/Blog\source_posts\upload-labs\image-20230905205220656.png" alt="image-20230905205220656"></p>
+</li>
+</ul>
+<h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p>打开浏览器的开发者选项，勾选禁用JavaScript，这样也可以使前端的验证失效，此时直接上传webshell.php即可</p>
+<h2 id="2-2-服务端黑名单检测"><a href="#2-2-服务端黑名单检测" class="headerlink" title="2.2 服务端黑名单检测"></a>2.2 服务端黑名单检测</h2><h1 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h1><p>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44268918/article/details/128074253">https://blog.csdn.net/weixin_44268918/article/details/128074253</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://jay1an.github.io/2023/08/03/upload-labs/">https://jay1an.github.io/2023/08/03/upload-labs/</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/05/Docker%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" rel="prev" title="Docker使用总结">
+      <i class="fa fa-chevron-left"></i> Docker使用总结
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.</span> <span class="nav-text">一、文件上传漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 文件上传漏洞概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 文件上传漏洞的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 文件上传的思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-%E5%B8%B8%E8%A7%84%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1.常规类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-cms%E7%B1%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2.cms类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-%E7%BC%96%E8%BE%91%E7%B1%BB"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3.3.编辑类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-4-%E5%85%B6%E4%BB%96%E7%B1%BB-CVE"><span class="nav-number">1.3.4.</span> <span class="nav-text">1.3.4.其他类&#x2F;CVE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-web%E7%95%8C%E9%9D%A2%E5%AD%98%E5%9C%A8%E7%9A%84%E9%A3%8E%E9%99%A9%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 web界面存在的风险点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%AE%9E%E6%88%98%E6%80%9D%E8%B7%AF"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 文件上传的实战思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%BB%95%E8%BF%87%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">二、文件上传绕过分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-JS%E5%89%8D%E7%AB%AF%E9%AA%8C%E8%AF%81%E9%98%B2%E6%8A%A4"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 JS前端验证防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9Aupload-labs%E7%AC%AC%E4%B8%80%E5%85%B3"><span class="nav-number">2.1.1.</span> <span class="nav-text">示例：upload-labs第一关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9A"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">方法1：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%952"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">方法2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%BB%91%E5%90%8D%E5%8D%95%E6%A3%80%E6%B5%8B"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 服务端黑名单检测</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">参考文章：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="B3c0me"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">B3c0me</p>
+  <div class="site-description" itemprop="description">去爱 去工作</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zcwww6" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zcwww6" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1311839468@qq.com" title="E-Mail → mailto:1311839468@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">greyArea</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
