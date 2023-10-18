@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://www.zcwww.top/2023/10/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/image-20231017225149708.png">
 <meta property="og:image" content="http://www.zcwww.top/2023/10/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/image-20231017231924353.png">
 <meta property="article:published_time" content="2023-10-09T00:54:59.000Z">
-<meta property="article:modified_time" content="2023-10-17T15:19:33.109Z">
+<meta property="article:modified_time" content="2023-10-18T14:09:41.885Z">
 <meta property="article:author" content="B3c0me">
 <meta property="article:tag" content="学习 生活 分享 交流">
 <meta name="twitter:card" content="summary">
@@ -203,7 +203,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-17 23:19:33" itemprop="dateModified" datetime="2023-10-17T23:19:33+08:00">2023-10-17</time>
+                <time title="修改时间：2023-10-18 22:09:41" itemprop="dateModified" datetime="2023-10-18T22:09:41+08:00">2023-10-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,6 +274,46 @@
 
 <p><strong>运行结果</strong>:</p>
 <p><img src="/2023/10/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/image-20231017231924353.png"></p>
+<h1 id="三、线程常用方法总结"><a href="#三、线程常用方法总结" class="headerlink" title="三、线程常用方法总结"></a>三、线程常用方法总结</h1><table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">currentThread()</td>
+<td align="center">返回当前正在执行的线程对象的引用</td>
+</tr>
+<tr>
+<td align="center">getName()</td>
+<td align="center">返回该线程的名称</td>
+</tr>
+<tr>
+<td align="center">interrupt()</td>
+<td align="center">使一个阻塞状态的线程中断执行</td>
+</tr>
+<tr>
+<td align="center">jion()</td>
+<td align="center">等待该线程执行完毕</td>
+</tr>
+<tr>
+<td align="center">run()</td>
+<td align="center">如果该线程是独立的Runnable运行对象构造的，则调用该Runnable对象的run方法，否则该方法不执行任何操作并返回</td>
+</tr>
+<tr>
+<td align="center">sleep()</td>
+<td align="center">在指定的毫秒数内让该线程休眠，不释放锁</td>
+</tr>
+<tr>
+<td align="center">start()</td>
+<td align="center">让该线程处于可运行态</td>
+</tr>
+<tr>
+<td align="center">yield()</td>
+<td align="center">让当前的线程重新回到可运行态</td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -373,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AF%E8%AF%AD%E4%B8%80%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">一、术语一览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">二、线程的创建方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%89%A9%E5%B1%95Thread%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 扩展Thread类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 实现Runnable接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E7%94%A8Callable%E5%92%8CFutureTask%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 用Callable和FutureTask定义线程</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AF%E8%AF%AD%E4%B8%80%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">一、术语一览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">二、线程的创建方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%89%A9%E5%B1%95Thread%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 扩展Thread类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 实现Runnable接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E7%94%A8Callable%E5%92%8CFutureTask%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 用Callable和FutureTask定义线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BA%BF%E7%A8%8B%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">三、线程常用方法总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -389,7 +429,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
